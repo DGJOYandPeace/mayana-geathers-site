@@ -56,9 +56,29 @@ default.
 2. Upload with these prefixes:
    - audio → `meditations/audio/`
    - cover art → `meditations/covers/`
-3. **Settings → Public access.** Either enable the `r2.dev` public URL, or
-   connect a custom domain such as `audio.mayanageathers.com`. Copy the public
-   base URL.
+3. **Settings → Public access.** Enable the **Public Development URL**
+   (`r2.dev`) and copy the base URL it gives you.
+
+   Cloudflare warns that r2.dev is rate-limited and not recommended for
+   production, and suggests a custom domain instead. That is correct — but a
+   custom domain on an R2 bucket requires the domain's nameservers to be on
+   Cloudflare, and `mayanageathers.com` is still at Namecheap pointing at
+   Squarespace. Moving it is the launch cutover being deliberately held. So
+   r2.dev is the right choice for the review phase.
+
+   **At launch**, once DNS moves to Cloudflare, connect a custom domain such
+   as `audio.mayanageathers.com` to the bucket and change `audio.r2BaseUrl`
+   below — that one value is the only thing to update, and it buys edge
+   caching and no rate limit.
+
+   Two things to know while r2.dev is in use:
+   - No edge caching, so every play reads from R2. Fine for review traffic;
+     the custom domain fixes it for real traffic.
+   - Objects are publicly readable by URL. That is true of any web audio
+     player, but it does mean the "Embracing Your Gifts" signup gate is
+     cosmetic — the player hides the track until someone signs up, but the
+     file itself is fetchable. Genuinely gating it would need the Worker to
+     proxy or sign the URL, which is a later job if it ever matters.
 4. Put that URL in **`src/_data/site.json`** → `audio.r2BaseUrl`, with no
    trailing slash:
 
