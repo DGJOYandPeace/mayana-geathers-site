@@ -7,6 +7,12 @@
 export default function (eleventyConfig) {
   // Static assets are copied through untouched.
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
+
+  // Images may also sit at the repo root — that is where GitHub's "Add files
+  // via upload" button drops them. Publish those to /assets/img/ as well, so
+  // an image uploaded through the web UI works without being moved first.
+  // src/assets/img stays the canonical home; this is just a courtesy path.
+  eleventyConfig.addPassthroughCopy({ "*.{jpg,jpeg,png,webp,gif,svg,avif}": "assets/img" });
   eleventyConfig.addPassthroughCopy({ "src/_headers": "_headers" });
 
   // Rebuild the browser preview when CSS/JS change.
