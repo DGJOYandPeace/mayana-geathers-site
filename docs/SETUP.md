@@ -27,6 +27,12 @@ nothing to configure for `/api/contact`.
 
 ## 2. R2 bucket for the meditation audio
 
+The audio filenames are already configured in
+`src/_data/meditations.json`, named after the tracks. The player URL-encodes
+them, so spaces are fine. What is still missing is the bucket's **public URL**
+— the bucket name on its own is not a URL, and R2 buckets are private by
+default.
+
 1. Cloudflare dashboard → **R2** → the **`mayanas-professional-site`** bucket.
 2. Upload with these prefixes:
    - audio → `meditations/audio/`
@@ -76,18 +82,28 @@ emails/month, 100/day, 1 verified domain — covers this site comfortably.
    > are not part of the "don't touch DNS" hold on the site cutover.
 
 4. Wait for Resend to show the domain as **Verified**.
-5. **API Keys → Create API Key.** Copy it once — it isn't shown again.
+5. **API Keys → Create API Key.** Choose **Sending access**, not Full access —
+   the site only ever calls `POST /emails`, so a send-only key is all it needs.
+   If the key ever leaks, a sending key cannot read your domains, contacts or
+   other keys. Copy it once; it isn't shown again.
+
+   > Treat the key like a password: paste it straight into Cloudflare (step 4)
+   > and nowhere else. If it ends up in a chat, a screenshot or a commit,
+   > delete it in Resend and issue a new one.
 
 ---
 
 ## 4. Environment variables in Cloudflare Pages
 
-Pages project → **Settings → Environment variables**. Add all three to
-**Production** *and* **Preview**, or the forms won't work on preview URLs.
+In the Cloudflare dashboard: **Workers & Pages → your Pages project →
+Settings → Environment variables → Add variable.**
+
+Add all three to **Production**, then repeat for **Preview** — variables are
+per-environment, so a Production-only key leaves the preview URLs broken.
 
 | Name | Value | Notes |
 |---|---|---|
-| `RESEND_API_KEY` | the key from step 3.5 | Mark as **Secret** |
+| `RESEND_API_KEY` | the sending-access key from step 3.5 | Choose **Secret**, not Plaintext |
 | `MAIL_FROM` | `Mayana Geathers Site <notifications@mail.mayanageathers.com>` | Must be on the Resend-verified domain |
 | `NOTIFY_EMAIL` | `mayanal14@gmail.com` | Where notifications land |
 

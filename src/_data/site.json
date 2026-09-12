@@ -8,10 +8,10 @@
     "practiceBooking": "https://www.bridgestohealing.net/contact",
     "instagram": "https://www.instagram.com/mayanageathers"
   },
-  "_comment_audio": "REPLACE ME — the Cloudflare R2 public bucket URL for `mayanas-professional-site`. Set this ONE value and every meditation becomes playable. Leave it as an empty string and the player shows an honest 'audio coming soon' state instead of 404ing. Format: https://pub-xxxxxxxx.r2.dev  (or a custom domain such as https://audio.mayanageathers.com). No trailing slash.",
+  "_comment_audio": "REPLACE ME — r2BaseUrl is the PUBLIC URL of the mayanas-professional-site R2 bucket, and is the single value that switches the player on. The bucket NAME is not a URL: in the Cloudflare dashboard open R2 > mayanas-professional-site > Settings > Public access, then either enable the r2.dev subdomain (gives https://pub-<hash>.r2.dev) or connect a custom domain such as https://audio.mayanageathers.com. Paste that here with no trailing slash. audioPrefix is empty because the MP3s sit at the bucket root; set it to a folder name if they are moved into one.",
   "audio": {
     "r2BaseUrl": "",
-    "audioPrefix": "meditations/audio",
+    "audioPrefix": "",
     "coverPrefix": "meditations/covers"
   },
   "_comment_images": "Photography and marks. A value may be a bare FILENAME (looked up in src/assets/img/, and skipped if not present yet) or a FULL URL, e.g. an R2 public URL, which is used as-is.",

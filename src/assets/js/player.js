@@ -23,11 +23,21 @@
     return String(s || "").replace(/^\/+|\/+$/g, "");
   }
 
+  // Object keys are named after the tracks, so they contain spaces and other
+  // characters that are not URL-safe. Encode each path segment, leaving the
+  // separators intact so a key like "Breathe In/Breathe Out.mp3" still
+  // resolves as a folder path.
+  function encodePath(path) {
+    return trimSlashes(path).split("/").map(encodeURIComponent).join("/");
+  }
+
   function buildUrl(prefix, file) {
     if (!CFG.r2BaseUrl || !file) return null;
     var base = String(CFG.r2BaseUrl).replace(/\/+$/, "");
-    var p = trimSlashes(prefix);
-    return base + "/" + (p ? p + "/" : "") + trimSlashes(file);
+    var p = encodePath(prefix);
+    var f = encodePath(file);
+    if (!f) return null;
+    return base + "/" + (p ? p + "/" : "") + f;
   }
 
   function giftUnlocked() {
