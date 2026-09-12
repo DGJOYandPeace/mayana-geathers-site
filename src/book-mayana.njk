@@ -23,16 +23,33 @@ permalink: /book-mayana/
   </div>
 </section>
 
-{# The black-and-white portrait lives here rather than on the homepage. #}
-{% if assets.has[site.images.booking] %}
-<figure class="plate">
-  <img src="/assets/img/{{ site.images.booking }}" alt="{{ site.images.bookingAlt }}"
-       {{ ("/assets/img/" ~ site.images.booking) | imgAttrs | safe }} loading="lazy">
-</figure>
-{% endif %}
+{# The black-and-white portrait, set beside the copy in a contained column —
+   the About page's treatment rather than a full-width band. #}
+<section class="tone tone--mist section">
+  <div class="wrap reveal">
+    <div class="split split--narrow-first" style="align-items:center">
+      {% if assets.has[site.images.booking] %}
+      <img class="portrait portrait--wide" src="/assets/img/{{ site.images.booking }}"
+           alt="{{ site.images.bookingAlt }}"
+           {{ ("/assets/img/" ~ site.images.booking) | imgAttrs | safe }} loading="lazy">
+      {% endif %}
+      <div>
+        <p class="label label--accent">Sound healing &amp; guided meditation</p>
+        <h2>Bring a moment of stillness to your gathering</h2>
+        <p class="lede">
+          Mayana leads guided meditation and sound healing for retreats, workplaces,
+          private events and live gatherings.
+        </p>
+        <p style="margin-top:1.5rem">
+          <a class="btn btn--primary" href="/contact/?reason=booking">Enquire about an event</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
 {# --- THERAPY ROUTING NOTICE -------------------------------------------- #}
-<section class="tone tone--mist section--tight">
+<section class="tone tone--sage section--tight">
   <div class="wrap reveal">
     <div class="notice">
       <p>
@@ -46,7 +63,7 @@ permalink: /book-mayana/
 </section>
 
 {# --- THREE SERVICES (copy verbatim) — a ruled index, not tiles --------- #}
-<section class="tone tone--sage section">
+<section class="tone tone--moss section">
   <div class="wrap reveal">
     <p class="eyebrow">What Mayana offers</p>
     <ul class="index">

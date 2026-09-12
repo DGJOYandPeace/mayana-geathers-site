@@ -1,21 +1,22 @@
 {#
-  Nav. On the homepage it floats over the hero photograph (transparent, white,
-  signature centred) and solidifies once scrolled. Elsewhere it sits on its own
+  Nav. On the homepage it floats over the hero photograph (transparent, white)
+  and solidifies once scrolled. The signature sits at the left rather than
+  pinned to the centre, which gives the menu the whole middle of the bar. Elsewhere it sits on its own
   deep band so the white signature always has ground beneath it.
 #}
 <header class="nav{% if navOverHero %} nav--over{% endif %}" id="site-nav">
   <div class="wrap">
     <div class="nav__inner">
+      <a class="nav__mark" href="/" aria-label="{{ site.name }} — home">
+        <img src="/assets/img/{{ site.images.logo }}" alt="{{ site.name }}"
+             {{ ("/assets/img/" ~ site.images.logo) | imgAttrs | safe }}>
+      </a>
+
       <ul class="nav__links nav__links--desktop">
         {% for item in site.nav %}
           <li><a href="{{ item.url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.label }}</a></li>
         {% endfor %}
       </ul>
-
-      <a class="nav__mark" href="/" aria-label="{{ site.name }} — home">
-        <img src="/assets/img/{{ site.images.logo }}" alt="{{ site.name }}"
-             {{ ("/assets/img/" ~ site.images.logo) | imgAttrs | safe }}>
-      </a>
 
       <div class="nav__end">
         <a class="nav__icon" href="{{ site.urls.instagram }}" target="_blank" rel="noopener" aria-label="Mayana on Instagram">
