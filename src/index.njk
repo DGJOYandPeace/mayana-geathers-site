@@ -6,10 +6,10 @@ permalink: /
 ---
 {#
   ===========================================================================
-  HOME — a book jacket.
-  Where a hero portrait exists it runs full-bleed above the type; the
-  headline is set beneath it on paper, so nothing needs a scrim. Without the
-  photograph the opening is purely typographic, which the direction supports.
+  HOME
+  Leads with the four guided meditations — they are the offering, so they come
+  before anything else on the page. A hero photograph opens above the
+  headline where one exists; without it the opening is typographic.
   ===========================================================================
 #}
 {% set heroImage = site.images.hero if assets.has[site.images.hero] else false %}
@@ -22,15 +22,35 @@ permalink: /
 <section class="hero">
   <div class="wrap">
     <p class="eyebrow">Feminist therapist &middot; Writer &middot; Guided meditation</p>
-    <div class="hero__inner">
-      <h1>A place to slow down and come back to <span class="accent-word">yourself</span></h1>
-    </div>
+    <h1>A place to slow down and come back to <span class="accent-word">yourself</span></h1>
     <p class="lede hero__sub">{{ site.tagline }}</p>
     <div class="btn-row">
-      <a class="btn btn--primary" href="#receive-a-gift">Receive a free meditation</a>
+      <a class="btn btn--primary" href="#meditations">Listen now</a>
       <a class="btn btn--outline" href="{{ site.urls.practiceBooking }}" target="_blank" rel="noopener">{{ site.consultCta.label }}</a>
     </div>
     <p class="hero__note">{{ site.consultCta.note }}</p>
+  </div>
+</section>
+
+{# ---------------------------------------------- THE FOUR MEDITATIONS ----
+   The lead offering. The player carries each track's own description and
+   what it's good for, so choosing one tells you why you'd choose it. #}
+<section class="section" id="meditations">
+  <div class="wrap">
+    <p class="eyebrow">Guided meditation</p>
+    <h2>Four meditations, written and voiced by Mayana</h2>
+    <p class="lede prose" style="margin-bottom:2.5rem">
+      Press play and let the page open around you. Each one names what it&rsquo;s for,
+      so you can choose the practice that fits the moment.
+    </p>
+
+    {% set playerId = "home-player" %}
+    {% set playerTracks = meditations.tracks %}
+    {% set playerHeading = "Choose a meditation" %}
+    {% set playerCompact = false %}
+    {% include "partials/player.njk" %}
+
+    <p style="margin-top:2rem"><a class="link-more" href="/guided-meditation/">Read about each meditation</a></p>
   </div>
 </section>
 
@@ -38,63 +58,6 @@ permalink: /
 <section class="section--tight">
   <div class="wrap">{% include "partials/signup.njk" %}</div>
 </section>
-
-{# --------------------------------------------------------- LATEST ------
-   Reads the same data as the player and the Written Work page. #}
-{% set latestTrack = meditations.tracks[0] %}
-{% set latestPiece = writing.entries[0] %}
-<section class="section band">
-  <div class="wrap">
-    <p class="eyebrow">Latest</p>
-    <ul class="index">
-      <li>
-        <a class="item" href="/guided-meditation/#{{ latestTrack.slug }}">
-          <span class="item__num">New</span>
-          <span>
-            <span class="item__meta">Meditation</span>
-            <h3 class="item__title" style="margin-top:0.4rem">{{ latestTrack.title }}</h3>
-            <span class="item__excerpt">{{ latestTrack.description | truncate(170) }}</span>
-          </span>
-          <span class="item__aside"><span class="link-more">Listen</span></span>
-        </a>
-      </li>
-      <li>
-        <a class="item" href="{{ latestPiece.url }}" target="_blank" rel="noopener">
-          <span class="item__num">New</span>
-          <span>
-            <span class="item__meta">Writing &middot; {{ latestPiece.source }}</span>
-            <h3 class="item__title" style="margin-top:0.4rem">{{ latestPiece.title }}</h3>
-            <span class="item__excerpt">Mayana on {{ latestPiece.topics | join(", ") | lower }}.</span>
-          </span>
-          <span class="item__aside"><span class="link-more">Read</span></span>
-        </a>
-      </li>
-    </ul>
-  </div>
-</section>
-
-{# ----------------------------------------------------- FEATURED TRACK -- #}
-{% set featured = meditations.tracks | where("slug", meditations.featuredSlug) %}
-{% if featured.length %}
-<section class="section">
-  <div class="wrap">
-    <p class="eyebrow">Listen</p>
-    <div class="split split--narrow-first">
-      <div>
-        <h2>A meditation to begin with</h2>
-        <p class="lede">Press play and let the page open around you.</p>
-        <p style="margin-top:1.5rem"><a class="link-more" href="/guided-meditation/">The full library</a></p>
-      </div>
-      <div>
-        {% set playerId = "home-player" %}
-        {% set playerTracks = featured %}
-        {% set playerCompact = true %}
-        {% include "partials/player.njk" %}
-      </div>
-    </div>
-  </div>
-</section>
-{% endif %}
 
 {# ------------------------------------------------- QUIET PHOTO MOMENT --
    A breath between sections. Skipped until the file is in src/assets/img. #}
@@ -108,31 +71,30 @@ permalink: /
 </figure>
 {% endif %}
 
-{# --------------------------------------------------------- BANDCAMP ---- #}
-<section class="section ruled">
+{# --------------------------------------------------------- WRITING ----- #}
+{% set latestPiece = writing.entries[0] %}
+<section class="section band">
   <div class="wrap">
-    <p class="eyebrow">Full collections</p>
-    <h2>Albums on Bandcamp</h2>
-    <p class="lede prose" style="margin-bottom:2.5rem">
-      Mayana&rsquo;s full-length guided meditation collections are available to hear and purchase on Bandcamp.
-    </p>
-    {% for album in albums.bandcamp %}
-    <article class="split split--plate{% if not loop.first %} ruled{% endif %}" style="padding-block:clamp(1.5rem,4vw,2.5rem)">
-      <img src="{{ album.cover }}" alt="{{ album.coverAlt }}" loading="lazy" width="700" height="700">
-      <div>
-        <h3>{{ album.title }}</h3>
-        <p>{{ album.description }}</p>
-        <p style="margin-top:1.5rem">
-          <a class="btn btn--outline btn--sm" href="{{ album.url }}" target="_blank" rel="noopener">Listen on Bandcamp</a>
-        </p>
-      </div>
-    </article>
-    {% endfor %}
+    <p class="eyebrow">Writing</p>
+    <ul class="index">
+      <li>
+        <a class="item" href="{{ latestPiece.url }}" target="_blank" rel="noopener">
+          <span class="item__num">New</span>
+          <span>
+            <span class="item__meta">{{ latestPiece.source }}</span>
+            <h3 class="item__title" style="margin-top:0.45rem">{{ latestPiece.title }}</h3>
+            <span class="item__excerpt">Mayana on {{ latestPiece.topics | join(", ") | lower }}.</span>
+          </span>
+          <span class="item__aside"><span class="link-more">Read</span></span>
+        </a>
+      </li>
+    </ul>
+    <p style="margin-top:1.75rem"><a class="link-more" href="/written-work/">All written work</a></p>
   </div>
 </section>
 
 {# ----------------------------------------------------- TESTIMONIALS ---- #}
-<section class="section band">
+<section class="section">
   <div class="wrap">
     <p class="eyebrow">In their words</p>
     {% for t in testimonials.items %}

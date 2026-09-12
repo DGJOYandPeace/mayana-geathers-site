@@ -33,3 +33,33 @@
     }
   });
 })();
+
+/* Parallax depth field.
+ * One rAF-throttled scroll listener sets a single custom property; the three
+ * washes each move at their own rate off that one value, so there is no
+ * per-element work on the scroll thread. Skipped entirely when the visitor
+ * prefers reduced motion. */
+(function () {
+  "use strict";
+
+  if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  var depth = document.querySelector("[data-depth]");
+  if (!depth) return;
+
+  var ticking = false;
+
+  function apply() {
+    depth.style.setProperty("--scroll", String(window.scrollY));
+    ticking = false;
+  }
+
+  window.addEventListener("scroll", function () {
+    if (!ticking) {
+      ticking = true;
+      window.requestAnimationFrame(apply);
+    }
+  }, { passive: true });
+
+  apply();
+})();

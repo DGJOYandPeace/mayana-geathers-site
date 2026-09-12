@@ -22,7 +22,15 @@
       <div class="player__meta">
         <p class="player__album" data-player-album></p>
         <h3 class="player__title" data-player-title>Select a meditation</h3>
+        <p class="player__meta-line"><span data-player-meta></span></p>
         <p class="player__desc" data-player-desc></p>
+
+        {# What this particular meditation is good for — revealed with the
+           bloom, so choosing a track tells you why you'd choose it. #}
+        <div class="player__use" data-player-use hidden>
+          <p class="label" data-player-use-label>Use this meditation for</p>
+          <ul data-player-use-list></ul>
+        </div>
 
         <div class="player__wave" aria-hidden="true">
           {% for i in range(0, 40) %}<span style="animation-delay: -{{ (i * 0.13) | round(2) }}s"></span>{% endfor %}

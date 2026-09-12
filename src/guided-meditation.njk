@@ -5,15 +5,16 @@ description: "Original guided meditations written and recorded by Mayana Geather
 permalink: /guided-meditation/
 ---
 {# =========================================================================
-   GUIDED MEDITATION — Stage 1 centrepiece and a return-visit page.
+   GUIDED MEDITATION — the centrepiece and a return-visit page.
    Built as a growing library: adding a track means adding one object to
    src/_data/meditations.json; nothing here changes.
+   Bandcamp has been cut, so nothing on this page links out to purchase.
    ========================================================================= #}
 
 <section class="hero hero--page">
   <div class="wrap">
     <p class="eyebrow">Listen</p>
-    <div class="hero__inner"><h1>Guided <span class="accent-word">Meditation</span></h1></div>
+    <h1>Guided <span class="accent-word">Meditation</span></h1>
     <p class="lede hero__sub" style="margin-bottom:0">
       Written and recorded by Mayana. Press play and let everything else wait a moment.
     </p>
@@ -22,9 +23,7 @@ permalink: /guided-meditation/
 
 {# --- INTRO COPY (verbatim from the live site) --- #}
 <section class="section--tight">
-  <div class="wrap">
-    <p class="prose">{{ meditations.intro }}</p>
-  </div>
+  <div class="wrap"><p class="prose">{{ meditations.intro }}</p></div>
 </section>
 
 {# --- THE PLAYER ---------------------------------------------------------
@@ -50,13 +49,14 @@ permalink: /guided-meditation/
     <article class="entry-body" id="{{ t.slug }}">
       <div class="split split--narrow-first">
         <div>
-          <p class="item__num" style="margin:0 0 0.75rem">{{ loop.index | pad2 }}</p>
-          {# REPLACE ME — cover art. While coverFile is null in
-             meditations.json the ruled ink plate stands in; no stock
-             photography has been invented. #}
+          {# Cover art is the release the track belongs to — confirmed from
+             the collection's track listing. #}
           <div class="cover" style="max-width:13rem">
-            <span class="cover__ph">Cover<br>art<br>to come</span>
+            <img src="{{ t.cover }}" alt="Cover art for {{ t.album }}" loading="lazy" width="420" height="420">
           </div>
+          <p class="item__meta" style="margin-top:0.85rem">
+            {{ t.album }}{% if t.duration %} &middot; {{ t.duration }}{% endif %}
+          </p>
         </div>
         <div class="prose">
           <h3>{{ t.title }}</h3>
@@ -75,46 +75,18 @@ permalink: /guided-meditation/
   </div>
 </section>
 
-{# --- FULL ALBUMS, BANDCAMP-ONLY ---------------------------------------- #}
-<section class="section">
+{# --- THE COLLECTION THESE COME FROM ------------------------------------
+   Context only — no purchase link, per the decision to cut Bandcamp. #}
+{% set release = albums.releases["dawning-of-a-new-day"] %}
+<section class="section--tight">
   <div class="wrap">
-    <p class="eyebrow">Full collections</p>
-    <h2>Albums on Bandcamp</h2>
-    <p class="lede prose" style="margin-bottom:2.5rem">
-      These full-length collections live on Bandcamp, where you can hear them in full and buy a copy.
-    </p>
-    {% for album in albums.bandcamp %}
-    <article class="split split--plate{% if not loop.first %} ruled{% endif %}" style="padding-block:clamp(1.5rem,4vw,2.5rem)">
-      <img src="{{ album.cover }}" alt="{{ album.coverAlt }}" loading="lazy" width="700" height="700">
+    <div class="split split--plate">
+      <img src="{{ release.cover }}" alt="{{ release.coverAlt }}" loading="lazy" width="700" height="700">
       <div>
-        <h3>{{ album.title }}</h3>
-        <p>{{ album.description }}</p>
-        {% if album.photo %}
-          {# ASSET: supporting photography for this release. CONFIRM it
-             belongs here — remove `photo` from albums.json if not. #}
-          <img src="{{ album.photo }}" alt="{{ album.photoAlt }}" loading="lazy"
-               width="520" height="340" style="margin-top:1.25rem;aspect-ratio:16/10;object-fit:cover">
-        {% endif %}
-        <p style="margin-top:1.5rem">
-          <a class="btn btn--outline btn--sm" href="{{ album.url }}" target="_blank" rel="noopener">Listen on Bandcamp</a>
-        </p>
+        <p class="label">The collection</p>
+        <h3>{{ release.title }}</h3>
+        <p>{{ release.description }}</p>
       </div>
-    </article>
-    {% endfor %}
-  </div>
-</section>
-
-{# --- DAVID'S SOUND HEALING (cross-promo only, not in Mayana's player) --- #}
-<section class="section--tight band">
-  <div class="wrap">
-    <div class="prose">
-      <p class="label">Also worth hearing</p>
-      <h3>{{ albums.davidSoundHealing.title }}</h3>
-      <p class="item__meta" style="margin-bottom:1rem">{{ albums.davidSoundHealing.byline }}</p>
-      <p>{{ albums.davidSoundHealing.description }}</p>
-      <p style="margin-top:1.5rem">
-        <a class="btn btn--outline btn--sm" href="{{ albums.davidSoundHealing.url }}" target="_blank" rel="noopener">Listen on Bandcamp</a>
-      </p>
     </div>
   </div>
 </section>

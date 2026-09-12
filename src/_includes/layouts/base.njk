@@ -36,6 +36,11 @@
   </script>
 </head>
 <body>
+{# Decorative depth field behind everything — see .depth in site.css. #}
+<div class="depth" data-depth aria-hidden="true">
+  <span class="depth__a"></span><span class="depth__b"></span><span class="depth__c"></span>
+</div>
+
 <div class="page">
   <a class="skip-link" href="#main">Skip to content</a>
   {% include "partials/nav.njk" %}

@@ -48,7 +48,12 @@
   }
 
   function coverMarkup(track) {
-    var url = buildUrl(CFG.coverPrefix, track.coverFile);
+    // `cover` may be a site path ("/assets/img/x.jpg") or a bare filename,
+    // in which case it is looked up in the R2 covers prefix.
+    var cover = track.cover;
+    var url = cover && cover.charAt(0) === "/"
+      ? cover
+      : buildUrl(CFG.coverPrefix, cover);
     if (url) {
       return '<img src="' + url + '" alt="Cover art for ' + escapeAttr(track.title) + '" loading="lazy">';
     }
@@ -91,6 +96,9 @@
     var albumEl = root.querySelector("[data-player-album]");
     var titleEl = root.querySelector("[data-player-title]");
     var descEl = root.querySelector("[data-player-desc]");
+    var metaEl = root.querySelector("[data-player-meta]");
+    var useEl = root.querySelector("[data-player-use]");
+    var useListEl = root.querySelector("[data-player-use-list]");
     var noticeEl = root.querySelector("[data-player-notice]");
     var listEl = root.querySelector("[data-player-list]");
     var countEl = root.querySelector("[data-player-count]");
@@ -162,6 +170,19 @@
       if (albumEl) albumEl.textContent = track.album || "";
       if (titleEl) titleEl.textContent = track.title;
       if (descEl) descEl.textContent = track.description || "";
+
+      if (metaEl) {
+        metaEl.textContent = [track.album, track.duration].filter(Boolean).join("  \u00b7  ");
+      }
+
+      if (useEl && useListEl) {
+        var uses = track.useFor || [];
+        useListEl.innerHTML = uses.map(function (u) {
+          return "<li>" + escapeHtml(u) + "</li>";
+        }).join("");
+        setHidden(useEl, uses.length === 0);
+      }
+
       if (coverEl) coverEl.innerHTML = coverMarkup(track);
 
       var url = buildUrl(CFG.audioPrefix, track.audioFile);

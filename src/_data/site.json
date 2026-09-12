@@ -2,46 +2,58 @@
   "name": "Mayana Geathers",
   "tagline": "Feminist therapist, writer, and creator of original guided meditations.",
   "signoff": "Be Well!",
-
   "_comment_urls": "External destinations. The /contact link on Bridges to Healing is reserved for the therapy funnel CTA only; general mentions use practiceUrl.",
   "urls": {
     "practice": "https://www.bridgestohealing.net",
     "practiceBooking": "https://www.bridgestohealing.net/contact",
-    "instagram": "https://www.instagram.com/mayanageathers",
-    "bandcampDavidSoundHealing": "https://davidgeathers.bandcamp.com/album/sound-healing"
+    "instagram": "https://www.instagram.com/mayanageathers"
   },
-
   "_comment_audio": "REPLACE ME — the Cloudflare R2 public bucket URL for `mayanas-professional-site`. Set this ONE value and every meditation becomes playable. Leave it as an empty string and the player shows an honest 'audio coming soon' state instead of 404ing. Format: https://pub-xxxxxxxx.r2.dev  (or a custom domain such as https://audio.mayanageathers.com). No trailing slash.",
   "audio": {
     "r2BaseUrl": "",
     "audioPrefix": "meditations/audio",
     "coverPrefix": "meditations/covers"
   },
-
-  "_comment_images": "Photography slots. Each value is a filename inside src/assets/img/. A file that is not present yet is simply skipped (see src/_data/assets.js) — the designed gradient fallback shows instead of a broken image, so these can be filled in ahead of the files arriving.",
+  "_comment_images": "Photography slots. A value may be a bare FILENAME (looked up in src/assets/img/, and skipped if not present yet) or a FULL URL (e.g. an R2 public URL), which is used as-is. That lets large photography live in the bucket alongside the audio instead of in git.",
   "images": {
     "hero": "mayana-cactus-hero.jpg",
-    "heroAlt": "Mayana Geathers standing among blooming prickly pear cactus at golden hour",
+    "heroAlt": "Mayana Geathers among blooming prickly pear cactus at golden hour",
     "portraitProfile": "mayana-golden-hour-profile.jpg",
     "portraitProfileAlt": "Mayana Geathers in profile, looking out over the hills at golden hour",
     "aboutPortrait": "mayana-portrait-1.jpeg",
     "aboutPortraitAlt": "Portrait of Mayana Geathers",
-    "logo": "mayana-geathers-white-logo.webp"
+    "logo": "mayana-geathers-white-logo.webp",
+    "_comment_logoDark": "REPLACE ME — the dark logo for the paper nav. Until it is present the nav falls back to a typeset wordmark.",
+    "logoDark": "mayana-geathers-black-logo.webp"
   },
-
   "_comment_forms": "The single Cloudflare Pages Function that handles both the contact form and the newsletter signup.",
   "formEndpoint": "/api/contact",
-
   "nav": [
-    { "label": "Home", "url": "/" },
-    { "label": "About Me", "url": "/about/" },
-    { "label": "Guided Meditation", "url": "/guided-meditation/" },
-    { "label": "Book Mayana", "url": "/book-mayana/" },
-    { "label": "Written Work", "url": "/written-work/" },
-    { "label": "Events", "url": "/events/" },
-    { "label": "Contact", "url": "/contact/" }
+    {
+      "label": "Home",
+      "url": "/"
+    },
+    {
+      "label": "About Me",
+      "url": "/about/"
+    },
+    {
+      "label": "Guided Meditation",
+      "url": "/guided-meditation/"
+    },
+    {
+      "label": "Book Mayana",
+      "url": "/book-mayana/"
+    },
+    {
+      "label": "Written Work",
+      "url": "/written-work/"
+    },
+    {
+      "label": "Contact",
+      "url": "/contact/"
+    }
   ],
-
   "consultCta": {
     "label": "Book a Consultation",
     "note": "Therapy clients are seen through Mayana's group practice, Bridges to Healing."

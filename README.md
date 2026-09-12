@@ -24,9 +24,8 @@ src/
   _data/            ← ALL COPY AND CONFIG LIVES HERE
     site.json         site name, nav, external URLs, R2 bucket URL, image slots
     meditations.json  the meditation library (copy is final)
-    albums.json       Bandcamp albums + David's Sound Healing cross-promo
+    albums.json       release metadata (cover art per collection)
     writing.json      Written Work entries
-    events.json       past + upcoming events
     testimonials.json testimonials
     assets.js         (generated) which image files actually exist
     library.js        (generated) meditations + gift track, for the player
@@ -124,18 +123,21 @@ player cover art in R2 where they can be replaced without bloating history.
 ## Adding a meditation
 
 1. Upload the MP3 to the `mayanas-professional-site` R2 bucket under
-   `meditations/audio/`, and cover art under `meditations/covers/`.
-2. Add an object to `tracks` in `src/_data/meditations.json` with the title,
-   description, `useFor` bullets, closing line, `audioFile` and `coverFile`.
+   `meditations/audio/`.
+2. Add an object to `tracks` in `src/_data/meditations.json`: title,
+   description, `useFor` bullets, closing line, `album`, `duration`,
+   `audioFile`, and `cover`.
+
+`cover` may be a site path (`/assets/img/....jpg`) for artwork committed to the
+repo, or a bare filename, which is looked up in the R2 covers prefix.
 
 That's it — the player, the Guided Meditation page and the homepage "Latest"
 module all pick it up.
 
-## Adding an article or an event
+## Adding an article
 
-Add an object to the top of `entries` in `src/_data/writing.json`, or to
-`upcoming` / `past` in `src/_data/events.json`. Adding anything to `upcoming`
-makes an "Upcoming Events" section appear automatically.
+Add an object to the top of `entries` in `src/_data/writing.json`. The Written
+Work index and the homepage both read from it.
 
 ## Deploying
 

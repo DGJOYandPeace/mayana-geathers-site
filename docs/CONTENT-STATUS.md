@@ -18,9 +18,7 @@ grep -rn "REPLACE ME\|CONFIRM" src/
 | Book Mayana intro + three service tiles | ✅ verbatim |
 | Written Work intro + three article links | ✅ verbatim |
 | David's "Sound Healing" description | ✅ verbatim |
-| Bandcamp album descriptions ("Dawning…", "I Am Worthy") | ⏳ placeholder — short descriptions needed |
-| Bandcamp album **URLs** | ⏳ guessed — must be confirmed before launch |
-| Events: three past entries | ⏳ only the dates (Feb 2023, Oct 2022, May 2022) were supplied; titles, times, locations and descriptions are placeholders |
+| Release descriptions ("Dawning…", "I Am Worthy") | ✅ transcribed from the release pages — CONFIRM the two lines cut off mid-sentence in the screenshots |
 | "Social Media Makes Healing…" publication date | ⏳ unknown — the date line is omitted rather than guessed |
 | Written Work excerpts | ⏳ optional; placeholder text is skipped until real pull quotes arrive |
 
@@ -30,9 +28,9 @@ grep -rn "REPLACE ME\|CONFIRM" src/
 |---|---|
 | Copy for all four launch tracks | ✅ |
 | MP3s uploaded to `mayanas-professional-site` | ✅ per David |
-| Exact R2 object names | ⏳ guessed slugs in `meditations.json` — verify with `wrangler r2 object list` |
+| Exact R2 object names | ⏳ guessed slugs in `meditations.json`. The real files may be named after `sourceTitle` (the track's name on the release) — verify with `wrangler r2 object list` |
 | `audio.r2BaseUrl` in `site.json` | ⏳ **the one value that switches the player on** |
-| Cover art for the four tracks | ⏳ none supplied — a ruled ink plate stands in, no stock photography invented |
+| Cover art for the four tracks | ✅ RESOLVED — all four are tracks on *Dawning of a New Day*, so that release's cover art applies to each |
 | "Embracing Your Gifts" gift track MP3 | ⏳ needed; unlocks in the player after signup |
 
 ## Images
@@ -45,8 +43,9 @@ grep -rn "REPLACE ME\|CONFIRM" src/
 | `i-am-worthy-album-cover-art.jpg` | album card | ✅ |
 | `mayana-photo-i-am-worthy-shoot.webp` | supporting photo on the I Am Worthy card | ⚠️ assumed — confirm |
 | `mayana-shan-podcast-still.webp` | Speaking Events/Podcasts tile | ⚠️ best guess — confirm |
-| `mayana-cactus-hero.jpg` | **homepage hero** (full-bleed, blurred behind the headline) | ⏳ **file needed** |
+| `mayana-cactus-hero.jpg` | **homepage hero** (full-bleed opening plate) | ⏳ **file needed** |
 | `mayana-golden-hour-profile.jpg` | full-bleed quote band on the homepage | ⏳ **file needed** |
+| `mayana-geathers-black-logo.webp` | **nav logo** on the paper ground | ⏳ **file needed** — until then the nav shows a typeset wordmark |
 
 The last two are already wired up. Drop the files into `src/assets/img/` under
 exactly those names and they appear on the next build — no template edit. Until
@@ -61,7 +60,13 @@ To use different filenames, change `images` in `src/_data/site.json`.
   was removed. If a folder of images was meant to be uploaded, it didn't make it.
 - The Stage 1 brief said "keep all three" testimonials and then listed four.
   All four are kept; remove one from `testimonials.json` if that was the intent.
-- The white logo cannot sit on the paper ground the design now uses, so the
-  nav wordmark is typeset in Young Serif and the logo image appears only in the
-  footer. A dark or full-colour logo variant would let the real logo return to
-  the nav.
+- The white logo cannot sit on the paper ground, so the nav shows a typeset
+  wordmark and the white logo appears only in the footer (the one ink-ground
+  surface). Drop `mayana-geathers-black-logo.webp` into `src/assets/img/` and
+  the nav switches to the real logo automatically.
+- **Events page cut**, along with its data file and nav entry.
+- **Bandcamp cut entirely** — no purchase links anywhere. This also removed
+  David's "Sound Healing" cross-promo card, which existed only as a Bandcamp
+  link. Say the word if it should come back as a text-only mention.
+- Image slots accept a bare filename (looked up in `src/assets/img/`) **or a
+  full URL**, so photography can live in R2 alongside the audio if preferred.
