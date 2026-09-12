@@ -1,5 +1,5 @@
 {
-  "_comment": "Bandcamp has been cut from the site — no purchase links, no album cards. What remains is the release metadata the meditation library needs: which collection a track belongs to, and that release's cover art. Descriptions are verbatim from the releases.",
+  "_comment": "Bandcamp has been cut from the site — no purchase links, no album cards. What remains is the release metadata the meditation library needs: which collection a track belongs to, and that release's cover art. Descriptions are verbatim from the releases. (The I Am Worthy shoot photo moved to the About page.)",
   "releases": {
     "dawning-of-a-new-day": {
       "title": "Dawning of a New Day",
@@ -13,8 +13,6 @@
       "cover": "/assets/img/i-am-worthy-album-cover-art.jpg",
       "coverAlt": "Cover art for I Am Worthy by Mayana Geathers",
       "released": "2021-10-01",
-      "photo": "/assets/img/mayana-photo-i-am-worthy-shoot.webp",
-      "photoAlt": "Mayana Geathers, from the I Am Worthy photo shoot",
       "description": "I Am Worthy is a collection of original guided meditations. These selections take you on a journey that centers around self worth, as it holds space for grief, self, grounding and rest. Listen all the way through, or choose the guided imagery that fits you in the moment. I Am Worthy is a tool to compliment your self-care practice.",
       "credits": "All guided imageries written and voiced by Mayana Geathers. Music composed by David Geathers.",
       "_comment_credits": "CONFIRM — the composer credit was cut off in the screenshot."

@@ -53,10 +53,10 @@ rather than offering a dead link. Set it in `src/_data/meditations.json`.
 | File | Used for | Status |
 |---|---|---|
 | `mayana-geathers-white-logo.webp` | footer only — see note below | ⚠️ a dark variant is needed for the nav |
-| `mayana-portrait-1.jpeg` | About Me portrait | ✅ — confirm this is the intended page |
+| `mayana-portrait-1.jpeg` | About Me portrait — the yellow shirt, seated | ✅ confirmed |
 | `dawining-of-a-new-day-cover-art.jpg` | album card | ✅ |
 | `i-am-worthy-album-cover-art.jpg` | album card | ✅ |
-| `mayana-photo-i-am-worthy-shoot.webp` | supporting photo on the I Am Worthy card | ⚠️ assumed — confirm |
+| `mayana-photo-i-am-worthy-shoot.webp` | *unplaced* — the I Am Worthy card went with Bandcamp | ⚠️ say where it should go, or delete |
 | `mayana-shan-podcast-still.webp` | Speaking Events/Podcasts tile | ⚠️ best guess — confirm |
 | `mayana-hero-image.jpeg` | **homepage hero** — full-bleed opening plate | ✅ black and white |
 | `dawning-of-a-new-day-23-wide.jpeg` | *unplaced* — was the hero until it was swapped out | ⚠️ say where it should go, or delete |

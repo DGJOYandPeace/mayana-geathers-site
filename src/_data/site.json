@@ -21,14 +21,14 @@
     "portraitProfile": "dawning-of-a-new-day-20-cactus-large.jpeg",
     "portraitProfileAlt": "Mayana Geathers in profile, looking out over the hills at golden hour",
     "aboutPortrait": "mayana-portrait-1.jpeg",
-    "aboutPortraitAlt": "Portrait of Mayana Geathers",
+    "aboutPortraitAlt": "Mayana Geathers in a yellow shirt, seated, hand resting at her chin",
     "logo": "mayana-geathers-signature-light.png",
     "_comment_logoDark": "Trimmed, transparent, ink-coloured version of mayana-geathers-black-logo.png (the original is 500x500 with ~68% whitespace padding, which would render the signature tiny). The original stays in the repo untouched.",
     "logoDark": "mayana-geathers-signature.png",
     "_comment_logo": "Trimmed, transparent, paper-coloured version of mayana-geathers-white-logo.webp, for the ink-ground footer. The original stays in the repo untouched.",
     "invitation": "dawning-of-a-new-day-22.jpeg",
     "invitationAlt": "Mayana Geathers among the cactus at golden hour, face lifted and hands open",
-    "_comment_unused": "dawning-of-a-new-day-23-wide.jpeg is in the repo but not currently placed — it was the hero before mayana-hero-image.jpeg replaced it. Say where it should go and it can be used, or delete the file."
+    "_comment_unused": "Not currently placed: dawning-of-a-new-day-23-wide.jpeg (the previous hero) and mayana-photo-i-am-worthy-shoot.webp. Both are still in the repo — say where they should go, or delete them."
   },
   "_comment_forms": "The single Cloudflare Pages Function that handles both the contact form and the newsletter signup.",
   "formEndpoint": "/api/contact",

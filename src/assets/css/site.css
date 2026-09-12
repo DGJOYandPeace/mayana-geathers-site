@@ -418,9 +418,23 @@ a.item:hover .item__title { color: var(--accent); }
   .split, .split--narrow-first { grid-template-columns: 1fr; }
 }
 
+/* A landscape bio portrait, run wide above the copy rather than cropped into
+   a tall column. Capped so a 750px-wide source is never scaled up much. */
+.portrait-wide {
+  width: 100%;
+  max-width: 46rem;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: center 32%;
+  border-radius: var(--r-lg);
+  box-shadow: var(--lift-2);
+}
+
+/* The bio portrait keeps the frame's own 2:3 proportions — it is a full-length
+   seated shot, and any squarer crop cuts it off at the knees. */
 .portrait {
-  width: 100%; aspect-ratio: 4 / 5;
-  object-fit: cover; object-position: center 22%;
+  width: 100%; aspect-ratio: 2 / 3;
+  object-fit: cover; object-position: center;
   border-radius: var(--r-lg);
   box-shadow: var(--lift-2);
 }
