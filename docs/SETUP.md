@@ -5,25 +5,44 @@ built, previewed and reviewed in full before DNS changes at all.
 
 ---
 
-## 1. Cloudflare Pages
+## 1. Cloudflare — deploy as a Worker with static assets
 
-1. Cloudflare dashboard → **Workers & Pages** → **Create** → **Pages** →
-   **Connect to Git**, and pick the `mayana-geathers-site` repo.
+This project deploys as a **Worker with static assets**, not as a classic Pages
+project. That matters for one reason: a Worker that has *only* static assets
+cannot have environment variables attached — the dashboard says
+*"Variables cannot be added to a Worker that only has static assets"* — and
+`RESEND_API_KEY` has to live somewhere. Giving the Worker a script
+(`worker/index.js`, wired up in `wrangler.jsonc`) makes the variables section
+appear and makes `/api/contact` exist at all.
+
+1. Cloudflare dashboard → **Workers & Pages** → **Create** → **Import a
+   repository**, and pick `mayana-geathers-site`.
 2. Build settings:
 
    | Setting | Value |
    |---|---|
-   | Framework preset | None |
    | Build command | `npm run build` |
-   | Build output directory | `_site` |
+   | Deploy command | `npx wrangler deploy` |
 
-3. Save and deploy. Every push then gets its own preview URL, and the
-   production branch gets a stable `*.pages.dev` URL.
+   Leave the output directory alone — `wrangler.jsonc` already points the
+   assets binding at `_site`.
 
-The `functions/` folder at the repo root is picked up automatically — there's
-nothing to configure for `/api/contact`.
+3. Deploy. Every push to `main` redeploys; other branches get preview URLs.
 
----
+Once a deployment includes the Worker script, **Settings → Runtime variables
+and secrets** becomes editable. If it still shows the static-assets message,
+the deploy ran without `wrangler deploy` — check the Deploy command.
+
+### Running it locally
+
+```bash
+npm run build          # build the site into _site/
+npx wrangler dev       # serve it with the Worker on http://localhost:8787
+```
+
+`wrangler dev` gives you the real thing: static pages *and* `/api/contact`.
+For local email testing, put the variables in a `.dev.vars` file — it is
+gitignored, and must never be committed.
 
 ## 2. R2 bucket for the meditation audio
 
@@ -95,28 +114,39 @@ emails/month, 100/day, 1 verified domain — covers this site comfortably.
 
 ## 4. Environment variables in Cloudflare Pages
 
-In the Cloudflare dashboard: **Workers & Pages → your Pages project →
-Settings → Environment variables → Add variable.**
+In the Cloudflare dashboard: **Workers & Pages → mayana-geathers-site →
+Settings → Runtime variables and secrets → Add.**
 
-Add all three to **Production**, then repeat for **Preview** — variables are
-per-environment, so a Production-only key leaves the preview URLs broken.
+This section only appears once a deployment contains the Worker script (see
+step 1). Add all three; mark the API key as a **Secret** so it becomes
+write-only, and leave the other two as plain text.
 
 | Name | Value | Notes |
 |---|---|---|
-| `RESEND_API_KEY` | the sending-access key from step 3.5 | Choose **Secret**, not Plaintext |
+| `RESEND_API_KEY` | the sending-access key from step 3.5 | Add as **Secret**, not Text |
 | `MAIL_FROM` | `Mayana Geathers Site <notifications@mail.mayanageathers.com>` | Must be on the Resend-verified domain |
 | `NOTIFY_EMAIL` | `mayanal14@gmail.com` | Where notifications land |
 
 None of these are in the repo, by design. Changing where notifications go is a
 dashboard edit, not a code change.
 
-Redeploy after adding them — Pages only picks up new variables on a fresh build.
+Redeploy after adding them — variables are read at deploy time.
 
 ### Testing the form
 
-Submit the contact form on a preview URL. If mail isn't configured yet you get a
-warm on-page error and the reason is logged in the Pages Function logs
-(**Deployments → a deployment → Functions**), rather than a silent failure.
+Submit the contact form. If mail isn't configured you get a warm on-page error
+and the reason is logged rather than failing silently — the logs are under
+**Observability** (enabled in `wrangler.jsonc`), or live via
+`npx wrangler tail`.
+
+Expected responses, all verified locally:
+
+| Request | Response |
+|---|---|
+| `POST /api/contact`, mail not configured | `503` + "isn't connected yet" |
+| `POST` with an invalid email | `400` + "Please enter a valid email address." |
+| `POST` with the honeypot filled | `200 {"ok":true}`, no email sent |
+| `GET /api/contact` | `405` |
 
 Spam protection is a honeypot field for now. If spam becomes a problem,
 Cloudflare Turnstile can be layered on later.
@@ -125,7 +155,7 @@ Cloudflare Turnstile can be layered on later.
 
 ## 5. Going live (only after Mayana and David sign off)
 
-1. Pages project → **Custom domains** → add `mayanageathers.com`.
+1. Worker → **Domains** → add `mayanageathers.com`.
 2. Cloudflare shows the DNS records to create.
 3. Update those records at **Namecheap**.
 

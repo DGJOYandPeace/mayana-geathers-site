@@ -1,0 +1,21 @@
+{
+  // Cloudflare Workers config — this project deploys as a Worker with static
+  // assets, not as a classic Pages project.
+  //
+  // `main` is what makes /api/contact possible: a Worker with assets but no
+  // script is treated as static-only, and Cloudflare then refuses to attach
+  // environment variables ("Variables cannot be added to a Worker that only
+  // has static assets"), which is where RESEND_API_KEY has to live.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "mayana-geathers-site",
+  "main": "worker/index.js",
+  "compatibility_date": "2026-09-11",
+  "assets": {
+    // Eleventy's build output.
+    "directory": "./_site",
+    "binding": "ASSETS"
+  },
+  "observability": {
+    "enabled": true
+  }
+}

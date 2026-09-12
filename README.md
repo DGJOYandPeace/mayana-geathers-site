@@ -39,7 +39,11 @@ src/
   assets/js/            site.js (nav), forms.js, player.js
   assets/img/           photography and cover art
   *.njk                 one file per page
-functions/api/contact.js  the Cloudflare Pages Function (contact + newsletter)
+worker/
+  index.js              Worker entry — routes /api/contact, serves the assets
+  contact.js            the contact + newsletter email handler (Resend)
+functions/api/contact.js  Pages-Functions entry, kept compatible; same handler
+wrangler.jsonc            Worker + static assets configuration
 ```
 
 **To change copy, edit `src/_data/*.json`.** The page templates read from there,
@@ -145,12 +149,19 @@ See **[docs/SETUP.md](docs/SETUP.md)** for the one-time Cloudflare Pages, R2 and
 Resend setup, and for the DNS cutover steps (deliberately left until after
 sign-off).
 
-Cloudflare Pages build settings:
+Cloudflare build settings:
 
 | Setting | Value |
 |---|---|
 | Build command | `npm run build` |
-| Build output directory | `_site` |
-| Functions directory | `functions` (picked up automatically) |
+| Deploy command | `npx wrangler deploy` |
+
+This deploys as a **Worker with static assets** (`wrangler.jsonc`), not a
+classic Pages project. `worker/index.js` serves `/api/contact` and hands
+everything else to the static assets binding. A Worker with assets but no
+script cannot have environment variables attached, which is where the Resend
+key has to live — so the script is not optional.
+
+Run the real thing locally with `npx wrangler dev` after a build.
 
 Every push produces its own preview URL for review before anything goes live.
