@@ -8,7 +8,7 @@
   // Deepen the nav once it scrolls off the hero — over the cream page a
   // barely-there translucent strip leaves the white logo unreadable.
   var onScroll = function () {
-    nav.classList.toggle("is-scrolled", window.scrollY > 24);
+    nav.classList.toggle("is-scrolled", window.scrollY > 40);
   };
   onScroll();
   window.addEventListener("scroll", onScroll, { passive: true });
@@ -62,4 +62,42 @@
   }, { passive: true });
 
   apply();
+})();
+
+
+/* Cascade reveal.
+ * Sections arrive as you reach them. The hiding rules live behind `.has-js`,
+ * added here, so without JavaScript the page renders fully visible rather
+ * than blank — and reduced-motion visitors opt out entirely. */
+(function () {
+  "use strict";
+
+  var reduced = window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduced || !("IntersectionObserver" in window)) return;
+
+  document.documentElement.classList.add("has-js");
+
+  var targets = document.querySelectorAll(".reveal");
+  if (!targets.length) return;
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add("is-in");
+      io.unobserve(entry.target);           // reveal once, then stop watching
+    });
+  }, { rootMargin: "0px 0px -12% 0px", threshold: 0.08 });
+
+  targets.forEach(function (el) { io.observe(el); });
+
+  // Anything already in view on load should not wait for a scroll.
+  requestAnimationFrame(function () {
+    targets.forEach(function (el) {
+      if (el.getBoundingClientRect().top < window.innerHeight * 0.9) {
+        el.classList.add("is-in");
+        io.unobserve(el);
+      }
+    });
+  });
 })();

@@ -11,17 +11,16 @@ permalink: /written-work/
    are ordered newest-first — the number carries real sequence.
    ========================================================================= #}
 
-<section class="hero hero--page">
-  <div class="wrap">
+<section class="tone tone--deep hero-page">
+  <div class="wrap reveal">
     <p class="eyebrow">Read</p>
-    <div class="hero__inner"><h1>Written <span class="accent-word">Work</span></h1></div>
-    {# --- INTRO COPY (verbatim from the live site) --- #}
-    <p class="lede hero__sub prose" style="margin-bottom:0">{{ writing.intro }}</p>
+    <h1>Written <span class="accent-word">Work</span></h1>
+    <p class="lede hero-page__sub">{{ writing.intro }}</p>
   </div>
 </section>
 
-<section class="section--tight">
-  <div class="wrap">
+<section class="tone tone--mist section">
+  <div class="wrap reveal">
     <div class="library__head" style="margin-bottom:0.75rem">
       <p class="label" style="margin:0">Published pieces</p>
       <span class="library__count">{{ writing.entries.length }} {{ "piece" if writing.entries.length == 1 else "pieces" }}</span>
@@ -53,8 +52,8 @@ permalink: /written-work/
   </div>
 </section>
 
-<section class="section--tight" style="padding-bottom:clamp(3rem,7vw,5rem)">
-  <div class="wrap">
+<section class="tone tone--sage section" style="padding-bottom:clamp(3rem,7vw,5rem)">
+  <div class="wrap reveal">
     {% include "partials/signup.njk" %}
     {% include "partials/gift.njk" %}
   </div>

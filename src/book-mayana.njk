@@ -10,12 +10,12 @@ permalink: /book-mayana/
    to Bridges to Healing by the notice at the top.
    ========================================================================= #}
 
-<section class="hero hero--page">
-  <div class="wrap">
+<section class="tone tone--deep hero-page">
+  <div class="wrap reveal">
     <p class="eyebrow">Invite Mayana</p>
-    <div class="hero__inner"><h1>Book <span class="accent-word">Mayana</span></h1></div>
+    <h1>Book <span class="accent-word">Mayana</span></h1>
     {# --- INTRO COPY (verbatim from the live site) --- #}
-    <p class="lede hero__sub prose" style="margin-bottom:0">
+    <p class="lede hero-page__sub">
       Mayana is available for sound healing/guided meditations, speaking events, podcasts,
       and trainings. Mayana also offers consulting for organizations and businesses to
       support trauma-informed practices.
@@ -23,9 +23,17 @@ permalink: /book-mayana/
   </div>
 </section>
 
+{# The black-and-white portrait lives here rather than on the homepage. #}
+{% if assets.has[site.images.booking] %}
+<figure class="plate">
+  <img src="/assets/img/{{ site.images.booking }}" alt="{{ site.images.bookingAlt }}"
+       {{ ("/assets/img/" ~ site.images.booking) | imgAttrs | safe }} loading="lazy">
+</figure>
+{% endif %}
+
 {# --- THERAPY ROUTING NOTICE -------------------------------------------- #}
-<section class="section--tight">
-  <div class="wrap">
+<section class="tone tone--mist section--tight">
+  <div class="wrap reveal">
     <div class="notice">
       <p>
         <strong>Looking for therapy?</strong>
@@ -38,8 +46,8 @@ permalink: /book-mayana/
 </section>
 
 {# --- THREE SERVICES (copy verbatim) — a ruled index, not tiles --------- #}
-<section class="section--tight">
-  <div class="wrap">
+<section class="tone tone--sage section">
+  <div class="wrap reveal">
     <p class="eyebrow">What Mayana offers</p>
     <ul class="index">
 
@@ -106,5 +114,13 @@ permalink: /book-mayana/
     <div class="btn-row" style="margin-top:2.5rem">
       <a class="btn btn--primary" href="/contact/?reason=booking">Book Mayana</a>
     </div>
+  </div>
+</section>
+
+{# --- OPT-IN ------------------------------------------------------------- #}
+<section class="tone tone--forest section">
+  <div class="wrap reveal">
+    {% include "partials/signup.njk" %}
+    {% include "partials/gift.njk" %}
   </div>
 </section>

@@ -109,13 +109,30 @@
 
     var current = -1;
     var seeking = false;
+    var sources = [];
+    var sourceIndex = 0;
+    var wantsPlay = false;
 
     function visibleTracks() {
       return tracks;
     }
 
+    // The bucket's exact object names couldn't be confirmed, so each track
+    // carries fallbacks. We work down the list whenever a source fails to
+    // load, and remember the one that worked.
+    function candidates(track) {
+      return [track.audioFile]
+        .concat(track.audioAlts || [])
+        .filter(Boolean)
+        .map(function (name) {
+          // A candidate carrying its own prefix is used as-is.
+          return name.indexOf("/") > -1 ? buildUrl("", name) : buildUrl(CFG.audioPrefix, name);
+        })
+        .filter(Boolean);
+    }
+
     function playable(track) {
-      return Boolean(buildUrl(CFG.audioPrefix, track.audioFile));
+      return candidates(track).length > 0;
     }
 
     function renderLibrary() {
@@ -193,7 +210,9 @@
 
       if (coverEl) coverEl.innerHTML = coverMarkup(track);
 
-      var url = buildUrl(CFG.audioPrefix, track.audioFile);
+      sources = candidates(track);
+      sourceIndex = 0;
+      var url = sources[0];
       if (!url) {
         audio.removeAttribute("src");
         audio.load();
@@ -212,6 +231,7 @@
       audio.src = url;
       audio.load();
       syncLibraryState();
+      wantsPlay = Boolean(autoplay);
       if (autoplay) {
         audio.play().catch(function () {
           // Autoplay refused (or the file is missing) — leave it paused.
@@ -246,10 +266,12 @@
       toggle.addEventListener("click", function () {
         if (current < 0) load(tracks.indexOf(visibleTracks()[0]), false);
         if (audio.paused) {
+          wantsPlay = true;
           audio.play().catch(function () {
             showNotice("That audio file couldn’t be reached. Please try again in a moment.");
           });
         } else {
+          wantsPlay = false;
           audio.pause();
         }
       });
@@ -261,6 +283,24 @@
     audio.addEventListener("loadedmetadata", updateProgress);
     audio.addEventListener("error", function () {
       if (!audio.getAttribute("src")) return;
+
+      // Try the next candidate object name before giving up.
+      if (sourceIndex < sources.length - 1) {
+        sourceIndex += 1;
+        var next = sources[sourceIndex];
+        console.warn(
+          "[player] " + audio.src + " failed; trying " + next
+        );
+        audio.src = next;
+        audio.load();
+        if (wantsPlay) audio.play().catch(function () { setPlayingUI(false); });
+        return;
+      }
+
+      console.error(
+        "[player] no audio source worked for this track. Tried:\n  " +
+        sources.join("\n  ")
+      );
       showNotice("That audio file couldn’t be reached. Please try again in a moment.");
       setPlayingUI(false);
     });

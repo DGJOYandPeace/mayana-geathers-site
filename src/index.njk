@@ -3,73 +3,72 @@ layout: layouts/base.njk
 title: false
 description: "Mayana Geathers — feminist therapist (LMFT), writer, and creator of original guided meditations."
 permalink: /
+navOverHero: true
 ---
 {#
   ===========================================================================
   HOME
-  Leads with the four guided meditations — they are the offering, so they come
-  before anything else on the page. A hero photograph opens above the
-  headline where one exists; without it the opening is typographic.
+  A full-bleed hero the nav floats over, copy to the left across the open part
+  of the frame, dissolving at its foot into the first tone. From there the
+  page steps down through hue — mist, sage, moss, forest, deep — so scrolling
+  reads as descent rather than as a stack of documents.
   ===========================================================================
 #}
 {% set heroImage = site.images.hero if assets.has[site.images.hero] else false %}
-{% if heroImage %}
-<figure class="plate">
-  <img src="/assets/img/{{ heroImage }}" alt="{{ site.images.heroAlt }}"
-       {{ ("/assets/img/" ~ heroImage) | imgAttrs | safe }}>
-</figure>
-{% endif %}
-
-<section class="hero{% if heroImage %} hero--after-plate{% endif %}">
+<section class="hero-full">
+  {% if heroImage %}
+    <img class="hero-full__img" src="/assets/img/{{ heroImage }}" alt="{{ site.images.heroAlt }}"
+         {{ ("/assets/img/" ~ heroImage) | imgAttrs | safe }} fetchpriority="high">
+  {% endif %}
+  <div class="hero-full__veil" aria-hidden="true"></div>
   <div class="wrap">
-    <p class="eyebrow">Feminist therapist &middot; Writer &middot; Guided meditation</p>
-    <h1>A place to slow down and come back to <span class="accent-word">yourself</span></h1>
-    <p class="lede hero__sub">{{ site.tagline }}</p>
-    <div class="btn-row">
-      <a class="btn btn--primary" href="#meditations">Listen now</a>
-      <a class="btn btn--outline" href="{{ site.urls.practiceBooking }}" target="_blank" rel="noopener">{{ site.consultCta.label }}</a>
+    <div class="hero-full__copy">
+      <p class="eyebrow">Feminist therapist &middot; Writer &middot; Guided meditation</p>
+      <h1>A place to slow down and come back to <span class="accent-word">yourself</span></h1>
+      <p class="hero-full__sub">{{ site.tagline }}</p>
+      <div class="btn-row">
+        <a class="btn btn--light" href="#meditations">Listen now</a>
+        <a class="btn btn--outline" href="{{ site.urls.practiceBooking }}" target="_blank" rel="noopener">{{ site.consultCta.label }}</a>
+      </div>
+      <p class="hero-full__note">{{ site.consultCta.note }}</p>
     </div>
-    <p class="hero__note">{{ site.consultCta.note }}</p>
   </div>
 </section>
 
-{# ---------------------------------------------- THE FOUR MEDITATIONS ----
-   The lead offering. The player carries each track's own description and
-   what it's good for, so choosing one tells you why you'd choose it. #}
-<section class="section" id="meditations">
-  <div class="wrap">
+{# ---------------------------------------------- THE FOUR MEDITATIONS ---- #}
+<section class="tone tone--mist section" id="meditations">
+  <div class="wrap reveal">
     <p class="eyebrow">Guided meditation</p>
     <h2>Four meditations, written and voiced by Mayana</h2>
     <p class="lede prose" style="margin-bottom:2.5rem">
       Press play and let the page open around you. Each one names what it&rsquo;s for,
       so you can choose the practice that fits the moment.
     </p>
-
-    {% set playerId = "home-player" %}
-    {% set playerTracks = meditations.tracks %}
-    {% set playerHeading = "Choose a meditation" %}
-    {% set playerCompact = false %}
-    {% include "partials/player.njk" %}
-
+    <div>
+      {% set playerId = "home-player" %}
+      {% set playerTracks = library %}
+      {% set playerHeading = "Choose a meditation" %}
+      {% set playerCompact = false %}
+      {% include "partials/player.njk" %}
+    </div>
     <p style="margin-top:2rem"><a class="link-more" href="/guided-meditation/">Read about each meditation</a></p>
   </div>
 </section>
 
 {# ------------------------------------------------- PRIMARY CONVERSION -- #}
-<section class="section--tight">
-  <div class="wrap">
+<section class="tone tone--sage section">
+  <div class="wrap reveal">
     {% include "partials/signup.njk" %}
     {% include "partials/gift.njk" %}
   </div>
 </section>
 
-{# ------------------------------------------------- QUIET PHOTO MOMENT --
-   A breath between sections. Skipped until the file is in src/assets/img. #}
+{# ------------------------------------------------- QUIET PHOTO MOMENT -- #}
 {% if assets.has[site.images.portraitProfile] %}
-<figure class="breath">
+<figure class="breath tone tone--moss">
   <img src="/assets/img/{{ site.images.portraitProfile }}" alt="{{ site.images.portraitProfileAlt }}" loading="lazy"
        {{ ("/assets/img/" ~ site.images.portraitProfile) | imgAttrs | safe }}>
-  <figcaption class="wrap breath__copy">
+  <figcaption class="wrap breath__copy reveal">
     <p class="breath__quote">There is a power to slowing down a moment.</p>
     <p class="breath__attr">Mayana Geathers</p>
   </figcaption>
@@ -78,8 +77,8 @@ permalink: /
 
 {# --------------------------------------------------------- WRITING ----- #}
 {% set latestPiece = writing.entries[0] %}
-<section class="section band">
-  <div class="wrap">
+<section class="tone tone--forest section">
+  <div class="wrap reveal">
     <p class="eyebrow">Writing</p>
     <ul class="index">
       <li>
@@ -99,8 +98,8 @@ permalink: /
 </section>
 
 {# ----------------------------------------------------- TESTIMONIALS ---- #}
-<section class="section">
-  <div class="wrap">
+<section class="tone tone--deep section">
+  <div class="wrap reveal">
     <p class="eyebrow">In their words</p>
     {% for t in testimonials.items %}
     <blockquote class="quote{% if loop.first %} quote--lead{% endif %}">
@@ -108,13 +107,7 @@ permalink: /
       <cite>{{ t.attribution }}</cite>
     </blockquote>
     {% endfor %}
-  </div>
-</section>
-
-{# --------------------------------------------------------- INSTAGRAM --- #}
-<section class="section--tight" style="padding-bottom:clamp(3rem,7vw,5rem)">
-  <div class="wrap">
-    <div class="notice">
+    <div class="notice" style="margin-top:clamp(2rem,5vw,3rem)">
       <p>
         <strong>Follow along on Instagram</strong>
         Reflections, new meditations, and notes from Mayana&rsquo;s practice.

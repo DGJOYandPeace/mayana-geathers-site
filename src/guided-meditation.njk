@@ -11,13 +11,11 @@ permalink: /guided-meditation/
    Bandcamp has been cut, so nothing on this page links out to purchase.
    ========================================================================= #}
 
-<section class="hero hero--page">
-  <div class="wrap">
+<section class="tone tone--deep hero-page">
+  <div class="wrap reveal">
     <p class="eyebrow">Listen</p>
     <h1>Guided <span class="accent-word">Meditation</span></h1>
-    <p class="lede hero__sub" style="margin-bottom:0">
-      Written and recorded by Mayana. Press play and let everything else wait a moment.
-    </p>
+    <p class="lede hero-page__sub">Written and recorded by Mayana. Press play and let everything else wait a moment.</p>
   </div>
 </section>
 
@@ -25,8 +23,8 @@ permalink: /guided-meditation/
    Her own intro copy, set as a composition with the photograph rather than a
    paragraph of running text. The pull quote is lifted from the same passage,
    so nothing here is invented. #}
-<section class="section--tight invite">
-  <div class="wrap">
+<section class="tone tone--mist section invite">
+  <div class="wrap reveal">
     <div class="split split--narrow-first invite__grid">
       <figure class="invite__figure">
         <img src="/assets/img/{{ site.images.invitation }}" alt="{{ site.images.invitationAlt }}" loading="lazy"
@@ -50,8 +48,8 @@ permalink: /guided-meditation/
 {# --- THE PLAYER ---------------------------------------------------------
    The gift track carries giftOnly:true — the player reveals it only once a
    visitor has signed up (remembered in their browser). #}
-<section class="section--tight" style="padding-top:0">
-  <div class="wrap">
+<section class="tone tone--sage section">
+  <div class="wrap reveal">
     {% set playerId = "library-player" %}
     {% set playerTracks = library %}
     {% set playerHeading = "The library" %}
@@ -61,8 +59,8 @@ permalink: /guided-meditation/
 </section>
 
 {# --- WRITTEN DETAIL PER MEDITATION ------------------------------------- #}
-<section class="section band">
-  <div class="wrap">
+<section class="tone tone--moss section">
+  <div class="wrap reveal">
     <p class="eyebrow">The meditations</p>
     <h2 style="margin-bottom:2rem">What each one is for</h2>
 
@@ -99,8 +97,8 @@ permalink: /guided-meditation/
 {# --- THE COLLECTION THESE COME FROM ------------------------------------
    Context only — no purchase link, per the decision to cut Bandcamp. #}
 {% set release = albums.releases["dawning-of-a-new-day"] %}
-<section class="section--tight">
-  <div class="wrap">
+<section class="tone tone--forest section">
+  <div class="wrap reveal">
     <div class="split split--plate">
       <img src="{{ release.cover }}" alt="{{ release.coverAlt }}" loading="lazy" {{ release.cover | imgAttrs | safe }}>
       <div>
@@ -115,8 +113,8 @@ permalink: /guided-meditation/
 {# --- SIGNUP + THE GIFT --------------------------------------------------
    The snippet plays for everyone in the player above; signing up reveals the
    full recording in the panel beneath the form. #}
-<section class="section">
-  <div class="wrap">
+<section class="tone tone--deep section">
+  <div class="wrap reveal">
     {% include "partials/signup.njk" %}
     {% include "partials/gift.njk" %}
   </div>
