@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if title %}{{ title }} · {{ site.name }}{% else %}{{ site.name }} · {{ site.tagline }}{% endif %}</title>
+  <meta name="description" content="{{ description or site.tagline }}">
+  <meta name="theme-color" content="#2B3A2E">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ site.name }}">
+  <meta property="og:title" content="{% if title %}{{ title }} · {{ site.name }}{% else %}{{ site.name }}{% endif %}">
+  <meta property="og:description" content="{{ description or site.tagline }}">
+  {# REPLACE ME — add an og:image once David supplies a share image. #}
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..600;1,400..500&family=Nunito+Sans:wght@400;600;700;800&display=swap">
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <link rel="icon" href="/assets/img/mayana-geathers-white-logo.webp">
+
+  {#
+    Single source of truth for anything the browser-side JS needs.
+    Everything here comes from src/_data/site.json — no URL or address is
+    hardcoded in the JavaScript itself.
+  #}
+  <script>
+    window.MG_CONFIG = {
+      formEndpoint: {{ site.formEndpoint | dump | safe }},
+      audio: {
+        r2BaseUrl: {{ site.audio.r2BaseUrl | dump | safe }},
+        audioPrefix: {{ site.audio.audioPrefix | dump | safe }},
+        coverPrefix: {{ site.audio.coverPrefix | dump | safe }}
+      }
+    };
+  </script>
+</head>
+<body>
+<div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
+  {% include "partials/nav.njk" %}
+
+  <main id="main">
+    {{ content | safe }}
+  </main>
+
+  {% include "partials/footer.njk" %}
+</div>
+
+<script src="/assets/js/site.js" defer></script>
+<script src="/assets/js/forms.js" defer></script>
+<script src="/assets/js/player.js" defer></script>
+</body>
+</html>

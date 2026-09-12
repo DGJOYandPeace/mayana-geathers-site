@@ -1,0 +1,101 @@
+---
+layout: layouts/base.njk
+title: Contact
+description: "Get in touch with Mayana Geathers about bookings, guided meditations, press or general enquiries."
+permalink: /contact/
+---
+{# =========================================================================
+   CONTACT — posts to the shared Cloudflare Pages Function with
+   form_type="contact". Confirmation is shown in place; no redirect.
+   The Book Mayana page links here with ?reason=booking, which pre-selects
+   the matching dropdown option.
+   ========================================================================= #}
+
+<section class="hero hero--page">
+  <div class="ambient" aria-hidden="true"><div class="ambient__grain"></div></div>
+  <div class="wrap">
+    <div class="hero__inner">
+      <p class="eyebrow" style="color:rgba(255,252,248,0.7)">Say hello</p>
+      <h1>Get in <span class="gold">touch</span></h1>
+      <p class="hero__sub">
+        For bookings, questions about the meditations, press, or simply to say hello.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="grid grid--2" style="align-items:start">
+
+      <div class="prose stack">
+        <h2>A note before you write</h2>
+        <p>
+          Mayana reads every message herself, so a reply may take a few days.
+        </p>
+        <div class="callout" style="margin-top:1.5rem">
+          <p>
+            <strong>Looking for therapy?</strong>
+            New therapy clients are seen through Mayana&rsquo;s group practice, Bridges to Healing —
+            that&rsquo;s the fastest way to reach her for one-on-one work.
+          </p>
+          <a class="btn btn--primary" href="{{ site.urls.practiceBooking }}" target="_blank" rel="noopener">{{ site.consultCta.label }}</a>
+        </div>
+        <p style="margin-top:1.5rem">
+          You can also find Mayana on
+          <a href="{{ site.urls.instagram }}" target="_blank" rel="noopener">Instagram</a>.
+        </p>
+      </div>
+
+      <form class="card stack" data-mg-form data-form-type="contact" novalidate>
+        <label class="field">
+          <span class="field__label">Name</span>
+          <input type="text" name="name" autocomplete="name" required>
+        </label>
+
+        <label class="field">
+          <span class="field__label">Email</span>
+          <input type="email" name="email" autocomplete="email" required>
+        </label>
+
+        <label class="field">
+          <span class="field__label">Reason for inquiry</span>
+          <select name="reason" data-reason-select>
+            <option value="general">General</option>
+            <option value="booking">Book a Session or Event</option>
+            <option value="meditation">Guided Meditation Question</option>
+            <option value="press">Press or Media</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span class="field__label">Message</span>
+          <textarea name="message" required></textarea>
+        </label>
+
+        {# Honeypot — hidden from people. Turnstile can be layered on later. #}
+        <div class="hp" aria-hidden="true">
+          <label>Do not fill this in
+            <input type="text" name="website" tabindex="-1" autocomplete="off">
+          </label>
+        </div>
+
+        <button class="btn btn--primary btn--block" type="submit" data-form-submit>Send Message</button>
+        <p class="form-status" data-form-status role="status" aria-live="polite"></p>
+      </form>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  // Pre-select the enquiry reason when arriving from Book Mayana (?reason=booking).
+  (function () {
+    var select = document.querySelector("[data-reason-select]");
+    if (!select) return;
+    var reason = new URLSearchParams(window.location.search).get("reason");
+    if (reason && select.querySelector('option[value="' + CSS.escape(reason) + '"]')) {
+      select.value = reason;
+    }
+  })();
+</script>
