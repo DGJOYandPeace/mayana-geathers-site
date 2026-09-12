@@ -53,7 +53,7 @@
   --gutter: clamp(1.25rem, 6vw, 5rem);
   --measure: 64ch;
   --section-y: clamp(3.5rem, 8vw, 6.5rem);
-  --nav-h: 62px;
+  --nav-h: 72px;
 }
 
 /* --------------------------------------------------------------- Reset -- */
@@ -283,7 +283,7 @@ body { background: var(--paper); }
 }
 .nav__mark:hover { color: var(--accent); }
 .nav__logo { display: flex; align-items: center; flex: 0 0 auto; }
-.nav__logo img { height: 30px; width: auto; }
+.nav__logo img { height: 34px; width: auto; }
 .nav__links {
   display: flex; align-items: center; gap: clamp(0.75rem, 1.6vw, 1.5rem);
   margin-left: auto; list-style: none; padding: 0;
@@ -332,6 +332,10 @@ body { background: var(--paper); }
    A book jacket. Type carries it; where a portrait exists it runs full-bleed
    ABOVE the type rather than behind it, so nothing needs a scrim. */
 .hero { padding-block: clamp(3rem, 8vw, 6rem) clamp(2.5rem, 6vw, 4.5rem); }
+/* When an opening photograph precedes it, the headline should read as part of
+   the same composition rather than a separate block further down the page. */
+.hero--after-plate { padding-top: clamp(1.75rem, 4vw, 3rem); }
+.hero--after-plate .eyebrow { margin-bottom: 1rem; }
 .hero--page { padding-block: clamp(2.5rem, 6vw, 4rem) clamp(1.5rem, 4vw, 2.5rem); }
 /* The measure belongs on the heading itself: `ch` resolves against the
    element's own font-size, so putting it on the wrapper would size it to the
@@ -344,7 +348,7 @@ body { background: var(--paper); }
 
 /* Full-bleed opening portrait. */
 .plate { margin: 0; }
-.plate img { width: 100%; height: clamp(18rem, 52vw, 34rem); object-fit: cover; object-position: center 30%; }
+.plate img { width: 100%; height: clamp(20rem, 60vw, 42rem); object-fit: cover; object-position: center 32%; }
 .plate--rounded img { border-radius: var(--r-lg); box-shadow: var(--lift-3); }
 .plate figcaption {
   font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em;
@@ -713,7 +717,7 @@ input[type="range"].range::-moz-range-thumb {
 .footer a:hover { color: #fff; text-decoration: underline; }
 .footer__grid { display: grid; gap: 2.25rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); }
 .footer__mark { font-family: var(--display); font-size: 1.3rem; margin-bottom: 1rem; display: inline-block; }
-.footer__logo { height: 30px; width: auto; margin-bottom: 1rem; }
+.footer__logo { height: 38px; width: auto; margin-bottom: 1.25rem; }
 .footer h4 { font-family: var(--text); font-size: 0.68rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(237,234,225,0.55); margin-bottom: 0.9rem; }
 .footer ul { list-style: none; margin: 0; padding: 0; }
 .footer ul li { margin-bottom: 0.5rem; }

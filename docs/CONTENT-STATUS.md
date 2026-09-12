@@ -43,14 +43,22 @@ grep -rn "REPLACE ME\|CONFIRM" src/
 | `i-am-worthy-album-cover-art.jpg` | album card | ✅ |
 | `mayana-photo-i-am-worthy-shoot.webp` | supporting photo on the I Am Worthy card | ⚠️ assumed — confirm |
 | `mayana-shan-podcast-still.webp` | Speaking Events/Podcasts tile | ⚠️ best guess — confirm |
-| `mayana-cactus-hero.jpg` | **homepage hero** (full-bleed opening plate) | ⏳ **file needed** |
-| `mayana-golden-hour-profile.jpg` | full-bleed quote band on the homepage | ⏳ **file needed** |
-| `mayana-geathers-black-logo.webp` | **nav logo** on the paper ground | ⏳ **file needed** — until then the nav shows a typeset wordmark |
+| `dawning-of-a-new-day-23-wide.jpeg` | **homepage hero** — full-bleed opening plate | ✅ |
+| `dawning-of-a-new-day-20-cactus-large.jpeg` | full-bleed quote breath on the homepage | ✅ |
+| `mayana-geathers-black-logo.png` | source for the nav signature | ✅ original, kept untouched |
+| `mayana-geathers-signature.png` | **nav mark** — trimmed, transparent, ink-coloured | ✅ derived from the above |
+| `mayana-geathers-signature-light.png` | **footer mark** — trimmed, transparent, paper-coloured | ✅ derived from the white logo |
 
-The last two are already wired up. Drop the files into `src/assets/img/` under
-exactly those names and they appear on the next build — no template edit. Until
-then the presence check in `src/_data/assets.js` skips those slots and the
-designed gradient fallback shows instead, so nothing breaks.
+All photography slots are now filled. To swap any of them, change `images` in
+`src/_data/site.json` — a slot whose file is missing is skipped rather than
+rendering broken, so it is safe to point at a file before uploading it.
+
+**On the two signature marks:** both supplied logo files are mostly whitespace
+(the black one is 500×500 around 477×158 of ink), so at nav size the signature
+would have rendered tiny. The two `-signature*.png` files are trimmed,
+transparent, recoloured versions generated from the originals — luminance
+mapped to alpha, so the antialiased strokes stay smooth. Both originals remain
+in the repo untouched.
 
 To use different filenames, change `images` in `src/_data/site.json`.
 
@@ -60,10 +68,8 @@ To use different filenames, change `images` in `src/_data/site.json`.
   was removed. If a folder of images was meant to be uploaded, it didn't make it.
 - The Stage 1 brief said "keep all three" testimonials and then listed four.
   All four are kept; remove one from `testimonials.json` if that was the intent.
-- The white logo cannot sit on the paper ground, so the nav shows a typeset
-  wordmark and the white logo appears only in the footer (the one ink-ground
-  surface). Drop `mayana-geathers-black-logo.webp` into `src/assets/img/` and
-  the nav switches to the real logo automatically.
+- The nav now carries Mayana's signature in ink on the paper ground; the
+  footer carries the same signature in paper on the ink ground.
 - **Events page cut**, along with its data file and nav entry.
 - **Bandcamp cut entirely** — no purchase links anywhere. This also removed
   David's "Sound Healing" cross-promo card, which existed only as a Bandcamp

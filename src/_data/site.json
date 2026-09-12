@@ -14,17 +14,18 @@
     "audioPrefix": "meditations/audio",
     "coverPrefix": "meditations/covers"
   },
-  "_comment_images": "Photography slots. A value may be a bare FILENAME (looked up in src/assets/img/, and skipped if not present yet) or a FULL URL (e.g. an R2 public URL), which is used as-is. That lets large photography live in the bucket alongside the audio instead of in git.",
+  "_comment_images": "Photography and marks. A value may be a bare FILENAME (looked up in src/assets/img/, and skipped if not present yet) or a FULL URL, e.g. an R2 public URL, which is used as-is.",
   "images": {
-    "hero": "mayana-cactus-hero.jpg",
-    "heroAlt": "Mayana Geathers among blooming prickly pear cactus at golden hour",
-    "portraitProfile": "mayana-golden-hour-profile.jpg",
+    "hero": "dawning-of-a-new-day-23-wide.jpeg",
+    "heroAlt": "Mayana Geathers standing among blooming prickly pear cactus at golden hour",
+    "portraitProfile": "dawning-of-a-new-day-20-cactus-large.jpeg",
     "portraitProfileAlt": "Mayana Geathers in profile, looking out over the hills at golden hour",
     "aboutPortrait": "mayana-portrait-1.jpeg",
     "aboutPortraitAlt": "Portrait of Mayana Geathers",
-    "logo": "mayana-geathers-white-logo.webp",
-    "_comment_logoDark": "REPLACE ME — the dark logo for the paper nav. Until it is present the nav falls back to a typeset wordmark.",
-    "logoDark": "mayana-geathers-black-logo.webp"
+    "logo": "mayana-geathers-signature-light.png",
+    "_comment_logoDark": "Trimmed, transparent, ink-coloured version of mayana-geathers-black-logo.png (the original is 500x500 with ~68% whitespace padding, which would render the signature tiny). The original stays in the repo untouched.",
+    "logoDark": "mayana-geathers-signature.png",
+    "_comment_logo": "Trimmed, transparent, paper-coloured version of mayana-geathers-white-logo.webp, for the ink-ground footer. The original stays in the repo untouched."
   },
   "_comment_forms": "The single Cloudflare Pages Function that handles both the contact form and the newsletter signup.",
   "formEndpoint": "/api/contact",
