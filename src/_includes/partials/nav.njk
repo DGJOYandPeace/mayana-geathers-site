@@ -7,9 +7,14 @@
 <header class="nav{% if navOverHero %} nav--over{% endif %}" id="site-nav">
   <div class="wrap">
     <div class="nav__inner">
+      {# Two marks, one per ground. The light signature shows only while the
+         nav floats over the hero photograph; everywhere else the nav sits on
+         a pale ground and the dark signature is the legible one. #}
       <a class="nav__mark" href="/" aria-label="{{ site.name }} — home">
-        <img src="/assets/img/{{ site.images.logo }}" alt="{{ site.name }}"
+        <img class="nav__mark-light" src="/assets/img/{{ site.images.logo }}" alt="{{ site.name }}"
              {{ ("/assets/img/" ~ site.images.logo) | imgAttrs | safe }}>
+        <img class="nav__mark-dark" src="/assets/img/{{ site.images.logoDark }}" alt=""
+             {{ ("/assets/img/" ~ site.images.logoDark) | imgAttrs | safe }}>
       </a>
 
       <ul class="nav__links nav__links--desktop">

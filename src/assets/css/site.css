@@ -268,15 +268,26 @@ body::before {
    Elsewhere it sits on its own deep band. It solidifies once scrolled. */
 .nav {
   position: sticky; top: 0; z-index: 100;
-  background: var(--g-5);
+  background: var(--g-1);
+  border-bottom: 1px solid rgba(34, 33, 29, 0.10);
   transition: background-color 350ms ease, box-shadow 350ms ease;
 }
-.nav--over { position: fixed; left: 0; right: 0; background: transparent; }
-.nav--over.is-scrolled {
-  background: rgba(42, 41, 37, 0.92);
-  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
-  box-shadow: 0 10px 34px -22px rgba(0,0,0,0.8);
+.nav--over {
+  position: fixed; left: 0; right: 0;
+  background: transparent; border-bottom-color: transparent;
 }
+.nav--over.is-scrolled {
+  background: rgba(239, 236, 229, 0.90);
+  border-bottom-color: rgba(34, 33, 29, 0.10);
+  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+  box-shadow: 0 10px 30px -24px rgba(34,33,29,0.6);
+}
+
+/* Which signature is visible follows the ground beneath the bar. */
+.nav__mark-light { display: none; }
+.nav__mark-dark  { display: block; }
+.nav--over:not(.is-scrolled) .nav__mark-light { display: block; }
+.nav--over:not(.is-scrolled) .nav__mark-dark  { display: none; }
 .nav__inner {
   display: grid; grid-template-columns: auto 1fr auto; align-items: center;
   gap: clamp(1.25rem, 3vw, 2.75rem); min-height: var(--nav-h);
@@ -289,21 +300,27 @@ body::before {
   list-style: none; margin: 0; padding: 0;
 }
 .nav__links a {
-  color: rgba(236, 240, 229, 0.86); text-decoration: none;
+  color: var(--ink-soft); text-decoration: none;
   font-size: 0.95rem; white-space: nowrap; padding-block: 0.2rem;
   border-bottom: 1px solid transparent; transition: color 200ms ease, border-color 200ms ease;
 }
-.nav__links a:hover { color: #fff; border-bottom-color: rgba(255,255,255,0.5); }
-.nav__links a[aria-current="page"] { color: #fff; border-bottom-color: #fff; }
+.nav__links a:hover { color: var(--ink); border-bottom-color: rgba(34,33,29,0.35); }
+.nav__links a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--accent); }
+
+.nav--over:not(.is-scrolled) .nav__links a { color: rgba(255,255,255,0.88); }
+.nav--over:not(.is-scrolled) .nav__links a:hover { color: #fff; border-bottom-color: rgba(255,255,255,0.5); }
+.nav--over:not(.is-scrolled) .nav__links a[aria-current="page"] { color: #fff; border-bottom-color: #fff; }
 .nav__mark { justify-self: start; display: block; }
 .nav__mark img { height: clamp(34px, 3.6vw, 46px); width: auto; }
 .nav__end { justify-self: end; display: flex; align-items: center; gap: 0.9rem; }
-.nav__icon { color: rgba(236,240,229,0.85); display: grid; place-items: center; padding: 0.35rem; }
-.nav__icon:hover { color: #fff; }
+.nav__icon { color: var(--ink-mute); display: grid; place-items: center; padding: 0.35rem; }
+.nav__icon:hover { color: var(--ink); }
+.nav--over:not(.is-scrolled) .nav__icon { color: rgba(236,240,229,0.85); }
+.nav--over:not(.is-scrolled) .nav__icon:hover { color: #fff; }
 .nav__icon svg { width: 20px; height: 20px; }
 .nav__toggle {
-  display: none; background: transparent; border: 1px solid rgba(236,240,229,0.4);
-  border-radius: var(--r-pill); padding: 0.45rem 0.9rem; color: var(--on-dark);
+  display: none; background: transparent; border: 1px solid rgba(34,33,29,0.3);
+  border-radius: var(--r-pill); padding: 0.45rem 0.9rem; color: var(--ink);
   font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; cursor: pointer;
 }
 
@@ -320,12 +337,12 @@ body::before {
   .nav__drawer {
     display: none; grid-column: 1 / -1; padding-bottom: 1.25rem;
   }
-  .nav.is-open { background: rgba(42, 41, 37, 0.97); }
+  .nav.is-open { background: rgba(239, 236, 229, 0.98); }
   .nav.is-open .nav__drawer { display: block; }
   .nav__links { flex-direction: column; align-items: stretch; gap: 0; max-width: none; }
   .nav__links a {
     display: block; padding: 0.85rem 0; font-size: 1.05rem;
-    border-bottom: 1px solid rgba(236,240,229,0.16);
+    border-bottom: 1px solid rgba(34,33,29,0.12);
   }
 }
 @media (min-width: 901px) { .nav__drawer { display: contents; } }
@@ -376,8 +393,12 @@ body::before {
 .hero-full .eyebrow::after { background: rgba(255,255,255,0.4); }
 .hero-full__note { margin-top: 1.1rem; font-size: 0.85rem; color: rgba(255,255,255,0.8); text-shadow: 0 1px 10px rgba(10,18,13,0.6); }
 
-/* Interior pages: a compact masthead on a deep ground. */
+/* Interior pages open quietly: a compact masthead on the palest ground, so a
+   page begins and eases into its content rather than starting on a saturated
+   band. The bold word here is green — turquoise is reserved for the home
+   hero, so the two cool notes stay distinguishable. */
 .hero-page { padding-block: clamp(2.75rem, 6vw, 4.5rem) clamp(2rem, 5vw, 3.5rem); }
+.hero-page .accent-word { color: var(--green); }
 .hero-page h1 { max-width: 16ch; }
 .hero-page__sub { max-width: 44ch; margin-bottom: 0; }
 
