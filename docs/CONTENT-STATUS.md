@@ -24,9 +24,9 @@ grep -rn "REPLACE ME\|CONFIRM" src/
 
 ## The signup gift
 
-The recording in the bucket is titled **"Embracing Our Gifts"**, but the live
-site's signup copy promised **"Embracing Your Gifts"**. The site now follows the
-recording. **CONFIRM which is correct** — the two should not disagree.
+✅ The gift is **"Embracing Our Gifts"** — confirmed. The live site's old signup
+copy said "Your"; that has been corrected everywhere so the promise and the
+file agree.
 
 What is in the bucket is a **short snippet**, so it plays for everyone in the
 player as a teaser, marked "Preview", rather than being hidden. Signing up
@@ -58,8 +58,10 @@ rather than offering a dead link. Set it in `src/_data/meditations.json`.
 | `i-am-worthy-album-cover-art.jpg` | album card | ✅ |
 | `mayana-photo-i-am-worthy-shoot.webp` | supporting photo on the I Am Worthy card | ⚠️ assumed — confirm |
 | `mayana-shan-podcast-still.webp` | Speaking Events/Podcasts tile | ⚠️ best guess — confirm |
-| `dawning-of-a-new-day-23-wide.jpeg` | **homepage hero** — full-bleed opening plate | ✅ |
+| `mayana-hero-image.jpeg` | **homepage hero** — full-bleed opening plate | ✅ black and white |
+| `dawning-of-a-new-day-23-wide.jpeg` | *unplaced* — was the hero until it was swapped out | ⚠️ say where it should go, or delete |
 | `dawning-of-a-new-day-20-cactus-large.jpeg` | full-bleed quote breath on the homepage | ✅ |
+| `dawning-of-a-new-day-22.jpeg` | the invitation on Guided Meditation | ✅ |
 | `mayana-geathers-black-logo.png` | source for the nav signature | ✅ original, kept untouched |
 | `mayana-geathers-signature.png` | **nav mark** — trimmed, transparent, ink-coloured | ✅ derived from the above |
 | `mayana-geathers-signature-light.png` | **footer mark** — trimmed, transparent, paper-coloured | ✅ derived from the white logo |

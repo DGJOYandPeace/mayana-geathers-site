@@ -77,7 +77,7 @@
       "cover": "/assets/img/dawining-of-a-new-day-cover-art.jpg"
     }
   ],
-  "_comment_gift": "The signup gift. What sits in the bucket is a SHORT SNIPPET, so it plays for everyone as a teaser rather than being hidden — `isPreview` marks it as such in the player. REPLACE ME — `fullFile` is the complete recording, opened in a new tab once someone signs up. Set it to that object's name in the bucket. While it is null the signup confirmation simply says the recording is on its way by email, so nothing breaks. NOTE the title: the recording is 'Embracing Our Gifts', but the live site's signup copy said 'Embracing Your Gifts'. The recording wins here — CONFIRM which is correct, since the two should not disagree.",
+  "_comment_gift": "The signup gift. What sits in the bucket is a SHORT SNIPPET, so it plays for everyone as a teaser rather than being hidden — `isPreview` marks it as such in the player. REPLACE ME — `fullFile` is the complete recording, opened in a new tab once someone signs up. Set it to that object's name in the bucket. While it is null the signup confirmation simply says the recording is on its way by email, so nothing breaks. Title CONFIRMED by David as 'Embracing Our Gifts'; the live site's old signup copy said 'Your' and has been corrected to match.",
   "gift": {
     "slug": "embracing-our-gifts",
     "title": "Embracing Our Gifts",
