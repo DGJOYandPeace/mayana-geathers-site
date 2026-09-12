@@ -1,0 +1,31 @@
+{#
+  ===========================================================================
+  The signup gift.
+
+  What sits in the bucket is a short SNIPPET, which plays for everyone in the
+  player as a teaser. This panel is the reward: once someone has signed up
+  (remembered in their browser), the full recording appears as a link that
+  opens in a new tab, so it plays in the browser's own audio view and can be
+  saved.
+
+  If `fullFile` isn't set yet, the panel says the recording is on its way by
+  email instead of offering a dead link.
+  ===========================================================================
+#}
+{% set gift = meditations.gift %}
+{% set fullUrl = (site.audio.r2BaseUrl ~ "/" ~ gift.fullFile) if (gift.fullFile and site.audio.r2BaseUrl) else false %}
+
+<aside class="gift" data-gift hidden>
+  <p class="label label--accent">Your gift is ready</p>
+  <h3 class="gift__title">{{ gift.title }}</h3>
+  {% if fullUrl %}
+    <p>The complete recording, yours to keep. It opens in a new tab, where you can listen or save it.</p>
+    <p style="margin-top:1.25rem">
+      <a class="btn btn--accent" href="{{ fullUrl }}" target="_blank" rel="noopener">Open the full meditation</a>
+    </p>
+  {% else %}
+    {# REPLACE ME — set `fullFile` in src/_data/meditations.json to the full
+       recording's object name in the bucket, and this becomes a direct link. #}
+    <p>The complete recording is on its way to your inbox. Keep an eye out for it shortly.</p>
+  {% endif %}
+</aside>

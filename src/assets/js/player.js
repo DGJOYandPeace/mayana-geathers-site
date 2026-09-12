@@ -17,8 +17,6 @@
   "use strict";
 
   var CFG = (window.MG_CONFIG && window.MG_CONFIG.audio) || {};
-  var GIFT_KEY = "mg:gift-unlocked";
-
   function trimSlashes(s) {
     return String(s || "").replace(/^\/+|\/+$/g, "");
   }
@@ -38,10 +36,6 @@
     var f = encodePath(file);
     if (!f) return null;
     return base + "/" + (p ? p + "/" : "") + f;
-  }
-
-  function giftUnlocked() {
-    try { return window.localStorage.getItem(GIFT_KEY) === "1"; } catch (e) { return false; }
   }
 
   // `hidden` is an IDL property of HTMLElement, not SVGElement — assigning
@@ -117,9 +111,7 @@
     var seeking = false;
 
     function visibleTracks() {
-      return tracks.filter(function (t) {
-        return !t.giftOnly || giftUnlocked();
-      });
+      return tracks;
     }
 
     function playable(track) {
@@ -143,9 +135,11 @@
           '<span class="track__title">' + escapeHtml(t.title) + '</span>' +
           '<span class="track__sub">' + escapeHtml(t.album || "") + '</span>' +
           '</span>' +
-          (ok
-            ? '<span class="track__eq" aria-hidden="true"><span></span><span></span><span></span></span>'
-            : '<span class="track__badge">Audio to come</span>') +
+          (!ok
+            ? '<span class="track__badge">Audio to come</span>'
+            : t.isPreview
+              ? '<span class="track__badge track__badge--preview">Preview</span>'
+              : '<span class="track__eq" aria-hidden="true"><span></span><span></span><span></span></span>') +
           '</button></li>'
         );
       }).join("");
@@ -182,7 +176,11 @@
       if (descEl) descEl.textContent = track.description || "";
 
       if (metaEl) {
-        metaEl.textContent = [track.album, track.duration].filter(Boolean).join("  \u00b7  ");
+        metaEl.textContent = [
+          track.album,
+          track.duration,
+          track.isPreview ? "Preview" : null
+        ].filter(Boolean).join("  \u00b7  ");
       }
 
       if (useEl && useListEl) {
@@ -328,12 +326,6 @@
         load(index, true);
       });
     }
-
-    // A newsletter signup unlocks the gift track without a reload.
-    document.addEventListener("mg:gift-unlocked", function () {
-      renderLibrary();
-      syncLibraryState();
-    });
 
     // ---- Boot -------------------------------------------------------------
     renderLibrary();

@@ -8,9 +8,9 @@
     "practiceBooking": "https://www.bridgestohealing.net/contact",
     "instagram": "https://www.instagram.com/mayanageathers"
   },
-  "_comment_audio": "REPLACE ME — r2BaseUrl is the PUBLIC URL of the mayanas-professional-site R2 bucket, and is the single value that switches the player on. The bucket NAME is not a URL: in the Cloudflare dashboard open R2 > mayanas-professional-site > Settings > Public access, then either enable the r2.dev subdomain (gives https://pub-<hash>.r2.dev) or connect a custom domain such as https://audio.mayanageathers.com. Paste that here with no trailing slash. audioPrefix is empty because the MP3s sit at the bucket root; set it to a folder name if they are moved into one.",
+  "_comment_audio": "r2BaseUrl is the public URL of the mayanas-professional-site R2 bucket — the single value that switches the player on. This is the r2.dev Public Development URL: rate-limited and uncached, which is fine for review. At launch, once DNS moves to Cloudflare, connect a custom domain such as audio.mayanageathers.com to the bucket and change this one value. audioPrefix is empty because the MP3s sit at the bucket root.",
   "audio": {
-    "r2BaseUrl": "",
+    "r2BaseUrl": "https://pub-9d058d9e96ff450eb387f35dc3bee18f.r2.dev",
     "audioPrefix": "",
     "coverPrefix": "meditations/covers"
   },
@@ -25,7 +25,9 @@
     "logo": "mayana-geathers-signature-light.png",
     "_comment_logoDark": "Trimmed, transparent, ink-coloured version of mayana-geathers-black-logo.png (the original is 500x500 with ~68% whitespace padding, which would render the signature tiny). The original stays in the repo untouched.",
     "logoDark": "mayana-geathers-signature.png",
-    "_comment_logo": "Trimmed, transparent, paper-coloured version of mayana-geathers-white-logo.webp, for the ink-ground footer. The original stays in the repo untouched."
+    "_comment_logo": "Trimmed, transparent, paper-coloured version of mayana-geathers-white-logo.webp, for the ink-ground footer. The original stays in the repo untouched.",
+    "invitation": "dawning-of-a-new-day-22.jpeg",
+    "invitationAlt": "Mayana Geathers among the cactus at golden hour, face lifted and hands open"
   },
   "_comment_forms": "The single Cloudflare Pages Function that handles both the contact form and the newsletter signup.",
   "formEndpoint": "/api/contact",

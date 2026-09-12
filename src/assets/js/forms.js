@@ -16,7 +16,7 @@
 
   var MESSAGES = {
     newsletter: {
-      ok: "Thank you — your gift is on its way. “Embracing Your Gifts” is unlocked in the player below, and Mayana will be in touch now and then.",
+      ok: "Thank you — “Embracing Our Gifts” is yours. The full recording is below, and Mayana will be in touch now and then.",
       error: "Something went wrong sending that. Please try once more, or email Mayana directly from the Contact page."
     },
     contact: {
@@ -32,10 +32,21 @@
     el.classList.add("is-visible");
   }
 
+  function revealGift() {
+    document.querySelectorAll("[data-gift]").forEach(function (el) {
+      el.hidden = false;
+    });
+  }
+
   function unlockGift() {
     try { window.localStorage.setItem(GIFT_KEY, "1"); } catch (e) { /* private mode */ }
-    document.dispatchEvent(new CustomEvent("mg:gift-unlocked"));
+    revealGift();
   }
+
+  // Someone who signed up on a previous visit shouldn't have to do it again.
+  try {
+    if (window.localStorage.getItem(GIFT_KEY) === "1") revealGift();
+  } catch (e) { /* private mode */ }
 
   document.querySelectorAll("[data-mg-form]").forEach(function (form) {
     var formType = form.getAttribute("data-form-type") || "contact";

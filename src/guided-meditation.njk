@@ -21,9 +21,30 @@ permalink: /guided-meditation/
   </div>
 </section>
 
-{# --- INTRO COPY (verbatim from the live site) --- #}
-<section class="section--tight">
-  <div class="wrap"><p class="prose">{{ meditations.intro }}</p></div>
+{# --- THE INVITATION -----------------------------------------------------
+   Her own intro copy, set as a composition with the photograph rather than a
+   paragraph of running text. The pull quote is lifted from the same passage,
+   so nothing here is invented. #}
+<section class="section--tight invite">
+  <div class="wrap">
+    <div class="split split--narrow-first invite__grid">
+      <figure class="invite__figure">
+        <img src="/assets/img/{{ site.images.invitation }}" alt="{{ site.images.invitationAlt }}"
+             width="853" height="1280" loading="lazy">
+      </figure>
+      <div>
+        <p class="label label--accent">An invitation</p>
+        {# REPLACE ME — this headline is written by us, not Mayana. Her own
+           words follow beneath it. Swap in a line of hers if she'd rather. #}
+        <p class="invite__quote">Close your eyes. Everything else can wait a moment.</p>
+        {# --- INTRO COPY (verbatim from the live site) --- #}
+        <p class="prose">{{ meditations.intro }}</p>
+        {# REPLACE ME — a short personal note from Mayana can sit here.
+           Delete this block if it isn't wanted. #}
+        <p class="invite__signoff">&mdash; Mayana</p>
+      </div>
+    </div>
+  </div>
 </section>
 
 {# --- THE PLAYER ---------------------------------------------------------
@@ -91,7 +112,12 @@ permalink: /guided-meditation/
   </div>
 </section>
 
-{# --- SIGNUP (the gift track unlocks in the player above) ---------------- #}
+{# --- SIGNUP + THE GIFT --------------------------------------------------
+   The snippet plays for everyone in the player above; signing up reveals the
+   full recording in the panel beneath the form. #}
 <section class="section">
-  <div class="wrap">{% include "partials/signup.njk" %}</div>
+  <div class="wrap">
+    {% include "partials/signup.njk" %}
+    {% include "partials/gift.njk" %}
+  </div>
 </section>

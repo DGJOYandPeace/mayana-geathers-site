@@ -506,6 +506,50 @@ a.item:hover .item__title { color: var(--accent); }
 .signup h2 { margin-bottom: 0.3em; }
 .signup__lede { max-width: 34ch; color: var(--ink-soft); }
 
+/* ---------------------------------------------------------- Invitation --
+   The guided-meditation opening: photograph and words as one composition. */
+.invite__grid { align-items: center; }
+.invite__figure { margin: 0; }
+.invite__figure img {
+  width: 100%;
+  /* Taller and higher-anchored than the other portraits: the raised hands are
+     the subject of this frame, and a 4/5 crop clipped them. */
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: center 22%;
+  border-radius: var(--r-lg);
+  box-shadow: var(--lift-2);
+}
+.invite__quote {
+  font-family: var(--display);
+  font-size: clamp(1.3rem, 1.1rem + 1.1vw, 2rem);
+  line-height: 1.22;
+  margin: 0 0 1.25rem;
+  max-width: 20ch;
+}
+.invite .prose { color: var(--ink-soft); }
+.invite__signoff {
+  font-family: var(--display);
+  font-size: 1.15rem;
+  color: var(--accent);
+  margin-top: 1.25rem;
+}
+
+/* ---------------------------------------------------------------- Gift --
+   Revealed after signup. Quiet, and clearly a reward rather than an advert. */
+.gift {
+  margin-top: 1.5rem;
+  border: 1px solid var(--accent);
+  border-radius: var(--r-lg);
+  background: rgba(142, 46, 85, 0.05);
+  padding: clamp(1.25rem, 3vw, 1.85rem);
+  box-shadow: var(--lift-1);
+}
+.gift__title { margin-bottom: 0.5rem; }
+.gift p { max-width: 46ch; color: var(--ink-soft); }
+
+.track__badge--preview { color: var(--accent); border-bottom: 1px solid currentColor; }
+
 /* ========================================================== AUDIO PLAYER ==
    Set as a printed plate: ruled edges, ink type, no glass. The "bloom" on
    play is typographic — the plate opens, the description sets, a fine

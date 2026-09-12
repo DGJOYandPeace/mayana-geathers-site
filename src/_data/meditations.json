@@ -77,17 +77,19 @@
       "cover": "/assets/img/dawining-of-a-new-day-cover-art.jpg"
     }
   ],
-  "_comment_gift": "The free signup gift. Hidden behind the newsletter signup: it appears in the player library once a visitor has signed up (remembered in that browser). Not part of the four-track launch set.",
+  "_comment_gift": "The signup gift. What sits in the bucket is a SHORT SNIPPET, so it plays for everyone as a teaser rather than being hidden — `isPreview` marks it as such in the player. REPLACE ME — `fullFile` is the complete recording, opened in a new tab once someone signs up. Set it to that object's name in the bucket. While it is null the signup confirmation simply says the recording is on its way by email, so nothing breaks. NOTE the title: the recording is 'Embracing Our Gifts', but the live site's signup copy said 'Embracing Your Gifts'. The recording wins here — CONFIRM which is correct, since the two should not disagree.",
   "gift": {
-    "slug": "embracing-your-gifts",
-    "title": "Embracing Your Gifts",
+    "slug": "embracing-our-gifts",
+    "title": "Embracing Our Gifts",
     "album": "A Gift From Mayana",
-    "audioFile": "Embracing Your Gifts.mp3",
-    "description": "An exclusive guided meditation, offered as a thank you for joining Mayana's list. Settle in somewhere comfortable, and let this be a few minutes that belong only to you.",
-    "useFor": [],
-    "closing": "",
+    "duration": "",
+    "isPreview": true,
+    "audioFile": "Embracing Our Gifts.mp3",
+    "fullFile": null,
     "cover": null,
-    "duration": ""
+    "description": "A taste of the meditation Mayana is giving away. Share your email and the full recording is yours to keep.",
+    "useFor": [],
+    "closing": ""
   },
   "_comment_intro": "Guided Meditation page intro — verbatim from the live site.",
   "intro": "Guided meditation can lead you on a journey that creates peace, reflection, calmness or grounding. It is a tool for self care and self understanding. There is a power to slowing down a moment, closing one's eyes and tapping into self as a form of support. Guided meditation is a medium that encourages the mind to still and creates focus as it gives the opportunity to concentrate and reflect on the words, while keeping the mind from drifting.",

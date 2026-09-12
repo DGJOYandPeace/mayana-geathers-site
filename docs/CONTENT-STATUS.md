@@ -22,16 +22,31 @@ grep -rn "REPLACE ME\|CONFIRM" src/
 | "Social Media Makes Healing…" publication date | ⏳ unknown — the date line is omitted rather than guessed |
 | Written Work excerpts | ⏳ optional; placeholder text is skipped until real pull quotes arrive |
 
+## The signup gift
+
+The recording in the bucket is titled **"Embracing Our Gifts"**, but the live
+site's signup copy promised **"Embracing Your Gifts"**. The site now follows the
+recording. **CONFIRM which is correct** — the two should not disagree.
+
+What is in the bucket is a **short snippet**, so it plays for everyone in the
+player as a teaser, marked "Preview", rather than being hidden. Signing up
+reveals a panel with the full recording, opened in a new tab.
+
+⏳ **`fullFile` is not set yet** — the full recording's object name in the
+bucket. Until it is, the panel says the recording is on its way by email
+rather than offering a dead link. Set it in `src/_data/meditations.json`.
+
 ## Audio
 
 | Item | Status |
 |---|---|
 | Copy for all four launch tracks | ✅ |
 | MP3s uploaded to `mayanas-professional-site` | ✅ per David |
-| Exact R2 object names | ⏳ guessed slugs in `meditations.json`. The real files may be named after `sourceTitle` (the track's name on the release) — verify with `wrangler r2 object list` |
-| `audio.r2BaseUrl` in `site.json` | ⏳ **the one value that switches the player on** |
+| Exact R2 object names | ✅ named after the tracks; "Breathe In Breathe Out.mp3" confirmed. Could not be fetched from the build sandbox (r2.dev is blocked there), so **verify each of the five URLs loads in a browser** |
+| `audio.r2BaseUrl` in `site.json` | ✅ set to the r2.dev public URL |
 | Cover art for the four tracks | ✅ RESOLVED — all four are tracks on *Dawning of a New Day*, so that release's cover art applies to each |
-| "Embracing Your Gifts" gift track MP3 | ⏳ needed; unlocks in the player after signup |
+| "Embracing Our Gifts" snippet | ✅ in the bucket, plays as a preview |
+| "Embracing Our Gifts" full recording | ⏳ `fullFile` not set — see above |
 
 ## Images
 
