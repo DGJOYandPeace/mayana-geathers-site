@@ -54,6 +54,9 @@ export default function (eleventyConfig) {
     (list || []).filter((item) => item && item[key] === value)
   );
 
+  // `3 | pad2` -> "03". Print-index numbering.
+  eleventyConfig.addFilter("pad2", (n) => String(n).padStart(2, "0"));
+
   // `date | prettyDate` — "29 October 2023". Returns "" for a null date so
   // unknown publication dates are simply omitted rather than guessed.
   eleventyConfig.addFilter("prettyDate", (value) => {

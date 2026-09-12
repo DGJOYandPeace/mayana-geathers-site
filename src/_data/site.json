@@ -25,7 +25,8 @@
     "portraitProfile": "mayana-golden-hour-profile.jpg",
     "portraitProfileAlt": "Mayana Geathers in profile, looking out over the hills at golden hour",
     "aboutPortrait": "mayana-portrait-1.jpeg",
-    "aboutPortraitAlt": "Portrait of Mayana Geathers"
+    "aboutPortraitAlt": "Portrait of Mayana Geathers",
+    "logo": "mayana-geathers-white-logo.webp"
   },
 
   "_comment_forms": "The single Cloudflare Pages Function that handles both the contact form and the newsletter signup.",

@@ -32,14 +32,14 @@ grep -rn "REPLACE ME\|CONFIRM" src/
 | MP3s uploaded to `mayanas-professional-site` | ✅ per David |
 | Exact R2 object names | ⏳ guessed slugs in `meditations.json` — verify with `wrangler r2 object list` |
 | `audio.r2BaseUrl` in `site.json` | ⏳ **the one value that switches the player on** |
-| Cover art for the four tracks | ⏳ none supplied — a generated sage/teal placeholder is used, no stock photography invented |
+| Cover art for the four tracks | ⏳ none supplied — a ruled ink plate stands in, no stock photography invented |
 | "Embracing Your Gifts" gift track MP3 | ⏳ needed; unlocks in the player after signup |
 
 ## Images
 
 | File | Used for | Status |
 |---|---|---|
-| `mayana-geathers-white-logo.webp` | header + footer | ✅ |
+| `mayana-geathers-white-logo.webp` | footer only — see note below | ⚠️ a dark variant is needed for the nav |
 | `mayana-portrait-1.jpeg` | About Me portrait | ✅ — confirm this is the intended page |
 | `dawining-of-a-new-day-cover-art.jpg` | album card | ✅ |
 | `i-am-worthy-album-cover-art.jpg` | album card | ✅ |
@@ -61,6 +61,7 @@ To use different filenames, change `images` in `src/_data/site.json`.
   was removed. If a folder of images was meant to be uploaded, it didn't make it.
 - The Stage 1 brief said "keep all three" testimonials and then listed four.
   All four are kept; remove one from `testimonials.json` if that was the intent.
-- The white logo needs a dark ground, so the nav is a translucent dark strip
-  throughout and deepens once it scrolls past the hero. A dark or full-colour
-  logo variant would open up a light nav treatment if one exists.
+- The white logo cannot sit on the paper ground the design now uses, so the
+  nav wordmark is typeset in Young Serif and the logo image appears only in the
+  footer. A dark or full-colour logo variant would let the real logo return to
+  the nav.

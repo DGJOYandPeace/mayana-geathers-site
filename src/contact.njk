@@ -12,34 +12,31 @@ permalink: /contact/
    ========================================================================= #}
 
 <section class="hero hero--page">
-  <div class="ambient" aria-hidden="true"><div class="ambient__grain"></div></div>
   <div class="wrap">
-    <div class="hero__inner">
-      <p class="eyebrow" style="color:rgba(255,252,248,0.7)">Say hello</p>
-      <h1>Get in <span class="gold">touch</span></h1>
-      <p class="hero__sub">
-        For bookings, questions about the meditations, press, or simply to say hello.
-      </p>
-    </div>
+    <p class="eyebrow">Say hello</p>
+    <div class="hero__inner"><h1>Get in <span class="accent-word">touch</span></h1></div>
+    <p class="lede hero__sub" style="margin-bottom:0">
+      For bookings, questions about the meditations, press, or simply to say hello.
+    </p>
   </div>
 </section>
 
-<section class="section">
+<section class="section--tight">
   <div class="wrap">
-    <div class="grid grid--2" style="align-items:start">
+    <div class="split">
 
       <div class="prose stack">
         <h2>A note before you write</h2>
         <p>
           Mayana reads every message herself, so a reply may take a few days.
         </p>
-        <div class="callout" style="margin-top:1.5rem">
+        <div class="notice" style="margin-top:1.75rem">
           <p>
             <strong>Looking for therapy?</strong>
             New therapy clients are seen through Mayana&rsquo;s group practice, Bridges to Healing —
             that&rsquo;s the fastest way to reach her for one-on-one work.
           </p>
-          <a class="btn btn--primary" href="{{ site.urls.practiceBooking }}" target="_blank" rel="noopener">{{ site.consultCta.label }}</a>
+          <a class="btn btn--primary btn--sm" href="{{ site.urls.practiceBooking }}" target="_blank" rel="noopener">{{ site.consultCta.label }}</a>
         </div>
         <p style="margin-top:1.5rem">
           You can also find Mayana on
@@ -47,7 +44,7 @@ permalink: /contact/
         </p>
       </div>
 
-      <form class="card stack" data-mg-form data-form-type="contact" novalidate>
+      <form data-mg-form data-form-type="contact" novalidate>
         <label class="field">
           <span class="field__label">Name</span>
           <input type="text" name="name" autocomplete="name" required>

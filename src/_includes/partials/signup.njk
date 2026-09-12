@@ -2,52 +2,51 @@
   ===========================================================================
   "Receive A Gift!" — the site's primary conversion point.
   Posts to the shared Cloudflare Pages Function with form_type="newsletter".
-  Copy is intentionally broad enough to fold in book news later without a
-  redesign — edit the two strings below, nothing else.
+  Set as a bordered print notice rather than a coloured panel, so it reads as
+  part of the page rather than an advert dropped onto it.
+  Copy stays broad enough to fold in book news later — edit the two strings
+  below, nothing else.
   ===========================================================================
 #}
 <section class="signup" id="receive-a-gift" aria-labelledby="signup-heading">
-  <div class="ambient" aria-hidden="true"><div class="ambient__grain"></div></div>
-  <div class="signup__body">
-    <div class="grid grid--2" style="align-items:start">
-      <div>
-        <p class="eyebrow" style="color:rgba(255,252,248,0.68)">A gift for you</p>
-        <h2 id="signup-heading">Receive A <span class="gold">Gift!</span></h2>
-        <p class="signup__lede">
-          Share your email and receive an exclusive Guided Meditation, &ldquo;Embracing Your Gifts&rdquo;.
-        </p>
-        <p class="signup__lede" style="font-size:0.92rem;margin-top:0.9rem">
-          You&rsquo;ll also get occasional notes from Mayana &mdash; new meditations, new writing,
-          and news about upcoming projects.
-        </p>
+  <div class="split">
+    <div>
+      <p class="label label--accent">A gift for you</p>
+      <h2 id="signup-heading">Receive A <span class="accent-word">Gift</span></h2>
+      <p class="signup__lede">
+        Share your email and receive an exclusive Guided Meditation, &ldquo;Embracing Your Gifts&rdquo;.
+      </p>
+      <p class="signup__lede" style="margin-top:0.9rem;font-size:0.95rem">
+        You&rsquo;ll also get occasional notes from Mayana &mdash; new meditations, new
+        writing, and news about upcoming projects.
+      </p>
+    </div>
+
+    <form data-mg-form data-form-type="newsletter" novalidate>
+      <div class="field--row">
+        <label class="field">
+          <span class="field__label">First Name</span>
+          <input type="text" name="first_name" autocomplete="given-name" required>
+        </label>
+        <label class="field">
+          <span class="field__label">Last Name</span>
+          <input type="text" name="last_name" autocomplete="family-name" required>
+        </label>
+      </div>
+      <label class="field">
+        <span class="field__label">Email Address</span>
+        <input type="email" name="email" autocomplete="email" required>
+      </label>
+
+      {# Honeypot — hidden from people. Turnstile can be layered on later. #}
+      <div class="hp" aria-hidden="true">
+        <label>Do not fill this in
+          <input type="text" name="website" tabindex="-1" autocomplete="off">
+        </label>
       </div>
 
-      <form class="stack" data-mg-form data-form-type="newsletter" novalidate>
-        <div class="field--row">
-          <label class="field">
-            <span class="field__label">First Name</span>
-            <input type="text" name="first_name" autocomplete="given-name" required>
-          </label>
-          <label class="field">
-            <span class="field__label">Last Name</span>
-            <input type="text" name="last_name" autocomplete="family-name" required>
-          </label>
-        </div>
-        <label class="field">
-          <span class="field__label">Email Address</span>
-          <input type="email" name="email" autocomplete="email" required>
-        </label>
-
-        {# Honeypot — hidden from people. Turnstile can be layered on later. #}
-        <div class="hp" aria-hidden="true">
-          <label>Do not fill this in
-            <input type="text" name="website" tabindex="-1" autocomplete="off">
-          </label>
-        </div>
-
-        <button class="btn btn--warm btn--block" type="submit" data-form-submit>Send Me the Meditation</button>
-        <p class="form-status" data-form-status role="status" aria-live="polite"></p>
-      </form>
-    </div>
+      <button class="btn btn--accent btn--block" type="submit" data-form-submit>Send Me the Meditation</button>
+      <p class="form-status" data-form-status role="status" aria-live="polite"></p>
+    </form>
   </div>
 </section>

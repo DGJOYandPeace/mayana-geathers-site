@@ -5,38 +5,34 @@ description: "Mayana Geathers is a feminist therapist (LMFT), writer, trainer, c
 permalink: /about/
 ---
 {# =========================================================================
-   ABOUT ME — reference page. Deliberately one lean scroll: bio, services
-   blurb, practice link. Depth belongs on Guided Meditation / Written Work.
+   ABOUT ME — a reference page. One lean scroll: bio, services, practice link.
+   Depth belongs on Guided Meditation and Written Work.
    ========================================================================= #}
 
 <section class="hero hero--page">
-  <div class="ambient" aria-hidden="true"><div class="ambient__grain"></div></div>
   <div class="wrap">
-    <div class="hero__inner">
-      <p class="eyebrow" style="color:rgba(255,252,248,0.7)">About</p>
-      <h1>Mayana Geathers, <span class="gold">LMFT</span></h1>
-      <p class="hero__sub">Feminist therapist, writer, trainer, consultant, and creator of original guided meditations.</p>
-    </div>
+    <p class="eyebrow">About</p>
+    <div class="hero__inner"><h1>Mayana Geathers, <span class="accent-word">LMFT</span></h1></div>
+    <p class="lede hero__sub" style="margin-bottom:0">
+      Feminist therapist, writer, trainer, consultant, and creator of original guided meditations.
+    </p>
   </div>
 </section>
 
-<section class="section">
+<section class="section--tight">
   <div class="wrap">
-    <div class="grid grid--2" style="align-items:start">
-
+    <div class="split split--narrow-first">
       <div>
-        {# ASSET: the solo bio portrait. Uses mayana-portrait-1.jpeg today;
-           swap `aboutPortrait` in src/_data/site.json to use a different file.
+        {# ASSET: the solo bio portrait. Change `aboutPortrait` in
+           src/_data/site.json to use a different file.
            CONFIRM this is the shot intended for this page. #}
-        <img src="/assets/img/{{ site.images.aboutPortrait }}"
-             alt="{{ site.images.aboutPortraitAlt }}"
-             class="portrait"
-             width="900" height="1100" loading="lazy">
+        <img class="portrait" src="/assets/img/{{ site.images.aboutPortrait }}"
+             alt="{{ site.images.aboutPortraitAlt }}" width="900" height="1125" loading="lazy">
       </div>
 
-      <div class="prose stack">
+      <div class="prose">
         {# --- BIO COPY (verbatim from the live site) --- #}
-        <p class="lede">
+        <p class="dropcap">
           Greetings! My name is Mayana Geathers and I am a feminist therapist (LMFT), writer,
           trainer, consultant and creator of original guided meditations. I am committed to
           social justice, healing and empowerment as it relates to all aspects of our well being.
@@ -46,33 +42,33 @@ permalink: /about/
         </p>
 
         {# --- THERAPY SERVICES BLURB (verbatim) --- #}
-        <h2 style="margin-top:2rem">Therapy services</h2>
-        <p>
-          I provide therapy for individuals, couples and families. All services are provided
-          through my group practice, Bridges to Healing. Click on the link for more information
-          on my services and how to contact me.
-        </p>
-
-        <div class="btn-row" style="margin-top:1.5rem">
-          <a class="btn btn--primary" href="{{ site.urls.practiceBooking }}" target="_blank" rel="noopener">{{ site.consultCta.label }}</a>
-          <a class="btn btn--soft" href="{{ site.urls.practice }}" target="_blank" rel="noopener">Visit Bridges to Healing</a>
+        <div class="ruled" style="margin-top:2.5rem;padding-top:2rem">
+          <p class="label">Therapy services</p>
+          <p>
+            I provide therapy for individuals, couples and families. All services are provided
+            through my group practice, Bridges to Healing. Click on the link for more information
+            on my services and how to contact me.
+          </p>
+          <div class="btn-row" style="margin-top:1.75rem">
+            <a class="btn btn--primary" href="{{ site.urls.practiceBooking }}" target="_blank" rel="noopener">{{ site.consultCta.label }}</a>
+            <a class="btn btn--outline" href="{{ site.urls.practice }}" target="_blank" rel="noopener">Visit Bridges to Healing</a>
+          </div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
-<section class="section section--tight band">
+<section class="section--tight" style="padding-bottom:clamp(3rem,7vw,5rem)">
   <div class="wrap">
-    <div class="callout">
+    <div class="notice">
       <p>
         <strong>Also here</strong>
         Mayana&rsquo;s guided meditations, and her writing on trauma, social justice and healing.
       </p>
       <span class="btn-row">
-        <a class="btn btn--soft" href="/guided-meditation/">Guided Meditation</a>
-        <a class="btn btn--soft" href="/written-work/">Written Work</a>
+        <a class="btn btn--outline btn--sm" href="/guided-meditation/">Guided Meditation</a>
+        <a class="btn btn--outline btn--sm" href="/written-work/">Written Work</a>
       </span>
     </div>
   </div>

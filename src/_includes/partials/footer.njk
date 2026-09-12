@@ -1,13 +1,12 @@
 <footer class="footer">
-  <div class="ambient" aria-hidden="true"><div class="ambient__grain"></div></div>
   <div class="wrap">
     <div class="footer__grid">
       <div>
-        <div class="footer__logo">
-          <img src="/assets/img/mayana-geathers-white-logo.webp" alt="{{ site.name }}" width="140" height="34">
-        </div>
-        {# Site-wide Bridges to Healing credit — general mention, so it links to
-           the practice homepage, not the booking page. #}
+        {# The white logo belongs here — the footer is the one ink-ground
+           surface on the site. #}
+        <img class="footer__logo" src="/assets/img/{{ site.images.logo }}" alt="{{ site.name }}" width="130" height="30">
+        {# Site-wide Bridges to Healing credit — a general mention, so it
+           links to the practice homepage, not the booking page. #}
         <p class="footer__practice">
           Mayana is a co-founder of
           <a href="{{ site.urls.practice }}" target="_blank" rel="noopener">Bridges to Healing: Counseling &amp; Training Center</a>,
@@ -18,9 +17,7 @@
       <nav aria-label="Footer">
         <h4>Explore</h4>
         <ul>
-          {% for item in site.nav %}
-            <li><a href="{{ item.url }}">{{ item.label }}</a></li>
-          {% endfor %}
+          {% for item in site.nav %}<li><a href="{{ item.url }}">{{ item.label }}</a></li>{% endfor %}
         </ul>
       </nav>
 
@@ -30,10 +27,8 @@
           <li><a href="{{ site.urls.instagram }}" target="_blank" rel="noopener">Instagram</a></li>
           <li><a href="{{ site.urls.practice }}" target="_blank" rel="noopener">Bridges to Healing</a></li>
           <li><a href="/contact/">Contact Mayana</a></li>
+          <li><a href="{{ site.urls.practiceBooking }}" target="_blank" rel="noopener">{{ site.consultCta.label }}</a></li>
         </ul>
-        <p style="margin-top:1.25rem">
-          <a class="btn btn--ghost btn--sm" href="{{ site.urls.practiceBooking }}" target="_blank" rel="noopener">{{ site.consultCta.label }}</a>
-        </p>
       </div>
     </div>
 

@@ -52,12 +52,34 @@ Anything still waiting on real content is marked `REPLACE ME` or `CONFIRM`:
 grep -rn "REPLACE ME\|CONFIRM" src/
 ```
 
-## The palette
+## The design
 
-Every colour is a token at the top of `src/assets/css/site.css`, lifted from
-Mayana's golden-hour cactus portraits: hazy oat sky, sage prickly pear, deep
-pine foliage, the teal of her dress, magenta cactus blooms, dry-grass gold.
-Change the tokens and the whole site follows.
+**Quiet literary, with a letterpress hand.** Book-jacket restraint as the base
+— generous margins, one honest measure, a lot of paper left empty. Print-object
+texture as the spice — hairline rules instead of cards, letterspaced small
+caps, a faint grain over the page. No glass, no blur, no drop shadows.
+
+Every colour is a token at the top of `src/assets/css/site.css`:
+
+| Token | | Role |
+|---|---|---|
+| `--paper` | `#EDEAE1` | Bone, with a faint green-grey cast |
+| `--ink` | `#1B211C` | Near-black with a green cast, not brown |
+| `--accent` | `#8E2E55` | The one accent: prickly-pear fruit in bloom |
+| `--rule` | `#C9C4B6` | Hairline rules, the primary separator |
+
+The photographs carry all the other colour. Change the tokens and the whole
+site follows.
+
+Type is **Young Serif** for display (sturdy, printerly) and **Newsreader** for
+text (made for reading, true italics). Labels use Newsreader in letterspaced
+small caps — there is no third family.
+
+> **Note on the logo:** the supplied logo is white-on-transparent and would be
+> invisible on paper, so the nav wordmark is typeset in Young Serif. The logo
+> image is used in the footer, which is the one ink-ground surface. If a dark
+> or full-colour logo variant arrives, swap the `<a class="nav__mark">` in
+> `src/_includes/partials/nav.njk` back to an `<img>`.
 
 ## Where files belong
 

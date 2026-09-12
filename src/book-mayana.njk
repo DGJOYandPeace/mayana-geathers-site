@@ -5,93 +5,105 @@ description: "Book Mayana Geathers for sound healing, guided meditation, speakin
 permalink: /book-mayana/
 ---
 {# =========================================================================
-   BOOK MAYANA — reference page, scoped to speaking, sound healing/guided
+   BOOK MAYANA — a reference page, scoped to speaking, sound healing/guided
    meditation events, and trainings/consulting. Therapy enquiries are routed
-   to Bridges to Healing by the callout at the top.
+   to Bridges to Healing by the notice at the top.
    ========================================================================= #}
 
 <section class="hero hero--page">
-  <div class="ambient" aria-hidden="true"><div class="ambient__grain"></div></div>
   <div class="wrap">
-    <div class="hero__inner">
-      <p class="eyebrow" style="color:rgba(255,252,248,0.7)">Invite Mayana</p>
-      <h1>Book <span class="gold">Mayana</span></h1>
-      {# --- INTRO COPY (verbatim from the live site) --- #}
-      <p class="hero__sub">
-        Mayana is available for sound healing/guided meditations, speaking events, podcasts,
-        and trainings. Mayana also offers consulting for organizations and businesses to
-        support trauma-informed practices.
-      </p>
-    </div>
+    <p class="eyebrow">Invite Mayana</p>
+    <div class="hero__inner"><h1>Book <span class="accent-word">Mayana</span></h1></div>
+    {# --- INTRO COPY (verbatim from the live site) --- #}
+    <p class="lede hero__sub prose" style="margin-bottom:0">
+      Mayana is available for sound healing/guided meditations, speaking events, podcasts,
+      and trainings. Mayana also offers consulting for organizations and businesses to
+      support trauma-informed practices.
+    </p>
   </div>
 </section>
 
-{# --- THERAPY ROUTING CALLOUT ------------------------------------------- #}
-<section class="section section--tight">
+{# --- THERAPY ROUTING NOTICE -------------------------------------------- #}
+<section class="section--tight">
   <div class="wrap">
-    <div class="callout">
+    <div class="notice">
       <p>
         <strong>Looking for therapy?</strong>
         I see clients through my group practice, Bridges to Healing. This page is for
         speaking, sound healing and training bookings.
       </p>
-      <a class="btn btn--primary" href="{{ site.urls.practiceBooking }}" target="_blank" rel="noopener">{{ site.consultCta.label }}</a>
+      <a class="btn btn--primary btn--sm" href="{{ site.urls.practiceBooking }}" target="_blank" rel="noopener">{{ site.consultCta.label }}</a>
     </div>
   </div>
 </section>
 
-{# --- THREE SERVICE TILES (copy verbatim) ------------------------------- #}
-<section class="section" style="padding-top:0">
+{# --- THREE SERVICES (copy verbatim) — a ruled index, not tiles --------- #}
+<section class="section--tight">
   <div class="wrap">
-    <div class="grid grid--3">
+    <p class="eyebrow">What Mayana offers</p>
+    <ul class="index">
 
-      <article class="card tile">
-        <div class="tile__body">
-          <h3>Sound Healing/Guided Meditation</h3>
-          <p>
-            Mayana offers guided meditation and sound healing for live events, retreats,
-            corporate events, gatherings and private events.
-          </p>
+      <li>
+        <div class="item">
+          <span class="item__num">01</span>
+          <span>
+            <h2 class="item__title">Sound Healing / Guided Meditation</h2>
+            <span class="item__excerpt">
+              Mayana offers guided meditation and sound healing for live events, retreats,
+              corporate events, gatherings and private events.
+            </span>
+          </span>
+          <span class="item__aside">
+            <a class="btn btn--outline btn--sm" href="/contact/?reason=booking">Enquire</a>
+          </span>
         </div>
-        <a class="btn btn--soft btn--sm" href="/contact/?reason=booking">Enquire about an event</a>
-      </article>
+      </li>
 
-      <article class="card tile">
-        {# ASSET: mayana-shan-podcast-still.webp — best guess, a still from a
-           podcast appearance, placed with the speaking/podcast tile.
-           CONFIRM before launch; the wrong context here would read oddly. #}
-        <div class="tile__media">
-          <img src="/assets/img/mayana-shan-podcast-still.webp"
-               alt="Mayana Geathers speaking during a podcast appearance"
-               loading="lazy" width="640" height="400">
+      <li>
+        <div class="item">
+          <span class="item__num">02</span>
+          <span>
+            <h2 class="item__title">Speaking Events / Podcasts</h2>
+            <span class="item__excerpt">
+              As a licensed, feminist therapist, Mayana is an accomplished speaker on a variety
+              of mental health topics, including healing from trauma, regulation, self care and
+              utilizing a social justice framework. Mayana is passionate about demystifying the
+              mental health world and believes increased dialogue around wellness supports and
+              builds empowerment.
+            </span>
+            {# ASSET: mayana-shan-podcast-still.webp — best guess, a still from
+               a podcast appearance. CONFIRM before launch; the wrong context
+               here would read oddly. #}
+            <img src="/assets/img/mayana-shan-podcast-still.webp"
+                 alt="Mayana Geathers speaking during a podcast appearance"
+                 loading="lazy" width="720" height="450"
+                 style="margin-top:1.25rem;width:min(26rem,100%);aspect-ratio:16/10;object-fit:cover">
+          </span>
+          <span class="item__aside">
+            <a class="btn btn--outline btn--sm" href="/contact/?reason=booking">Enquire</a>
+          </span>
         </div>
-        <div class="tile__body">
-          <h3>Speaking Events/Podcasts</h3>
-          <p>
-            As a licensed, feminist therapist, Mayana is an accomplished speaker on a variety
-            of mental health topics, including healing from trauma, regulation, self care and
-            utilizing a social justice framework. Mayana is passionate about demystifying the
-            mental health world and believes increased dialogue around wellness supports and
-            builds empowerment.
-          </p>
+      </li>
+
+      <li>
+        <div class="item">
+          <span class="item__num">03</span>
+          <span>
+            <h2 class="item__title">Trainings / Consulting</h2>
+            <span class="item__excerpt">
+              Mayana is available to facilitate trainings, curriculum writing and consultation
+              for organizations and business to support trauma informed practices.
+            </span>
+          </span>
+          <span class="item__aside">
+            <a class="btn btn--outline btn--sm" href="/contact/?reason=booking">Enquire</a>
+          </span>
         </div>
-        <a class="btn btn--soft btn--sm" href="/contact/?reason=booking">Enquire about speaking</a>
-      </article>
+      </li>
 
-      <article class="card tile">
-        <div class="tile__body">
-          <h3>Trainings/Consulting</h3>
-          <p>
-            Mayana is available to facilitate trainings, curriculum writing and consultation
-            for organizations and business to support trauma informed practices.
-          </p>
-        </div>
-        <a class="btn btn--soft btn--sm" href="/contact/?reason=booking">Enquire about training</a>
-      </article>
+    </ul>
 
-    </div>
-
-    <div class="btn-row btn-row--center" style="margin-top:2.5rem">
+    <div class="btn-row" style="margin-top:2.5rem">
       <a class="btn btn--primary" href="/contact/?reason=booking">Book Mayana</a>
     </div>
   </div>

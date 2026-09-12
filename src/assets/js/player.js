@@ -47,21 +47,13 @@
     return m + ":" + (s < 10 ? "0" : "") + s;
   }
 
-  // Deterministic hue per track, so placeholder covers stay distinct and
-  // stable between visits. Range stays inside the sage-to-teal family drawn
-  // from Mayana's photographs.
-  function hueFor(slug) {
-    var h = 0;
-    for (var i = 0; i < slug.length; i++) h = (h * 31 + slug.charCodeAt(i)) % 997;
-    return 112 + (h % 62); // 112–173deg: sage green through teal
-  }
-
-  function coverMarkup(track, small) {
+  function coverMarkup(track) {
     var url = buildUrl(CFG.coverPrefix, track.coverFile);
     if (url) {
       return '<img src="' + url + '" alt="Cover art for ' + escapeAttr(track.title) + '" loading="lazy">';
     }
-    return small ? "" : '<span class="cover__ph">Cover art coming</span>';
+    // No artwork yet: the ruled ink frame stands in rather than inventing one.
+    return '<span class="cover__ph">Cover<br>art<br>to come</span>';
   }
 
   function escapeAttr(s) {
@@ -119,22 +111,23 @@
     function renderLibrary() {
       if (!listEl) return;
       var list = visibleTracks();
-      listEl.innerHTML = list.map(function (t) {
+      listEl.innerHTML = list.map(function (t, n) {
         var i = tracks.indexOf(t);
         var ok = playable(t);
+        var num = String(n + 1).padStart(2, "0");
         return (
           '<li>' +
           '<button class="track" type="button" data-track-index="' + i + '"' +
           (ok ? "" : " disabled") +
           ' aria-current="' + (i === current) + '">' +
-          '<span class="cover" style="--cover-h: ' + hueFor(t.slug) + '">' + coverMarkup(t, true) + '</span>' +
+          '<span class="track__num">' + num + '</span>' +
           '<span>' +
-          '<span class="track__title">' + escapeHtml(t.title) + '</span><br>' +
+          '<span class="track__title">' + escapeHtml(t.title) + '</span>' +
           '<span class="track__sub">' + escapeHtml(t.album || "") + '</span>' +
           '</span>' +
           (ok
             ? '<span class="track__eq" aria-hidden="true"><span></span><span></span><span></span></span>'
-            : '<span class="track__badge">Audio coming soon</span>') +
+            : '<span class="track__badge">Audio to come</span>') +
           '</button></li>'
         );
       }).join("");
@@ -169,10 +162,7 @@
       if (albumEl) albumEl.textContent = track.album || "";
       if (titleEl) titleEl.textContent = track.title;
       if (descEl) descEl.textContent = track.description || "";
-      if (coverEl) {
-        coverEl.style.setProperty("--cover-h", hueFor(track.slug));
-        coverEl.innerHTML = coverMarkup(track, false);
-      }
+      if (coverEl) coverEl.innerHTML = coverMarkup(track);
 
       var url = buildUrl(CFG.audioPrefix, track.audioFile);
       if (!url) {

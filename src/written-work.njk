@@ -5,52 +5,47 @@ description: "Articles by Mayana Geathers on trauma, social justice, feminist th
 permalink: /written-work/
 ---
 {# =========================================================================
-   WRITTEN WORK — the other return-visit page. Entries come from
-   src/_data/writing.json; adding a new piece means adding one object to the
-   top of that array. The layout is built to hold many more than three.
+   WRITTEN WORK — a return-visit page, set as a numbered print index.
+   Entries come from src/_data/writing.json; add an object to the top of that
+   array to publish a new piece. The index is numbered because the entries
+   are ordered newest-first — the number carries real sequence.
    ========================================================================= #}
 
 <section class="hero hero--page">
-  <div class="ambient" aria-hidden="true"><div class="ambient__grain"></div></div>
   <div class="wrap">
-    <div class="hero__inner">
-      <p class="eyebrow" style="color:rgba(255,252,248,0.7)">Read</p>
-      <h1>Written <span class="gold">Work</span></h1>
-      {# --- INTRO COPY (verbatim from the live site) --- #}
-      <p class="hero__sub">{{ writing.intro }}</p>
-    </div>
+    <p class="eyebrow">Read</p>
+    <div class="hero__inner"><h1>Written <span class="accent-word">Work</span></h1></div>
+    {# --- INTRO COPY (verbatim from the live site) --- #}
+    <p class="lede hero__sub prose" style="margin-bottom:0">{{ writing.intro }}</p>
   </div>
 </section>
 
-<section class="section">
+<section class="section--tight">
   <div class="wrap">
-    <div class="library__head" style="margin-bottom:1.75rem">
-      <p class="eyebrow" style="margin:0">Published pieces</p>
-      <span class="latest__meta" style="margin:0">{{ writing.entries.length }} {{ "piece" if writing.entries.length == 1 else "pieces" }}</span>
+    <div class="library__head" style="margin-bottom:0.75rem">
+      <p class="label" style="margin:0">Published pieces</p>
+      <span class="library__count">{{ writing.entries.length }} {{ "piece" if writing.entries.length == 1 else "pieces" }}</span>
     </div>
 
-    <div class="grid grid--2">
+    <ul class="index">
       {% for piece in writing.entries %}
-      <a class="entry" href="{{ piece.url }}" target="_blank" rel="noopener">
-        <p class="entry__source">Featured on {{ piece.source }}</p>
-        <h2 class="entry__title">{{ piece.title }}</h2>
-        {# Excerpt is optional — placeholder text is skipped so the preview
-           stays clean until real pull quotes arrive. #}
-        {% if piece.excerpt and "REPLACE ME" not in piece.excerpt %}
-          <p class="entry__excerpt">{{ piece.excerpt }}</p>
-        {% endif %}
-        {% if piece.topics.length %}
-        <ul class="topics">
-          {% for topic in piece.topics %}<li>{{ topic }}</li>{% endfor %}
-        </ul>
-        {% endif %}
-        <div class="entry__foot">
-          <span>{{ piece.date | prettyDate }}</span>
-          <span class="entry__more">Read at {{ piece.source }} &rarr;</span>
-        </div>
-      </a>
+      <li>
+        <a class="item" href="{{ piece.url }}" target="_blank" rel="noopener">
+          <span class="item__num">{{ loop.index | pad2 }}</span>
+          <span>
+            <span class="item__meta">{{ piece.source }}{% if piece.date %} &middot; {{ piece.date | prettyDate }}{% endif %}</span>
+            <h2 class="item__title" style="margin-top:0.45rem">{{ piece.title }}</h2>
+            {# Placeholder excerpts are skipped so the page stays clean until
+               real pull quotes arrive. #}
+            {% if piece.excerpt and "REPLACE ME" not in piece.excerpt %}
+              <span class="item__excerpt">{{ piece.excerpt }}</span>
+            {% endif %}
+          </span>
+          <span class="item__aside"><span class="link-more">Read</span></span>
+        </a>
+      </li>
       {% endfor %}
-    </div>
+    </ul>
 
     <p class="lede prose" style="margin-top:3rem">
       More writing is on the way. Join Mayana&rsquo;s list below and new pieces will find you.
@@ -58,8 +53,6 @@ permalink: /written-work/
   </div>
 </section>
 
-<section class="section" style="padding-top:0">
-  <div class="wrap">
-    {% include "partials/signup.njk" %}
-  </div>
+<section class="section--tight" style="padding-bottom:clamp(3rem,7vw,5rem)">
+  <div class="wrap">{% include "partials/signup.njk" %}</div>
 </section>

@@ -11,78 +11,63 @@ permalink: /events/
    ========================================================================= #}
 
 <section class="hero hero--page">
-  <div class="ambient" aria-hidden="true"><div class="ambient__grain"></div></div>
   <div class="wrap">
+    <p class="eyebrow">Gatherings</p>
     <div class="hero__inner">
-      <p class="eyebrow" style="color:rgba(255,252,248,0.7)">Gatherings</p>
-      <h1>{% if events.upcoming.length %}<span class="gold">Events</span>{% else %}Past <span class="gold">Events</span>{% endif %}</h1>
-      <p class="hero__sub">
-        Sound healing sessions, guided meditations and speaking engagements Mayana has led.
-      </p>
+      <h1>{% if events.upcoming.length %}<span class="accent-word">Events</span>{% else %}Past <span class="accent-word">Events</span>{% endif %}</h1>
     </div>
+    <p class="lede hero__sub" style="margin-bottom:0">
+      Sound healing sessions, guided meditations and speaking engagements Mayana has led.
+    </p>
   </div>
 </section>
 
 {% if events.upcoming.length %}
-<section class="section">
+<section class="section--tight">
   <div class="wrap">
     <p class="eyebrow">Coming up</p>
-    <h2>Upcoming Events</h2>
-    <ul class="timeline" style="margin-top:2rem">
+    <ul class="index">
       {% for e in events.upcoming %}
-      <li>
-        <article class="card">
-          <div>
-            <p class="timeline__date">{{ e.dateLabel }}</p>
-            {% if e.time or e.location %}
-            <p class="timeline__meta">{{ e.time }}{% if e.time and e.location %} &middot; {% endif %}{{ e.location }}</p>
-            {% endif %}
-          </div>
-          <div>
-            <h3 style="margin-bottom:0.5rem">{{ e.title }}</h3>
-            <p>{{ e.description }}</p>
-          </div>
-        </article>
-      </li>
+      <li><div class="item">
+        <span class="item__num">&mdash;</span>
+        <span>
+          <span class="item__meta">{{ e.dateLabel }}{% if e.time %} &middot; {{ e.time }}{% endif %}{% if e.location %} &middot; {{ e.location }}{% endif %}</span>
+          <h2 class="item__title" style="margin-top:0.45rem">{{ e.title }}</h2>
+          <span class="item__excerpt">{{ e.description }}</span>
+        </span>
+      </div></li>
       {% endfor %}
     </ul>
   </div>
 </section>
 {% endif %}
 
-<section class="section{% if events.upcoming.length %} band{% endif %}">
+<section class="section--tight{% if events.upcoming.length %} band{% endif %}">
   <div class="wrap">
     <p class="eyebrow">Looking back</p>
-    <h2>Past Events</h2>
-    <ul class="timeline" style="margin-top:2rem">
+    <ul class="index">
       {% for e in events.past %}
-      <li>
-        <article class="card">
-          <div>
-            <p class="timeline__date">{{ e.dateLabel }}</p>
-            {% if e.time or e.location %}
-            <p class="timeline__meta">{{ e.time }}{% if e.time and e.location %} &middot; {% endif %}{{ e.location }}</p>
-            {% endif %}
-          </div>
-          <div>
-            <h3 style="margin-bottom:0.5rem">{{ e.title }}</h3>
-            <p>{{ e.description }}</p>
-          </div>
-        </article>
-      </li>
+      <li><div class="item">
+        <span class="item__num">{{ loop.index | pad2 }}</span>
+        <span>
+          <span class="item__meta">{{ e.dateLabel }}{% if e.time %} &middot; {{ e.time }}{% endif %}{% if e.location %} &middot; {{ e.location }}{% endif %}</span>
+          <h2 class="item__title" style="margin-top:0.45rem">{{ e.title }}</h2>
+          <span class="item__excerpt">{{ e.description }}</span>
+        </span>
+      </div></li>
       {% endfor %}
     </ul>
   </div>
 </section>
 
-<section class="section section--tight{% if not events.upcoming.length %} band{% endif %}">
+<section class="section--tight" style="padding-bottom:clamp(3rem,7vw,5rem)">
   <div class="wrap">
-    <div class="callout">
+    <div class="notice">
       <p>
         <strong>Bring Mayana to your gathering</strong>
-        Sound healing, guided meditation, speaking and trainings — for retreats, workplaces and private events.
+        Sound healing, guided meditation, speaking and trainings &mdash; for retreats, workplaces and private events.
       </p>
-      <a class="btn btn--primary" href="/book-mayana/">Book Mayana</a>
+      <a class="btn btn--primary btn--sm" href="/book-mayana/">Book Mayana</a>
     </div>
   </div>
 </section>

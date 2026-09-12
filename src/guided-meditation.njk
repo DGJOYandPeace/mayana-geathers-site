@@ -5,33 +5,32 @@ description: "Original guided meditations written and recorded by Mayana Geather
 permalink: /guided-meditation/
 ---
 {# =========================================================================
-   GUIDED MEDITATION — Stage 1 centrepiece and one of the two return-visit
-   pages. Built as a growing library: adding a track means adding one object
-   to src/_data/meditations.json, nothing here changes.
+   GUIDED MEDITATION — Stage 1 centrepiece and a return-visit page.
+   Built as a growing library: adding a track means adding one object to
+   src/_data/meditations.json; nothing here changes.
    ========================================================================= #}
 
 <section class="hero hero--page">
-  <div class="ambient" aria-hidden="true"><div class="ambient__grain"></div></div>
   <div class="wrap">
-    <div class="hero__inner">
-      <p class="eyebrow" style="color:rgba(255,252,248,0.7)">Listen</p>
-      <h1>Guided <span class="gold">Meditation</span></h1>
-      <p class="hero__sub">Written and recorded by Mayana. Press play and let everything else wait a moment.</p>
-    </div>
+    <p class="eyebrow">Listen</p>
+    <div class="hero__inner"><h1>Guided <span class="accent-word">Meditation</span></h1></div>
+    <p class="lede hero__sub" style="margin-bottom:0">
+      Written and recorded by Mayana. Press play and let everything else wait a moment.
+    </p>
   </div>
 </section>
 
 {# --- INTRO COPY (verbatim from the live site) --- #}
-<section class="section section--tight">
+<section class="section--tight">
   <div class="wrap">
-    <p class="lede prose">{{ meditations.intro }}</p>
+    <p class="prose">{{ meditations.intro }}</p>
   </div>
 </section>
 
 {# --- THE PLAYER ---------------------------------------------------------
-   The gift track is appended with giftOnly:true — the player reveals it only
-   after a visitor has signed up (remembered in their browser). #}
-<section class="section" style="padding-top:0">
+   The gift track carries giftOnly:true — the player reveals it only once a
+   visitor has signed up (remembered in their browser). #}
+<section class="section--tight" style="padding-top:0">
   <div class="wrap">
     {% set playerId = "library-player" %}
     {% set playerTracks = library %}
@@ -45,31 +44,34 @@ permalink: /guided-meditation/
 <section class="section band">
   <div class="wrap">
     <p class="eyebrow">The meditations</p>
-    <h2>What each one is for</h2>
+    <h2 style="margin-bottom:2rem">What each one is for</h2>
 
-    <div style="margin-top:2.5rem">
-      {% for t in meditations.tracks %}
-      <article class="med-entry" id="{{ t.slug }}">
-        <div class="cover" style="--cover-h: {{ 114 + (loop.index0 * 17) }}">
-          {# REPLACE ME — cover art. While coverFile is null in
-             meditations.json a soft generated placeholder is shown; no stock
-             photography has been invented. #}
-          <span class="cover__ph">Cover art coming</span>
-        </div>
+    {% for t in meditations.tracks %}
+    <article class="entry-body" id="{{ t.slug }}">
+      <div class="split split--narrow-first">
         <div>
+          <p class="item__num" style="margin:0 0 0.75rem">{{ loop.index | pad2 }}</p>
+          {# REPLACE ME — cover art. While coverFile is null in
+             meditations.json the ruled ink plate stands in; no stock
+             photography has been invented. #}
+          <div class="cover" style="max-width:13rem">
+            <span class="cover__ph">Cover<br>art<br>to come</span>
+          </div>
+        </div>
+        <div class="prose">
           <h3>{{ t.title }}</h3>
           <p>{{ t.description }}</p>
           {% if t.useFor.length %}
-            <p class="eyebrow" style="margin-top:1.5rem">Use this meditation for</p>
+            <p class="label" style="margin-top:1.75rem">Use this meditation for</p>
             <ul class="use-list">
               {% for use in t.useFor %}<li>{{ use }}</li>{% endfor %}
             </ul>
           {% endif %}
           {% if t.closing %}<p class="closing-line">{{ t.closing }}</p>{% endif %}
         </div>
-      </article>
-      {% endfor %}
-    </div>
+      </div>
+    </article>
+    {% endfor %}
   </div>
 </section>
 
@@ -78,52 +80,46 @@ permalink: /guided-meditation/
   <div class="wrap">
     <p class="eyebrow">Full collections</p>
     <h2>Albums on Bandcamp</h2>
-    <p class="lede prose" style="margin-bottom:2.25rem">
+    <p class="lede prose" style="margin-bottom:2.5rem">
       These full-length collections live on Bandcamp, where you can hear them in full and buy a copy.
     </p>
-    <div class="grid grid--2">
-      {% for album in albums.bandcamp %}
-      <article class="card album">
-        <div class="album__cover">
-          <img src="{{ album.cover }}" alt="{{ album.coverAlt }}" loading="lazy" width="420" height="420">
-        </div>
-        <div>
-          <h3 style="margin-bottom:0.5rem">{{ album.title }}</h3>
-          <p>{{ album.description }}</p>
-          {% if album.photo %}
-            {# ASSET: supporting photography for this release. CONFIRM it
-               belongs here — remove `photo` from albums.json if not. #}
-            <img src="{{ album.photo }}" alt="{{ album.photoAlt }}"
-                 class="album__photo" loading="lazy" width="520" height="340">
-          {% endif %}
-          <p style="margin-top:1.25rem">
-            <a class="btn btn--soft btn--sm" href="{{ album.url }}" target="_blank" rel="noopener">Listen on Bandcamp</a>
-          </p>
-        </div>
-      </article>
-      {% endfor %}
-    </div>
+    {% for album in albums.bandcamp %}
+    <article class="split split--plate{% if not loop.first %} ruled{% endif %}" style="padding-block:clamp(1.5rem,4vw,2.5rem)">
+      <img src="{{ album.cover }}" alt="{{ album.coverAlt }}" loading="lazy" width="700" height="700">
+      <div>
+        <h3>{{ album.title }}</h3>
+        <p>{{ album.description }}</p>
+        {% if album.photo %}
+          {# ASSET: supporting photography for this release. CONFIRM it
+             belongs here — remove `photo` from albums.json if not. #}
+          <img src="{{ album.photo }}" alt="{{ album.photoAlt }}" loading="lazy"
+               width="520" height="340" style="margin-top:1.25rem;aspect-ratio:16/10;object-fit:cover">
+        {% endif %}
+        <p style="margin-top:1.5rem">
+          <a class="btn btn--outline btn--sm" href="{{ album.url }}" target="_blank" rel="noopener">Listen on Bandcamp</a>
+        </p>
+      </div>
+    </article>
+    {% endfor %}
   </div>
 </section>
 
 {# --- DAVID'S SOUND HEALING (cross-promo only, not in Mayana's player) --- #}
-<section class="section section--tight band">
+<section class="section--tight band">
   <div class="wrap">
-    <article class="card card--tint prose" style="max-width:none">
-      <p class="eyebrow">Also worth hearing</p>
+    <div class="prose">
+      <p class="label">Also worth hearing</p>
       <h3>{{ albums.davidSoundHealing.title }}</h3>
-      <p class="latest__meta">{{ albums.davidSoundHealing.byline }}</p>
+      <p class="item__meta" style="margin-bottom:1rem">{{ albums.davidSoundHealing.byline }}</p>
       <p>{{ albums.davidSoundHealing.description }}</p>
-      <p style="margin-top:1.25rem">
-        <a class="btn btn--soft btn--sm" href="{{ albums.davidSoundHealing.url }}" target="_blank" rel="noopener">Listen on Bandcamp</a>
+      <p style="margin-top:1.5rem">
+        <a class="btn btn--outline btn--sm" href="{{ albums.davidSoundHealing.url }}" target="_blank" rel="noopener">Listen on Bandcamp</a>
       </p>
-    </article>
+    </div>
   </div>
 </section>
 
 {# --- SIGNUP (the gift track unlocks in the player above) ---------------- #}
 <section class="section">
-  <div class="wrap">
-    {% include "partials/signup.njk" %}
-  </div>
+  <div class="wrap">{% include "partials/signup.njk" %}</div>
 </section>

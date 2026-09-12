@@ -1,22 +1,17 @@
 {#
-  Site nav. The logo supplied is white-on-transparent, so the nav is always a
-  translucent dark frosted strip — on the homepage it floats over the hero, on
-  interior pages over that page's warm header band.
-  FLAG: if a dark / full-colour logo variant arrives, a light nav becomes
-  possible for pages that would rather open on cream.
+  Site nav. Paper ground, hairline rule beneath.
+
+  The wordmark is TYPESET rather than the supplied logo image: that logo is
+  white-on-transparent and would be invisible on paper. If a dark or
+  full-colour logo variant arrives, swap the <a> below for an <img>.
 #}
 <header class="nav" id="site-nav">
   <div class="wrap">
     <div class="nav__inner">
-      <a class="nav__logo" href="/" aria-label="{{ site.name }} — home">
-        <img src="/assets/img/mayana-geathers-white-logo.webp" alt="{{ site.name }}" width="140" height="34">
-      </a>
+      <a class="nav__mark" href="/">{{ site.name }}</a>
 
       <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-drawer" data-nav-toggle>
         <span data-nav-toggle-label>Menu</span>
-        <svg width="16" height="12" viewBox="0 0 16 12" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
-          <path d="M1 1h14M1 6h14M1 11h14"/>
-        </svg>
       </button>
 
       <div class="nav__drawer" id="nav-drawer">
@@ -26,15 +21,15 @@
           {% endfor %}
         </ul>
 
-        {# Site-wide therapy funnel CTA — the ONE place /contact on Bridges to
-           Healing is linked. Present on every page. #}
+        {# Site-wide therapy funnel CTA — the ONE place Bridges to Healing's
+           /contact page is linked. Present on every page. #}
         <div class="nav__cta nav__cta--drawer">
-          <a class="btn btn--ghost btn--sm btn--block" href="{{ site.urls.practiceBooking }}" target="_blank" rel="noopener">{{ site.consultCta.label }}</a>
+          <a class="btn btn--outline btn--sm btn--block" href="{{ site.urls.practiceBooking }}" target="_blank" rel="noopener">{{ site.consultCta.label }}</a>
         </div>
       </div>
 
       <div class="nav__cta nav__cta--desktop">
-        <a class="btn btn--ghost btn--sm" href="{{ site.urls.practiceBooking }}" target="_blank" rel="noopener">{{ site.consultCta.label }}</a>
+        <a class="btn btn--outline btn--sm" href="{{ site.urls.practiceBooking }}" target="_blank" rel="noopener">{{ site.consultCta.label }}</a>
       </div>
     </div>
   </div>
