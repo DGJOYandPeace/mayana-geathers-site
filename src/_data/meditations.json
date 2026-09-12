@@ -1,0 +1,87 @@
+{
+  "_comment": "Guided meditation library. Copy is FINAL (verbatim from Mayana). To add a track later, copy one object and fill it in — no template or player code needs to change. `audioFile` and `coverFile` are object keys inside the `mayanas-professional-site` R2 bucket, appended to site.audio.r2BaseUrl + the matching prefix.",
+  "_comment_audioFile": "REPLACE ME (confirm) — the four MP3s are confirmed uploaded to the bucket, but the exact object keys were not supplied. The slugs below are best guesses; correct them against `wrangler r2 object list mayanas-professional-site` or David's list.",
+  "_comment_coverFile": "REPLACE ME — no cover art supplied for these four yet. While `coverFile` is null the site renders a soft generated placeholder (no stock photography invented). Drop a filename in to replace it.",
+  "_comment_album": "Not yet decided whether these four are grouped under a named collection. Defaulting to one open 'Guided Meditations' library, per the intake checklist.",
+
+  "tracks": [
+    {
+      "slug": "slowing-down-is-a-practice-in-self-worth",
+      "title": "Slowing Down Is A Practice In Self Worth",
+      "album": "Guided Meditations",
+      "audioFile": "slowing-down-is-a-practice-in-self-worth.mp3",
+      "coverFile": null,
+      "added": "2026-01-15",
+      "description": "This guided meditation gently helps you slow down and create space for mindfulness and relaxation amid the busyness of everyday life. By taking a few moments to pause and breathe, you'll reconnect with your inner calm and cultivate a deeper sense of gratitude for yourself. This grounding practice supports emotional balance, clarity, and empowerment, allowing you to move through your day with renewed presence and peace.",
+      "useFor": [
+        "Evenings or transitions between tasks",
+        "Grounding after busy days",
+        "Reconnecting with inner calm and gratitude"
+      ],
+      "closing": "Let this guided meditation help you slow down, recharge, and realign with a sense of peace and clarity."
+    },
+    {
+      "slug": "a-guided-meditation-for-trauma",
+      "title": "A Guided Meditation for Trauma",
+      "album": "Guided Meditations",
+      "audioFile": "a-guided-meditation-for-trauma.mp3",
+      "coverFile": null,
+      "added": "2026-01-15",
+      "description": "A gentle guided meditation audio that helps you create a safe space to breathe through difficult experiences while fostering mindfulness, self-compassion, and emotional resilience. With careful guidance, this meditation encourages reflection, grounding, and empathy for yourself in the face of trauma, offering relief from tension and mental heaviness.",
+      "useFor": [
+        "Daily mindfulness practice",
+        "Stress relief and mental reset",
+        "Cultivating self-compassion and inner calm"
+      ],
+      "closing": "Take this intentional pause anytime you need a moment to reconnect with yourself, nurture your healing journey, and approach difficult emotions with patience and dignity."
+    },
+    {
+      "slug": "breathe-in-breathe-out",
+      "title": "Guided Meditation — Breathe In, Breathe Out",
+      "album": "Guided Meditations",
+      "audioFile": "guided-meditation-breathe-in-breathe-out.mp3",
+      "coverFile": null,
+      "added": "2026-01-15",
+      "description": "A calming guided meditation audio designed to help you release what no longer serves you while creating space for mindfulness, self-compassion, and inner strength. With each inhale, invite empowerment and kindness; with each exhale, let go of stress, doubt, and mental heaviness. This meditation is gentle and accessible for beginners while offering a refreshing reset for seasoned meditators.",
+      "useFor": [
+        "Daily mindfulness practice",
+        "Stress relief and mental reset",
+        "Cultivating self-compassion and inner calm"
+      ],
+      "closing": "Take a moment for yourself whenever you need a mindful pause, a mental reset, or a gentle reminder to reconnect with your inner calm."
+    },
+    {
+      "slug": "breathing-in-light",
+      "title": "Guided Meditation — Breathing in Light",
+      "album": "Guided Meditations",
+      "audioFile": "guided-meditation-breathing-in-light.mp3",
+      "coverFile": null,
+      "added": "2026-01-15",
+      "description": "A guided meditation audio that helps you visualize light as a source of love, renewal, and balance. As you breathe, imagine this light moving through your body, bringing warmth and calm to the areas that need it most. This meditation fosters mindfulness, emotional well-being, and inner connection, making it a powerful tool for daily grounding and deeper healing.",
+      "useFor": [
+        "Daily mindfulness practice",
+        "Stress relief and mental reset",
+        "Cultivating self-compassion and inner calm"
+      ],
+      "closing": "Take a few moments with this guided imagery audio to recharge, reconnect, and invite a sense of calm and balance into your day."
+    }
+  ],
+
+  "_comment_gift": "The free signup gift. Hidden behind the newsletter signup: it appears in the player library once a visitor has signed up (remembered in that browser). Not part of the four-track launch set.",
+  "gift": {
+    "slug": "embracing-your-gifts",
+    "title": "Embracing Your Gifts",
+    "album": "A Gift From Mayana",
+    "audioFile": "embracing-your-gifts.mp3",
+    "coverFile": null,
+    "description": "An exclusive guided meditation, offered as a thank you for joining Mayana's list. Settle in somewhere comfortable, and let this be a few minutes that belong only to you.",
+    "useFor": [],
+    "closing": ""
+  },
+
+  "_comment_intro": "Guided Meditation page intro — verbatim from the live site.",
+  "intro": "Guided meditation can lead you on a journey that creates peace, reflection, calmness or grounding. It is a tool for self care and self understanding. There is a power to slowing down a moment, closing one's eyes and tapping into self as a form of support. Guided meditation is a medium that encourages the mind to still and creates focus as it gives the opportunity to concentrate and reflect on the words, while keeping the mind from drifting.",
+
+  "_comment_featured": "Which track is spotlighted in the homepage player. Change this slug to spotlight a different one.",
+  "featuredSlug": "slowing-down-is-a-practice-in-self-worth"
+}

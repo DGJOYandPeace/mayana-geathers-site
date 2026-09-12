@@ -1,0 +1,31 @@
+{
+  "_comment": "Written Work. Stored as a data array so Mayana can add future pieces here without touching HTML. Order is manual, newest first — the homepage 'Latest' module reads entries[0]. Add a new object at the TOP of this array to publish a new piece.",
+  "intro": "In addition to writing all of her guided meditations, Mayana is also writer of articles on a variety of topics such as trauma, social justice, feminist therapy and the healing process. Here are links to her published work.",
+  "entries": [
+    {
+      "title": "Finding Freedom in Healing: The Importance of a Social Justice Framework in Empowerment",
+      "source": "Spoken Black Girl",
+      "date": "2023-10-29",
+      "excerpt": "REPLACE ME — optional one- or two-sentence pull quote from the piece.",
+      "url": "https://www.spokenblackgirl.com/mind-1/2023/10/29/the-freedom-of-healing-nbspthe-importance-of-a-social-justice-framework-in-our-empowermentnbsp",
+      "topics": ["Social justice", "Empowerment", "Healing"]
+    },
+    {
+      "title": "Social Media Makes Healing From Sexual Trauma Especially Hard",
+      "source": "Scary Mommy",
+      "date": null,
+      "_comment_date": "REPLACE ME — publication date not supplied. While null, the date line is simply omitted rather than guessed.",
+      "excerpt": "REPLACE ME — optional one- or two-sentence pull quote from the piece.",
+      "url": "https://www.scarymommy.com/healing-from-sexual-trauma-social-media",
+      "topics": ["Trauma", "Media"]
+    },
+    {
+      "title": "The Dawning of a New Day & the Cyclical Nature of Grief",
+      "source": "Saint Lunita",
+      "date": "2021-12-17",
+      "excerpt": "REPLACE ME — optional one- or two-sentence pull quote from the piece.",
+      "url": "https://saintlunita.com/2021/12/17/the-dawning-of-a-new-day-the-cyclical-nature-of-grief/",
+      "topics": ["Grief", "Healing"]
+    }
+  ]
+}

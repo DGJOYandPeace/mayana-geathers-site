@@ -1,0 +1,165 @@
+---
+layout: layouts/base.njk
+title: false
+description: "Mayana Geathers — feminist therapist (LMFT), writer, and creator of original guided meditations."
+permalink: /
+---
+{#
+  ===========================================================================
+  HOME
+  Section order is deliberate: hero → email capture (primary conversion,
+  above the fold-ish, no long scroll) → Latest → featured meditation →
+  Bandcamp albums → testimonials → Instagram.
+  ===========================================================================
+#}
+
+{# ---------------------------------------------------------------- HERO --
+   The full-bleed hero photograph sits behind everything, blurred and
+   vignetted at the edges so the type stays legible without a hard overlay
+   panel. If the file isn't in src/assets/img yet, the golden-hour gradient
+   backdrop stands in on its own — nothing breaks. #}
+{% set heroImage = site.images.hero if assets.has[site.images.hero] else false %}
+<section class="hero hero--center{% if heroImage %} hero--photo{% endif %}"
+         {% if heroImage %}style="--hero-image: url('/assets/img/{{ heroImage }}')"{% endif %}>
+  <div class="ambient" aria-hidden="true"><div class="ambient__grain"></div></div>
+  <div class="wrap">
+    <div class="hero__inner">
+      <p class="eyebrow" style="color:rgba(255,252,248,0.7)">Feminist therapist &middot; Writer &middot; Guided meditation</p>
+      <h1>A place to slow down and <span class="gold">come back to yourself</span></h1>
+      <p class="hero__sub">{{ site.tagline }}</p>
+      <div class="btn-row btn-row--center">
+        <a class="btn btn--primary" href="#receive-a-gift">Receive a Free Meditation</a>
+        <a class="btn btn--ghost" href="{{ site.urls.practiceBooking }}" target="_blank" rel="noopener">{{ site.consultCta.label }}</a>
+      </div>
+      <p class="hero__note">{{ site.consultCta.note }}</p>
+    </div>
+  </div>
+</section>
+
+{# ------------------------------------------------- PRIMARY CONVERSION -- #}
+<section class="section section--tight">
+  <div class="wrap">
+    {% include "partials/signup.njk" %}
+  </div>
+</section>
+
+{# --------------------------------------------------------- LATEST ------
+   Reads the same data as the player and the Written Work page — no new
+   system, it just surfaces the newest entry from each. #}
+{% set latestTrack = meditations.tracks[0] %}
+{% set latestPiece = writing.entries[0] %}
+<section class="section section--tight band">
+  <div class="wrap">
+    <p class="eyebrow">Latest from Mayana</p>
+    <h2>New here, and new again</h2>
+    <div class="latest__grid" style="margin-top:2rem">
+
+      <article class="card card--tint">
+        <span class="latest__tag">Newest meditation</span>
+        <h3 class="latest__title">{{ latestTrack.title }}</h3>
+        <p class="latest__meta">{{ latestTrack.album }}</p>
+        <p>{{ latestTrack.description | truncate(190) }}</p>
+        <p style="margin-top:1.25rem"><a class="btn btn--soft btn--sm" href="/guided-meditation/#{{ latestTrack.slug }}">Listen</a></p>
+      </article>
+
+      <article class="card card--tint">
+        <span class="latest__tag">Newest writing</span>
+        <h3 class="latest__title">{{ latestPiece.title }}</h3>
+        <p class="latest__meta">Featured on {{ latestPiece.source }}</p>
+        <p>Mayana on {{ latestPiece.topics | join(", ") | lower }} — read the full piece at {{ latestPiece.source }}.</p>
+        <p style="margin-top:1.25rem"><a class="btn btn--soft btn--sm" href="{{ latestPiece.url }}" target="_blank" rel="noopener">Read the article</a></p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+{# ----------------------------------------------------- FEATURED TRACK -- #}
+{% set featured = meditations.tracks | where("slug", meditations.featuredSlug) %}
+{% if featured.length %}
+<section class="section">
+  <div class="wrap">
+    <p class="eyebrow">Listen now</p>
+    <h2>A meditation to begin with</h2>
+    <p class="lede prose" style="margin-bottom:2rem">
+      Press play and let the page settle around you. The full library lives on the
+      <a href="/guided-meditation/">Guided Meditation</a> page.
+    </p>
+    {% set playerId = "home-player" %}
+    {% set playerTracks = featured %}
+    {% set playerCompact = true %}
+    {% include "partials/player.njk" %}
+  </div>
+</section>
+{% endif %}
+
+{# --------------------------------------------------------- BANDCAMP ---- #}
+<section class="section band">
+  <div class="wrap">
+    <p class="eyebrow">Full collections</p>
+    <h2>Albums on Bandcamp</h2>
+    <p class="lede prose" style="margin-bottom:2.25rem">
+      Mayana&rsquo;s full-length guided meditation collections are available to hear and purchase on Bandcamp.
+    </p>
+    <div class="grid grid--2">
+      {% for album in albums.bandcamp %}
+      <article class="card album">
+        <div class="album__cover">
+          <img src="{{ album.cover }}" alt="{{ album.coverAlt }}" loading="lazy" width="420" height="420">
+        </div>
+        <div>
+          <h3 style="margin-bottom:0.5rem">{{ album.title }}</h3>
+          <p>{{ album.description }}</p>
+          <p style="margin-top:1.25rem">
+            <a class="btn btn--soft btn--sm" href="{{ album.url }}" target="_blank" rel="noopener">Listen on Bandcamp</a>
+          </p>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{# ----------------------------------------------------- TESTIMONIALS ---- #}
+<section class="section">
+  <div class="wrap">
+    <p class="eyebrow">In their words</p>
+    <h2>What people have felt</h2>
+    <div class="grid grid--2" style="margin-top:2rem">
+      {% for t in testimonials.items %}
+      <blockquote class="quote{% if loop.first %} quote--feature{% endif %}">
+        <p>&ldquo;{{ t.quote }}&rdquo;</p>
+        <cite>{{ t.attribution }}</cite>
+      </blockquote>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{# ------------------------------------------------- QUIET PHOTO MOMENT --
+   The golden-hour profile photograph, used as a full-bleed breath between
+   sections. Skipped entirely until the file is in src/assets/img. #}
+{% if assets.has[site.images.portraitProfile] %}
+<section class="figure-band">
+  <img src="/assets/img/{{ site.images.portraitProfile }}"
+       alt="{{ site.images.portraitProfileAlt }}" loading="lazy">
+  <div class="figure-band__veil" aria-hidden="true"></div>
+  <div class="wrap figure-band__copy">
+    <p class="figure-band__quote">There is a power to slowing down a moment.</p>
+    <p class="figure-band__attr">Mayana Geathers</p>
+  </div>
+</section>
+{% endif %}
+
+{# --------------------------------------------------------- INSTAGRAM --- #}
+<section class="section section--tight">
+  <div class="wrap">
+    <div class="callout">
+      <p>
+        <strong>Follow along on Instagram</strong>
+        Reflections, new meditations, and notes from Mayana&rsquo;s practice.
+      </p>
+      <a class="btn btn--soft" href="{{ site.urls.instagram }}" target="_blank" rel="noopener">@mayanageathers</a>
+    </div>
+  </div>
+</section>

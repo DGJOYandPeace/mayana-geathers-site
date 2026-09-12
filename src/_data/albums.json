@@ -1,0 +1,34 @@
+{
+  "_comment": "Full albums that stay on Bandcamp for Stage 1 — cover image + short description + 'Listen on Bandcamp'. These are NOT wired into the in-site player: we do not have individual raw track files for them. Shown on both Home and Guided Meditation.",
+  "bandcamp": [
+    {
+      "slug": "dawning-of-a-new-day",
+      "title": "Dawning of a New Day",
+      "cover": "/assets/img/dawining-of-a-new-day-cover-art.jpg",
+      "coverAlt": "Album cover art for Dawning of a New Day by Mayana Geathers",
+      "description": "REPLACE ME — short album description. A full collection of Mayana's original guided meditations, available to hear and purchase on Bandcamp.",
+      "url": "https://mayanageathers.bandcamp.com",
+      "_comment_url": "REPLACE ME (confirm) — the exact Bandcamp album URL was not supplied. Verify this points at the right release before launch."
+    },
+    {
+      "slug": "i-am-worthy",
+      "title": "I Am Worthy",
+      "cover": "/assets/img/i-am-worthy-album-cover-art.jpg",
+      "coverAlt": "Album cover art for I Am Worthy by Mayana Geathers",
+      "photo": "/assets/img/mayana-photo-i-am-worthy-shoot.webp",
+      "photoAlt": "Mayana Geathers, from the I Am Worthy photo shoot",
+      "_comment_photo": "CONFIRM — mayana-photo-i-am-worthy-shoot.webp is assumed to belong with this release. Remove this field if it belongs elsewhere.",
+      "description": "REPLACE ME — short album description. A full collection of Mayana's original guided meditations, available to hear and purchase on Bandcamp.",
+      "url": "https://mayanageathers.bandcamp.com",
+      "_comment_url": "REPLACE ME (confirm) — the exact Bandcamp album URL was not supplied. Verify this points at the right release before launch."
+    }
+  ],
+
+  "_comment_david": "David's own release — a cross-promo card only. Deliberately kept out of Mayana's player. Copy is verbatim.",
+  "davidSoundHealing": {
+    "title": "Sound Healing",
+    "byline": "By David Geathers",
+    "description": "Sound Healing is an audio experience of guided imageries, music, mantra, and nature sounds created to ground the listener. What you will hear is a collection of pieces that take on new context in the various spaces you hear them. These pieces can be experienced in your personal practice of meditation, relaxation, massage, rest, prayer and reflection.",
+    "url": "https://davidgeathers.bandcamp.com/album/sound-healing"
+  }
+}

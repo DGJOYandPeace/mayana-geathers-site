@@ -1,0 +1,88 @@
+---
+layout: layouts/base.njk
+title: Events
+description: "Past events, gatherings and sound healing sessions with Mayana Geathers."
+permalink: /events/
+---
+{# =========================================================================
+   EVENTS — headed "Past Events" so it doesn't read as an abandoned calendar.
+   Add objects to `upcoming` in src/_data/events.json and an Upcoming section
+   appears above automatically.
+   ========================================================================= #}
+
+<section class="hero hero--page">
+  <div class="ambient" aria-hidden="true"><div class="ambient__grain"></div></div>
+  <div class="wrap">
+    <div class="hero__inner">
+      <p class="eyebrow" style="color:rgba(255,252,248,0.7)">Gatherings</p>
+      <h1>{% if events.upcoming.length %}<span class="gold">Events</span>{% else %}Past <span class="gold">Events</span>{% endif %}</h1>
+      <p class="hero__sub">
+        Sound healing sessions, guided meditations and speaking engagements Mayana has led.
+      </p>
+    </div>
+  </div>
+</section>
+
+{% if events.upcoming.length %}
+<section class="section">
+  <div class="wrap">
+    <p class="eyebrow">Coming up</p>
+    <h2>Upcoming Events</h2>
+    <ul class="timeline" style="margin-top:2rem">
+      {% for e in events.upcoming %}
+      <li>
+        <article class="card">
+          <div>
+            <p class="timeline__date">{{ e.dateLabel }}</p>
+            {% if e.time or e.location %}
+            <p class="timeline__meta">{{ e.time }}{% if e.time and e.location %} &middot; {% endif %}{{ e.location }}</p>
+            {% endif %}
+          </div>
+          <div>
+            <h3 style="margin-bottom:0.5rem">{{ e.title }}</h3>
+            <p>{{ e.description }}</p>
+          </div>
+        </article>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+{% endif %}
+
+<section class="section{% if events.upcoming.length %} band{% endif %}">
+  <div class="wrap">
+    <p class="eyebrow">Looking back</p>
+    <h2>Past Events</h2>
+    <ul class="timeline" style="margin-top:2rem">
+      {% for e in events.past %}
+      <li>
+        <article class="card">
+          <div>
+            <p class="timeline__date">{{ e.dateLabel }}</p>
+            {% if e.time or e.location %}
+            <p class="timeline__meta">{{ e.time }}{% if e.time and e.location %} &middot; {% endif %}{{ e.location }}</p>
+            {% endif %}
+          </div>
+          <div>
+            <h3 style="margin-bottom:0.5rem">{{ e.title }}</h3>
+            <p>{{ e.description }}</p>
+          </div>
+        </article>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="section section--tight{% if not events.upcoming.length %} band{% endif %}">
+  <div class="wrap">
+    <div class="callout">
+      <p>
+        <strong>Bring Mayana to your gathering</strong>
+        Sound healing, guided meditation, speaking and trainings — for retreats, workplaces and private events.
+      </p>
+      <a class="btn btn--primary" href="/book-mayana/">Book Mayana</a>
+    </div>
+  </div>
+</section>

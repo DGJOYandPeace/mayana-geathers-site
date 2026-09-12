@@ -1,0 +1,65 @@
+---
+layout: layouts/base.njk
+title: Written Work
+description: "Articles by Mayana Geathers on trauma, social justice, feminist therapy and the healing process."
+permalink: /written-work/
+---
+{# =========================================================================
+   WRITTEN WORK — the other return-visit page. Entries come from
+   src/_data/writing.json; adding a new piece means adding one object to the
+   top of that array. The layout is built to hold many more than three.
+   ========================================================================= #}
+
+<section class="hero hero--page">
+  <div class="ambient" aria-hidden="true"><div class="ambient__grain"></div></div>
+  <div class="wrap">
+    <div class="hero__inner">
+      <p class="eyebrow" style="color:rgba(255,252,248,0.7)">Read</p>
+      <h1>Written <span class="gold">Work</span></h1>
+      {# --- INTRO COPY (verbatim from the live site) --- #}
+      <p class="hero__sub">{{ writing.intro }}</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="library__head" style="margin-bottom:1.75rem">
+      <p class="eyebrow" style="margin:0">Published pieces</p>
+      <span class="latest__meta" style="margin:0">{{ writing.entries.length }} {{ "piece" if writing.entries.length == 1 else "pieces" }}</span>
+    </div>
+
+    <div class="grid grid--2">
+      {% for piece in writing.entries %}
+      <a class="entry" href="{{ piece.url }}" target="_blank" rel="noopener">
+        <p class="entry__source">Featured on {{ piece.source }}</p>
+        <h2 class="entry__title">{{ piece.title }}</h2>
+        {# Excerpt is optional — placeholder text is skipped so the preview
+           stays clean until real pull quotes arrive. #}
+        {% if piece.excerpt and "REPLACE ME" not in piece.excerpt %}
+          <p class="entry__excerpt">{{ piece.excerpt }}</p>
+        {% endif %}
+        {% if piece.topics.length %}
+        <ul class="topics">
+          {% for topic in piece.topics %}<li>{{ topic }}</li>{% endfor %}
+        </ul>
+        {% endif %}
+        <div class="entry__foot">
+          <span>{{ piece.date | prettyDate }}</span>
+          <span class="entry__more">Read at {{ piece.source }} &rarr;</span>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+
+    <p class="lede prose" style="margin-top:3rem">
+      More writing is on the way. Join Mayana&rsquo;s list below and new pieces will find you.
+    </p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    {% include "partials/signup.njk" %}
+  </div>
+</section>
