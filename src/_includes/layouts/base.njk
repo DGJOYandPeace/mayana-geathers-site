@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% if title %}{{ title }} · {{ site.name }}{% else %}{{ site.name }} · {{ site.tagline }}{% endif %}</title>
   <meta name="description" content="{{ description or site.tagline }}">
-  <meta name="theme-color" content="#EDEAE1">
+  <meta name="theme-color" content="#EFECE5">
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="{{ site.name }}">
@@ -17,7 +17,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&display=swap">
   <link rel="stylesheet" href="/assets/css/site.css">
-  <link rel="icon" href="/assets/img/mayana-geathers-white-logo.webp">
+  {# The dark signature, not the white one — a white mark is invisible against
+     a light browser tab. #}
+  <link rel="icon" href="/assets/img/{{ site.images.logoDark }}">
 
   {#
     Single source of truth for anything the browser-side JS needs.
