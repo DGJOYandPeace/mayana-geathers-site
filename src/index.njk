@@ -15,7 +15,8 @@ permalink: /
 {% set heroImage = site.images.hero if assets.has[site.images.hero] else false %}
 {% if heroImage %}
 <figure class="plate">
-  <img src="/assets/img/{{ heroImage }}" alt="{{ site.images.heroAlt }}" width="1600" height="1000">
+  <img src="/assets/img/{{ heroImage }}" alt="{{ site.images.heroAlt }}"
+       {{ ("/assets/img/" ~ heroImage) | imgAttrs | safe }}>
 </figure>
 {% endif %}
 
@@ -66,7 +67,8 @@ permalink: /
    A breath between sections. Skipped until the file is in src/assets/img. #}
 {% if assets.has[site.images.portraitProfile] %}
 <figure class="breath">
-  <img src="/assets/img/{{ site.images.portraitProfile }}" alt="{{ site.images.portraitProfileAlt }}" loading="lazy" width="1600" height="900">
+  <img src="/assets/img/{{ site.images.portraitProfile }}" alt="{{ site.images.portraitProfileAlt }}" loading="lazy"
+       {{ ("/assets/img/" ~ site.images.portraitProfile) | imgAttrs | safe }}>
   <figcaption class="wrap breath__copy">
     <p class="breath__quote">There is a power to slowing down a moment.</p>
     <p class="breath__attr">Mayana Geathers</p>

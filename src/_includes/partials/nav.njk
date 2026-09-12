@@ -13,7 +13,8 @@
          would be invisible on paper. #}
       {% if assets.has[site.images.logoDark] %}
         <a class="nav__logo" href="/" aria-label="{{ site.name }} — home">
-          <img src="/assets/img/{{ site.images.logoDark }}" alt="{{ site.name }}" width="140" height="32">
+          <img src="/assets/img/{{ site.images.logoDark }}" alt="{{ site.name }}"
+               {{ ("/assets/img/" ~ site.images.logoDark) | imgAttrs | safe }}>
         </a>
       {% else %}
         <a class="nav__mark" href="/">{{ site.name }}</a>

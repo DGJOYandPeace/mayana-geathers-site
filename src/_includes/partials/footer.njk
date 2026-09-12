@@ -4,7 +4,8 @@
       <div>
         {# The white logo belongs here — the footer is the one ink-ground
            surface on the site. #}
-        <img class="footer__logo" src="/assets/img/{{ site.images.logo }}" alt="{{ site.name }}" width="130" height="30">
+        <img class="footer__logo" src="/assets/img/{{ site.images.logo }}" alt="{{ site.name }}"
+             {{ ("/assets/img/" ~ site.images.logo) | imgAttrs | safe }}>
         {# Site-wide Bridges to Healing credit — a general mention, so it
            links to the practice homepage, not the booking page. #}
         <p class="footer__practice">

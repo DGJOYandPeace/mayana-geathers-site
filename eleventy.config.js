@@ -4,7 +4,8 @@
 // Note:   functions/  lives at the repo root and is picked up by Cloudflare
 //         Pages directly — it is deliberately NOT part of the Eleventy build.
 
-import { readdirSync } from "node:fs";
+import { readdirSync, existsSync, readFileSync } from "node:fs";
+import { imageSize } from "image-size";
 
 const IMAGE = /\.(jpe?g|png|webp|gif|svg|avif)$/i;
 
@@ -53,6 +54,36 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("where", (list, key, value) =>
     (list || []).filter((item) => item && item[key] === value)
   );
+
+  // `"/assets/img/x.jpg" | imgAttrs` -> `width="1280" height="853"`, read from
+  // the file itself. Hand-written dimensions go stale the moment an image is
+  // swapped, and a wrong intrinsic ratio makes the browser reserve the wrong
+  // space before the image loads.
+  const dimsCache = new Map();
+  eleventyConfig.addFilter("imgAttrs", (src) => {
+    if (!src) return "";
+    if (dimsCache.has(src)) return dimsCache.get(src);
+
+    const path = "src" + (src.startsWith("/") ? src : "/" + src);
+    let attrs = "";
+    if (!existsSync(path)) {
+      console.warn(`[images] no such file for imgAttrs: ${path}`);
+    } else {
+      try {
+        // image-size v2 reads a buffer, not a path.
+        const { width, height, orientation } = imageSize(readFileSync(path));
+        // EXIF orientations 5-8 rotate the frame a quarter turn, so the stored
+        // pixel dimensions are transposed relative to how it displays.
+        const swap = orientation >= 5 && orientation <= 8;
+        attrs = `width="${swap ? height : width}" height="${swap ? width : height}"`;
+      } catch (err) {
+        // Loudly, rather than silently emitting no dimensions.
+        console.warn(`[images] could not read dimensions of ${path}: ${err.message}`);
+      }
+    }
+    dimsCache.set(src, attrs);
+    return attrs;
+  });
 
   // `3 | pad2` -> "03". Print-index numbering.
   eleventyConfig.addFilter("pad2", (n) => String(n).padStart(2, "0"));

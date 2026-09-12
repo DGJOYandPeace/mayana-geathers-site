@@ -27,7 +27,8 @@ permalink: /about/
            full-length seated frame, and a squarer crop would cut it off at the
            knees. Change `aboutPortrait` in src/_data/site.json to swap it. #}
         <img class="portrait" src="/assets/img/{{ site.images.aboutPortrait }}"
-             alt="{{ site.images.aboutPortraitAlt }}" width="853" height="1280" loading="lazy">
+             alt="{{ site.images.aboutPortraitAlt }}" loading="lazy"
+             {{ ("/assets/img/" ~ site.images.aboutPortrait) | imgAttrs | safe }}>
       </div>
 
       <div class="prose">
