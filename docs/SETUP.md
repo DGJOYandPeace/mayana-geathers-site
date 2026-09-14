@@ -229,10 +229,20 @@ at `squarespacedns.com` at that moment the domain goes dark.
    nameserver delegation carries across — verify afterwards that it still
    points at Cloudflare.
 
-Two notes on transfer timing: ICANN blocks a transfer within 60 days of
-registration or of a previous transfer, and also within 60 days of a change to
-the registrant contact details. If either applies, the DNS cutover in steps 1
-to 3 can still go ahead — it does not depend on the transfer.
+On transfer timing: ICANN blocks a transfer within 60 days of initial
+registration, within 60 days of a previous transfer, and within 60 days of a
+change to the registrant's name, email or organisation. For this domain only
+the third can apply — it is years old and has not been transferred — and it is
+self-inflicted. **Do not edit the registrant contact fields while preparing the
+transfer.** Tidying up contact details before moving a domain is the usual way
+people lock themselves out for two months. Change them afterwards if needed.
+
+If a lock does apply, the DNS cutover in steps 1 to 3 still goes ahead — the
+site does not depend on the transfer completing.
+
+A note on the Cloudflare UI: the option is **"Connect a domain"**, not "Add a
+site" as older documentation says. "Transfer a domain" is a different thing —
+it moves the registration to Cloudflare, which is not this plan.
 
 ### In the same pass, under Option A
 
