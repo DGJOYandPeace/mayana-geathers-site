@@ -175,9 +175,54 @@ Cloudflare Turnstile can be layered on later.
 
 ## 5. Going live (only after Mayana and David sign off)
 
-1. Worker → **Domains** → add `mayanageathers.com`.
-2. Cloudflare shows the DNS records to create.
-3. Update those records at **Namecheap**.
+### What the DNS looks like today
 
-**Do not do step 3 before sign-off.** Until then the site lives entirely on its
-preview and `*.pages.dev` URLs, and the live Squarespace site stays up.
+Measured directly, not assumed:
+
+| Record | Value |
+|---|---|
+| NS | `ns01`–`ns04.squarespacedns.com`, `dns1`–`dns4.p02.nsone.net` |
+| A (apex) | `198.185.159.144`, `.145`, `198.49.23.144`, `.145` — Squarespace |
+| CNAME `www` | `ext-sq.squarespace.com` |
+| **MX** | **none** |
+| **TXT** | **none** |
+
+Two things follow from that. The domain is answered by Squarespace's own DNS
+(nsone.net is the service behind `squarespacedns.com`), so the records in the
+Squarespace panel are the live ones despite its "custom nameservers" banner —
+that banner appears because the domain is registered elsewhere, at Namecheap.
+And **there is no email on this domain**: no MX, no TXT. The usual danger in a
+nameserver move — silently breaking someone's mail — does not apply here.
+
+### The move
+
+The site deploys as a **Worker**, and a Worker custom domain requires the zone
+to be on Cloudflare; an external CNAME will not do. So the nameservers move.
+
+1. Cloudflare → **Add a site** → `mayanageathers.com`. It scans and imports
+   the existing records.
+2. In the imported zone, **delete** the four Squarespace `A` records and the
+   `www` CNAME to `ext-sq.squarespace.com`. Those are what point the domain at
+   Squarespace. The `_domainconnect` CNAME is Squarespace plumbing and can go
+   too. Leave the zone otherwise empty.
+3. Cloudflare gives two nameservers. At **Namecheap**, replace the
+   `squarespacedns.com` nameservers with those.
+4. Once the zone shows Active: Worker → **Domains** → add `mayanageathers.com`
+   **and** `www.mayanageathers.com`. Cloudflare writes the records itself —
+   nothing to add by hand.
+
+The apex `A` records carry a 4-hour TTL, so allow that long for the old
+answers to age out. The Squarespace site keeps working the whole time; it only
+stops being reachable at this domain once the new records take.
+
+### Two things worth doing in the same pass
+
+- **R2 custom domain.** With the zone on Cloudflare, connect
+  `audio.mayanageathers.com` to the `mayanas-professional-site` bucket, then
+  change `audio.r2BaseUrl` in `src/_data/site.json` to it. That retires the
+  rate-limited r2.dev URL and puts the audio behind the edge cache.
+- **Resend.** The SPF and DKIM TXT records for the sending subdomain now go in
+  the Cloudflare zone rather than at Namecheap.
+
+**Do not start before sign-off.** Until then the site lives on its preview
+URLs and the Squarespace site stays up.
