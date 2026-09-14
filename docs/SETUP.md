@@ -186,28 +186,27 @@ Measured directly: the apex resolves to Squarespace's IPs, `www` is a CNAME to
 there is no email on this domain, so the usual hazard in a DNS move does not
 apply here.
 
-### One conflict to settle first
+### The chosen shape: registrar at Namecheap, DNS at Cloudflare
 
-The goal is *"manage all future DNS from the Namecheap dashboard."* That is
-not compatible with how this site is deployed. **A Cloudflare Worker custom
+The goal was originally *"manage all future DNS from the Namecheap dashboard."*
+That is not compatible with this deployment: **a Cloudflare Worker custom
 domain requires the zone to be hosted on Cloudflare** — an external CNAME will
 not attach a Worker, and an apex domain cannot be a CNAME in the first place.
 
-So there are two shapes, and they trade different things:
+**Decided:** Namecheap owns the domain — renewals, billing, contacts, transfer
+lock — and DNS is delegated to Cloudflare. This is the ordinary split. It is
+the only shape where the Worker serves the apex, and it also allows a custom
+domain on the R2 bucket, which retires the rate-limited `r2.dev` audio URL and
+puts the audio behind the edge cache.
 
-**Option A — registrar at Namecheap, DNS at Cloudflare.** *(recommended)*
-Namecheap owns the domain: renewals, billing, transfer lock, contacts. DNS
-records live in Cloudflare. This is the ordinary split, and it is the only one
-that lets the Worker serve the apex. It also unlocks a custom domain on the R2
-bucket, which retires the rate-limited `r2.dev` audio URL.
+Standardising on this — register anywhere, always delegate DNS to Cloudflare —
+is the configuration with headroom for the other projects too.
 
-**Option B — registrar and DNS both at Namecheap.**
-Records are edited at Namecheap, as asked. The cost is real: the site must be
-redeployed as **Cloudflare Pages** rather than a Worker, because Pages accepts
-a custom domain from external DNS (apex via Namecheap's ALIAS record, `www`
-via CNAME). `functions/api/contact.js` was kept compatible for exactly this,
-so the forms would still work. But R2 custom domains also require the zone on
-Cloudflare, so **the audio stays on the rate-limited r2.dev URL permanently**.
+> The rejected alternative, recorded so it isn't relitigated: keeping DNS at
+> Namecheap would mean redeploying as Cloudflare Pages (apex via Namecheap's
+> ALIAS record). `functions/api/contact.js` is kept compatible so that remains
+> possible. The cost is that R2 custom domains also require the zone on
+> Cloudflare, so the audio would stay on the rate-limited URL permanently.
 
 ### Order of operations — DNS first, transfer second
 
