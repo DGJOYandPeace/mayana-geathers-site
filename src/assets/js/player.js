@@ -104,6 +104,9 @@
     var useEl = root.querySelector("[data-player-use]");
     var useListEl = root.querySelector("[data-player-use-list]");
     var noticeEl = root.querySelector("[data-player-notice]");
+    var prevBtn = root.querySelector("[data-player-prev]");
+    var nextBtn = root.querySelector("[data-player-next]");
+    var loopBtn = root.querySelector("[data-player-loop]");
     var listEl = root.querySelector("[data-player-list]");
     var countEl = root.querySelector("[data-player-count]");
 
@@ -112,6 +115,7 @@
     var sources = [];
     var sourceIndex = 0;
     var wantsPlay = false;
+    var looping = true;   // the library repeats unless switched off
 
     function visibleTracks() {
       return tracks;
@@ -209,6 +213,7 @@
       }
 
       if (coverEl) coverEl.innerHTML = coverMarkup(track);
+      publishToOS(track);
 
       sources = candidates(track);
       sourceIndex = 0;
@@ -240,7 +245,38 @@
       }
     }
 
+    // Hand the track to the operating system, so it appears on the lock screen
+    // and in the notification shade with working controls. Without this, mobile
+    // browsers show nothing and may stop playback when the screen locks.
+    function publishToOS(track) {
+      if (!("mediaSession" in navigator)) return;
+      try {
+        var art = track.cover && track.cover.charAt(0) === "/"
+          ? location.origin + track.cover
+          : null;
+        navigator.mediaSession.metadata = new window.MediaMetadata({
+          title: track.title,
+          artist: "Mayana Geathers",
+          album: track.album || "Guided Meditation",
+          artwork: art ? [{ src: art, sizes: "512x512", type: "image/jpeg" }] : []
+        });
+
+        navigator.mediaSession.setActionHandler("play", function () { audio.play(); });
+        navigator.mediaSession.setActionHandler("pause", function () { audio.pause(); });
+        navigator.mediaSession.setActionHandler("nexttrack", function () { step(1, true); });
+        navigator.mediaSession.setActionHandler("previoustrack", function () { step(-1, true); });
+        navigator.mediaSession.setActionHandler("seekto", function (d) {
+          if (d.seekTime != null && isFinite(audio.duration)) audio.currentTime = d.seekTime;
+        });
+      } catch (e) {
+        // Older browsers reject unknown action handlers; playback is unaffected.
+      }
+    }
+
     function setPlayingUI(isPlaying) {
+      if ("mediaSession" in navigator) {
+        navigator.mediaSession.playbackState = isPlaying ? "playing" : "paused";
+      }
       root.classList.toggle("is-playing", isPlaying);
       if (isPlaying) root.classList.add("is-bloomed");
       setHidden(iconPlay, isPlaying);
@@ -250,6 +286,13 @@
 
     function updateProgress() {
       var dur = audio.duration;
+      if ("mediaSession" in navigator && navigator.mediaSession.setPositionState && isFinite(dur)) {
+        try {
+          navigator.mediaSession.setPositionState({
+            duration: dur, playbackRate: audio.playbackRate, position: audio.currentTime
+          });
+        } catch (e) { /* ignore */ }
+      }
       if (elapsed) elapsed.textContent = fmtTime(audio.currentTime);
       if (remaining) {
         remaining.textContent = isFinite(dur) ? "-" + fmtTime(dur - audio.currentTime) : "-0:00";
@@ -304,17 +347,43 @@
       showNotice("That audio file couldn’t be reached. Please try again in a moment.");
       setPlayingUI(false);
     });
-    audio.addEventListener("ended", function () {
-      // Drift gently on to the next available meditation.
+    // Move `offset` tracks through the library. Wraps in both directions while
+    // looping is on, so the end of the last meditation returns to the first.
+    function step(offset, autoplay) {
       var list = visibleTracks();
+      if (!list.length) return false;
       var pos = list.indexOf(tracks[current]);
-      var next = list[pos + 1];
-      if (next && playable(next)) {
-        load(tracks.indexOf(next), true);
-      } else {
-        setPlayingUI(false);
+      var target = pos + offset;
+      if (target >= list.length || target < 0) {
+        if (!looping) return false;
+        target = (target % list.length + list.length) % list.length;
       }
+      load(tracks.indexOf(list[target]), autoplay);
+      return true;
+    }
+
+    audio.addEventListener("ended", function () {
+      // Drift gently on to the next meditation, or back to the first.
+      if (!step(1, true)) setPlayingUI(false);
     });
+
+    if (nextBtn) nextBtn.addEventListener("click", function () { step(1, true); });
+    if (prevBtn) {
+      prevBtn.addEventListener("click", function () {
+        // Restart the current track first, the way a music player does, and
+        // only step back when already near its start.
+        if (audio.currentTime > 3) { audio.currentTime = 0; return; }
+        step(-1, true);
+      });
+    }
+
+    if (loopBtn) {
+      loopBtn.addEventListener("click", function () {
+        looping = !looping;
+        loopBtn.classList.toggle("is-on", looping);
+        loopBtn.setAttribute("aria-pressed", String(looping));
+      });
+    }
 
     if (seek) {
       seek.addEventListener("input", function () {

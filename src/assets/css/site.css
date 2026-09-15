@@ -569,6 +569,10 @@ a.item:hover .item__title { color: var(--tone-accent); }
 .pbtn:hover { background: #fff; box-shadow: var(--lift-2); transform: translateY(-2px); }
 .pbtn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
 .pbtn--sm { width: 38px; height: 38px; }
+/* The loop switch reads as on or off at a glance. */
+.pbtn--toggle { opacity: 0.45; }
+.pbtn--toggle.is-on { opacity: 1; color: var(--tone-accent); border-color: var(--tone-accent); }
+.pbtn--toggle svg { fill: none; }
 .pbtn svg { width: 17px; height: 17px; fill: currentColor; }
 .player__scrub { flex: 1 1 13rem; min-width: 0; display: flex; align-items: center; gap: 0.7rem; }
 .player__time { font-size: 0.74rem; font-variant-numeric: tabular-nums; color: var(--tone-fg-mute); letter-spacing: 0.06em; }

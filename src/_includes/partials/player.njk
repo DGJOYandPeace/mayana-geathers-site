@@ -39,9 +39,17 @@
     </div>
 
     <div class="player__transport">
+      <button class="pbtn pbtn--sm" type="button" data-player-prev aria-label="Previous meditation">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5.5a1 1 0 0 1 2 0v5.2l8.5-5.55A1 1 0 0 1 19 6v12a1 1 0 0 1-1.5.85L9 13.3v5.2a1 1 0 0 1-2 0z"/></svg>
+      </button>
+
       <button class="pbtn pbtn--play" type="button" data-player-toggle aria-label="Play">
         <svg viewBox="0 0 24 24" aria-hidden="true" data-icon-play><path d="M8 5.5v13a1 1 0 0 0 1.53.85l10-6.5a1 1 0 0 0 0-1.7l-10-6.5A1 1 0 0 0 8 5.5z"/></svg>
         <svg viewBox="0 0 24 24" aria-hidden="true" data-icon-pause hidden><path d="M7 4.5h3.5v15H7zM13.5 4.5H17v15h-3.5z"/></svg>
+      </button>
+
+      <button class="pbtn pbtn--sm" type="button" data-player-next aria-label="Next meditation">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 5.5a1 1 0 0 0-2 0v5.2L6.5 5.15A1 1 0 0 0 5 6v12a1 1 0 0 0 1.5.85L15 13.3v5.2a1 1 0 0 0 2 0z"/></svg>
       </button>
 
       <div class="player__scrub">
@@ -59,6 +67,16 @@
         <input class="range" type="range" min="0" max="100" value="85" step="1"
                data-player-volume aria-label="Volume">
       </div>
+
+      {# Loop the library: after the last meditation it returns to the first.
+         On by default, so a session keeps going without being touched. #}
+      <button class="pbtn pbtn--sm pbtn--toggle is-on" type="button"
+              data-player-loop aria-pressed="true" aria-label="Loop the library">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 2l4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/>
+          <path d="M7 22l-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/>
+        </svg>
+      </button>
     </div>
 
     <p class="player__notice" data-player-notice hidden></p>
