@@ -1,6 +1,6 @@
 {
   "_comment": "Guided meditation library. Copy is FINAL (verbatim from Mayana). To add a track later, copy one object and fill it in — no template or player code needs to change. `audioFile` and `coverFile` are object keys inside the `mayanas-professional-site` R2 bucket, appended to site.audio.r2BaseUrl + the matching prefix.",
-  "_comment_audioFile": "Object keys in the mayanas-professional-site R2 bucket. Keys are case-sensitive, so these are exact. 'breathe-In-Breathe-out.mp3' is CONFIRMED from the bucket listing — note the unusual casing; the release spells that track 'Breathe In/Breathe Out', and a slash cannot sit in a filename, so it was renamed on export. The other three primaries are the release track titles. They play, but may be resolving through `audioAlts` rather than on the first request — reading their real keys from the bucket would let the fallbacks go entirely.",
+  "_comment_audioFile": "Exact object keys in the mayanas-professional-site R2 bucket, read from its listing. R2 keys are case-sensitive — note 'breathe-In-Breathe-out.mp3', whose odd casing comes from the slash in the release title being renamed on export. No fallbacks: every key here is known, so the player asks for exactly what exists and a failure is a real failure worth seeing in the console.",
   "_comment_coverFile": "RESOLVED — all four launch meditations are tracks on 'Dawning of a New Day' (confirmed from the release's track listing), so that album's cover art applies to each. `cover` is a site path; a bare filename would instead be looked up in the R2 covers prefix.",
   "_comment_album": "RESOLVED — these are not standalone singles. Each is a track on 'Dawning of a New Day'. `trackNo` and `sourceTitle` record its position and title on that release, which is also the best clue for matching the R2 audio filenames.",
   "tracks": [
@@ -8,7 +8,7 @@
       "slug": "slowing-down-is-a-practice-in-self-worth",
       "title": "Slowing Down Is A Practice In Self Worth",
       "album": "Dawning of a New Day",
-      "audioFile": "Slowing Down is a Practice in Self Worth.mp3",
+      "audioFile": "slowing-down-is-a-practice-in-self-worth.mp3",
       "added": "2026-01-15",
       "description": "This guided meditation gently helps you slow down and create space for mindfulness and relaxation amid the busyness of everyday life. By taking a few moments to pause and breathe, you'll reconnect with your inner calm and cultivate a deeper sense of gratitude for yourself. This grounding practice supports emotional balance, clarity, and empowerment, allowing you to move through your day with renewed presence and peace.",
       "useFor": [
@@ -20,20 +20,13 @@
       "trackNo": 8,
       "duration": "18:27",
       "sourceTitle": "Slowing Down is a Practice in Self Worth",
-      "cover": "/assets/img/dawining-of-a-new-day-cover-art.jpg",
-      "audioAlts": [
-        "meditations/audio/Slowing Down is a Practice in Self Worth.mp3",
-        "Slowing Down Is A Practice In Self Worth.mp3",
-        "meditations/audio/Slowing Down Is A Practice In Self Worth.mp3",
-        "slowing-down-is-a-practice-in-self-worth.mp3",
-        "meditations/audio/slowing-down-is-a-practice-in-self-worth.mp3"
-      ]
+      "cover": "/assets/img/dawining-of-a-new-day-cover-art.jpg"
     },
     {
       "slug": "a-guided-meditation-for-trauma",
       "title": "A Guided Meditation for Trauma",
       "album": "Dawning of a New Day",
-      "audioFile": "A Guided Meditation for Trauma.mp3",
+      "audioFile": "a-guided-meditation-for-trauma.mp3",
       "added": "2026-01-15",
       "description": "A gentle guided meditation audio that helps you create a safe space to breathe through difficult experiences while fostering mindfulness, self-compassion, and emotional resilience. With careful guidance, this meditation encourages reflection, grounding, and empathy for yourself in the face of trauma, offering relief from tension and mental heaviness.",
       "useFor": [
@@ -45,12 +38,7 @@
       "trackNo": 2,
       "duration": "06:14",
       "sourceTitle": "A Guided Meditation for Trauma",
-      "cover": "/assets/img/dawining-of-a-new-day-cover-art.jpg",
-      "audioAlts": [
-        "meditations/audio/A Guided Meditation for Trauma.mp3",
-        "a-guided-meditation-for-trauma.mp3",
-        "meditations/audio/a-guided-meditation-for-trauma.mp3"
-      ]
+      "cover": "/assets/img/dawining-of-a-new-day-cover-art.jpg"
     },
     {
       "slug": "breathe-in-breathe-out",
@@ -68,14 +56,13 @@
       "trackNo": 5,
       "duration": "04:14",
       "sourceTitle": "Breathe In/Breathe Out",
-      "cover": "/assets/img/dawining-of-a-new-day-cover-art.jpg",
-      "audioAlts": []
+      "cover": "/assets/img/dawining-of-a-new-day-cover-art.jpg"
     },
     {
       "slug": "breathing-in-light",
       "title": "Guided Meditation — Breathing in Light",
       "album": "Dawning of a New Day",
-      "audioFile": "Breathing in Light.mp3",
+      "audioFile": "breathing-in-light.mp3",
       "added": "2026-01-15",
       "description": "A guided meditation audio that helps you visualize light as a source of love, renewal, and balance. As you breathe, imagine this light moving through your body, bringing warmth and calm to the areas that need it most. This meditation fosters mindfulness, emotional well-being, and inner connection, making it a powerful tool for daily grounding and deeper healing.",
       "useFor": [
@@ -87,25 +74,18 @@
       "trackNo": 9,
       "duration": "07:06",
       "sourceTitle": "Breathing in Light",
-      "cover": "/assets/img/dawining-of-a-new-day-cover-art.jpg",
-      "audioAlts": [
-        "meditations/audio/Breathing in Light.mp3",
-        "Guided Meditation — Breathing in Light.mp3",
-        "meditations/audio/Guided Meditation — Breathing in Light.mp3",
-        "breathing-in-light.mp3",
-        "meditations/audio/breathing-in-light.mp3"
-      ]
+      "cover": "/assets/img/dawining-of-a-new-day-cover-art.jpg"
     }
   ],
-  "_comment_gift": "OPT-IN ONLY. The gift does not appear in the player — only the four open meditations do. Signing up reveals the gift panel, which links to the recording. REPLACE ME — `audioFile` is the object name in the bucket for the recording people receive. While it is unset the panel says the recording is on its way by email, so nothing breaks.",
+  "_comment_gift": "OPT-IN ONLY — the gift is not in the player; signing up reveals the panel, which links to `fullFile`. PENDING UPLOAD: these are the corrected spellings. The bucket currently holds 'embracing-our-fifts-master.mp3' and '...-snippet.mp3' — 'fifts', not 'gifts'. The link works once the corrected files are uploaded. `audioFile` is the short snippet; it is unused while the gift stays out of the player, and is kept here so it is not lost.",
   "gift": {
     "slug": "embracing-our-gifts",
     "title": "Embracing Our Gifts",
     "album": "A Gift From Mayana",
     "duration": "",
     "isPreview": false,
-    "audioFile": "Embracing Our Gifts.mp3",
-    "fullFile": "Embracing Our Gifts.mp3",
+    "audioFile": "embracing-our-gifts-master-snippet.mp3",
+    "fullFile": "embracing-our-gifts-master.mp3",
     "cover": null,
     "description": "A taste of the meditation Mayana is giving away. Share your email and the full recording is yours to keep.",
     "useFor": [],
