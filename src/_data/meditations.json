@@ -1,6 +1,6 @@
 {
   "_comment": "Guided meditation library. Copy is FINAL (verbatim from Mayana). To add a track later, copy one object and fill it in — no template or player code needs to change. `audioFile` and `coverFile` are object keys inside the `mayanas-professional-site` R2 bucket, appended to site.audio.r2BaseUrl + the matching prefix.",
-  "_comment_audioFile": "Object keys in the mayanas-professional-site R2 bucket, named after the track (per David). Set exactly as they appear in the bucket — spaces are fine, the player URL-encodes each path segment. CONFIRM 'Breathe In Breathe Out.mp3': on the release the track is 'Breathe In/Breathe Out', and a literal slash in an object key would make it a folder path ('Breathe In/Breathe Out.mp3'), which also works — set whichever matches the bucket. 'Embracing Your Gifts.mp3' is the signup gift and may not be uploaded yet.",
+  "_comment_audioFile": "Object keys in the mayanas-professional-site R2 bucket. `audioFile` is tried first and `audioAlts` are fallbacks the player works through on a load error, logging each attempt to the console. 'Breathe In Breathe Out.mp3' is CONFIRMED by David — note it is not the release's own spelling, which has a slash. The other three primaries are the release track titles and have not been confirmed against the bucket; if one is wrong the fallback still finds it, at the cost of one failed request per load. Playing each track with the browser console open will show any '[player] ... failed; trying ...' line and pin the real name.",
   "_comment_coverFile": "RESOLVED — all four launch meditations are tracks on 'Dawning of a New Day' (confirmed from the release's track listing), so that album's cover art applies to each. `cover` is a site path; a bare filename would instead be looked up in the R2 covers prefix.",
   "_comment_album": "RESOLVED — these are not standalone singles. Each is a track on 'Dawning of a New Day'. `trackNo` and `sourceTitle` record its position and title on that release, which is also the best clue for matching the R2 audio filenames.",
   "tracks": [
@@ -56,7 +56,7 @@
       "slug": "breathe-in-breathe-out",
       "title": "Guided Meditation — Breathe In, Breathe Out",
       "album": "Dawning of a New Day",
-      "audioFile": "Breathe In/Breathe Out.mp3",
+      "audioFile": "Breathe In Breathe Out.mp3",
       "added": "2026-01-15",
       "description": "A calming guided meditation audio designed to help you release what no longer serves you while creating space for mindfulness, self-compassion, and inner strength. With each inhale, invite empowerment and kindness; with each exhale, let go of stress, doubt, and mental heaviness. This meditation is gentle and accessible for beginners while offering a refreshing reset for seasoned meditators.",
       "useFor": [
@@ -70,6 +70,7 @@
       "sourceTitle": "Breathe In/Breathe Out",
       "cover": "/assets/img/dawining-of-a-new-day-cover-art.jpg",
       "audioAlts": [
+        "Breathe In/Breathe Out.mp3",
         "meditations/audio/Breathe In/Breathe Out.mp3",
         "Guided Meditation — Breathe In, Breathe Out.mp3",
         "meditations/audio/Guided Meditation — Breathe In, Breathe Out.mp3",

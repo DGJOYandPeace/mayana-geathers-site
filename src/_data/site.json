@@ -8,9 +8,9 @@
     "practiceBooking": "https://www.bridgestohealing.net/contact",
     "instagram": "https://www.instagram.com/mayanageathers"
   },
-  "_comment_audio": "r2BaseUrl is the public URL of the mayanas-professional-site R2 bucket — the single value that switches the player on. This is the r2.dev Public Development URL: rate-limited and uncached, which is fine for review. At launch, once DNS moves to Cloudflare, connect a custom domain such as audio.mayanageathers.com to the bucket and change this one value. audioPrefix is empty because the MP3s sit at the bucket root.",
+  "_comment_audio": "r2BaseUrl is the public URL of the mayanas-professional-site R2 bucket — the single value that points the player at the audio. This is the bucket's custom domain, which is cached at the edge and not rate-limited, unlike the r2.dev Public Development URL it replaced. audioPrefix is empty because the MP3s sit at the bucket root.",
   "audio": {
-    "r2BaseUrl": "https://pub-9d058d9e96ff450eb387f35dc3bee18f.r2.dev",
+    "r2BaseUrl": "https://audio.mayanageathers.com",
     "audioPrefix": "",
     "coverPrefix": "meditations/covers"
   },
