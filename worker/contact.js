@@ -121,7 +121,7 @@ export async function handleContact(request, env) {
   if (!apiKey || !from || !to) {
     console.error(
       "Mail is not configured. Set RESEND_API_KEY, MAIL_FROM and NOTIFY_EMAIL " +
-        "in the Cloudflare Pages environment variables (see docs/SETUP.md)."
+        "in the Worker's environment variables (see docs/SETUP.md)."
     );
     return json(
       { ok: false, error: "The form isn’t connected yet. Please try again shortly." },
