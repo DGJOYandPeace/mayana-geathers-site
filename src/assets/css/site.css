@@ -411,7 +411,7 @@ body::before {
 .breath__quote {
   font-family: var(--display);
   font-size: clamp(1.4rem, 1.1rem + 1.8vw, 2.4rem);
-  line-height: 1.16; margin: 0 0 0.6rem; max-width: 24ch; color: var(--tone-fg);
+  line-height: 1.16; margin: 0 0 0.6rem; max-width: 34ch; color: var(--tone-fg);
 }
 .breath__attr { margin: 0; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--tone-fg-mute); }
 

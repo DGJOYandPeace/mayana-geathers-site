@@ -57,25 +57,25 @@ navOverHero: true
   </div>
 </section>
 
+{# ------------------------------------------------- QUIET PHOTO MOMENT -- #}
+{% if assets.has[site.images.portraitProfile] %}
+<figure class="breath tone tone--sage">
+  <img src="/assets/img/{{ site.images.portraitProfile }}" alt="{{ site.images.portraitProfileAlt }}" loading="lazy"
+       {{ ("/assets/img/" ~ site.images.portraitProfile) | imgAttrs | safe }}>
+  <figcaption class="wrap breath__copy reveal">
+    <p class="breath__quote">There is a power to slowing down a moment, closing one&rsquo;s eyes and tapping into self as a form of support.</p>
+    <p class="breath__attr">Mayana Geathers</p>
+  </figcaption>
+</figure>
+{% endif %}
+
 {# ------------------------------------------------- PRIMARY CONVERSION -- #}
-<section class="tone tone--sage section">
+<section class="tone tone--moss section">
   <div class="wrap reveal">
     {% include "partials/signup.njk" %}
     {% include "partials/gift.njk" %}
   </div>
 </section>
-
-{# ------------------------------------------------- QUIET PHOTO MOMENT -- #}
-{% if assets.has[site.images.portraitProfile] %}
-<figure class="breath tone tone--moss">
-  <img src="/assets/img/{{ site.images.portraitProfile }}" alt="{{ site.images.portraitProfileAlt }}" loading="lazy"
-       {{ ("/assets/img/" ~ site.images.portraitProfile) | imgAttrs | safe }}>
-  <figcaption class="wrap breath__copy reveal">
-    <p class="breath__quote">There is a power to slowing down a moment.</p>
-    <p class="breath__attr">Mayana Geathers</p>
-  </figcaption>
-</figure>
-{% endif %}
 
 {# --------------------------------------------------------- WRITING ----- #}
 {% set latestPiece = writing.entries[0] %}
