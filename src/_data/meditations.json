@@ -71,14 +71,16 @@
       "cover": "/assets/img/dawining-of-a-new-day-cover-art.jpg",
       "audioAlts": [
         "Breathe In/Breathe Out.mp3",
-        "meditations/audio/Breathe In/Breathe Out.mp3",
-        "Guided Meditation — Breathe In, Breathe Out.mp3",
-        "meditations/audio/Guided Meditation — Breathe In, Breathe Out.mp3",
+        "Breathe In_Breathe Out.mp3",
+        "Breathe In-Breathe Out.mp3",
+        "Breathe In:Breathe Out.mp3",
+        "Breathe InBreathe Out.mp3",
         "Breathe In, Breathe Out.mp3",
-        "meditations/audio/Breathe In, Breathe Out.mp3",
+        "Guided Meditation — Breathe In, Breathe Out.mp3",
         "breathe-in-breathe-out.mp3",
-        "meditations/audio/breathe-in-breathe-out.mp3"
-      ]
+        "meditations/audio/Breathe In Breathe Out.mp3"
+      ],
+      "_comment": "This track does not load under any name tried so far. The definitive fix is to read the object's exact key from the R2 bucket and set audioFile to it; these alts are educated guesses at how the slash in the release title 'Breathe In/Breathe Out' was substituted on export."
     },
     {
       "slug": "breathing-in-light",
