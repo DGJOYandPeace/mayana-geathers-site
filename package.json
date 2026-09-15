@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "mayanageathers.com — static site (Eleventy) deployed on Cloudflare Pages.",
+  "description": "mayanageathers.com \u2014 static site (Eleventy) deployed on Cloudflare Pages.",
   "scripts": {
     "start": "eleventy --serve --port=8080",
     "dev": "eleventy --serve --port=8080",
-    "build": "eleventy"
+    "build": "eleventy",
+    "deploy": "eleventy && wrangler deploy"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.1.6",
