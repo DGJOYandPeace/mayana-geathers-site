@@ -81,7 +81,11 @@
         .then(function (res) {
           return res.json().catch(function () { return {}; }).then(function (body) {
             if (!res.ok || body.ok === false) {
-              throw new Error(body.error || "Request failed");
+              // Keep the server's own wording when it sent one - "Please enter
+              // your name." is worth showing; a bare network failure is not.
+              var err = new Error(body.error || "Request failed");
+              err.fromServer = Boolean(body.error);
+              throw err;
             }
             return body;
           });
@@ -91,8 +95,8 @@
           form.reset();
           if (formType === "newsletter") unlockGift();
         })
-        .catch(function () {
-          setStatus(status, "error", copy.error);
+        .catch(function (err) {
+          setStatus(status, "error", err && err.fromServer ? err.message : copy.error);
         })
         .then(function () {
           if (submit) {
